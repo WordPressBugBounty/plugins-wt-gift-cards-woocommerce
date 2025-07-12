@@ -1,0 +1,30 @@
+/**
+ * All of the CSS for your public-facing functionality should be
+ * included in this file.
+ */
+
+.wt_gc_checkout_store_credit_balance{ display:block; background-color:#fafafa; padding:1.41575em; box-sizing:border-box; margin-bottom:2.617924em; }
+.wt_gc_checkout_store_credit_balance input{ margin-right:10px; }
+.wt_gc_discounted_gift_card_flag_html{ display:inline-block; border:solid 1px #ec4c4c; color:#ec4c4c; border-radius:3px; padding:2px 10px; margin:5px 2px 10px 2px; }
+.wt_sc_credit_history{ display:none; }
+
+/**
+ *  @since 1.2.3
+ *  Gift Card Balance Check Form
+ */
+ 
+.wbte_gc_check_balance_form_wrapper{display:flex;justify-content:center;align-items:center;height:100%;}
+.wbte_gc_check_balance_form_inner{text-align:center;max-width:300px;width:100%;}
+.wbte_gc_check_balance_form label{display:block;margin-bottom:5px; text-align:left;}
+.wbte_gc_check_balance_form input[type="text"],.wbte_gc_check_balance_form input[type="email"]{width:100%;margin-bottom:10px;}
+.wbte_gc_check_balance_form button[type="submit"]{width:100%;}
+
+.wbte_gc_loading{color:#666;font-style:italic;}
+.wbte_gc_balance_result,.wbte_gc_balance_error{min-height:1.5em;transition:all .3s ease;}
+.wbte_gc_balance_success{color:#0f834d;}
+.wbte_gc_balance_error{color:#e2401c;}
+.wbte_gc_balance_result{min-height:1.5em;transition:all .3s ease;}
+.wbte_gc_balance_result.wbte_gc_balance_success{color:#0f834d;}
+.wbte_gc_balance_result.wbte_gc_balance_error{color:#e2401c;}
+.wbte_gc_balance_result{margin-top:10px;height:3em;display:flex;align-items:center;justify-content:center;margin-bottom:1.618em;}
+.wbte_gc_balance_error{margin-top:10px;}

@@ -1,0 +1,1106 @@
+# Copyright (C) 2024 WebToffee
+# This file is distributed under the GPLv3.
+msgid ""
+msgstr ""
+"Project-Id-Version: WebToffee Gift Cards for WooCommerce 1.2.1\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wt-gift-cards-woocommerce\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2024-12-27T04:55:21+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.11.0\n"
+"X-Domain: wt-gift-cards-woocommerce\n"
+
+#. Plugin Name of the plugin
+#: wt-gift-cards-woocommerce.php
+msgid "WebToffee Gift Cards for WooCommerce"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: wt-gift-cards-woocommerce.php
+msgid "https://wordpress.org/plugins/wt-gift-cards-woocommerce/"
+msgstr ""
+
+#. Description of the plugin
+#: wt-gift-cards-woocommerce.php
+msgid "Create and manage beautiful gift cards for your WooCommerce store."
+msgstr ""
+
+#. Author of the plugin
+#: wt-gift-cards-woocommerce.php
+msgid "WebToffee"
+msgstr ""
+
+#. Author URI of the plugin
+#: wt-gift-cards-woocommerce.php
+msgid "https://www.webtoffee.com/"
+msgstr ""
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:116
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:117
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:156
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:157
+msgid "Gift cards"
+msgstr ""
+
+#. translators: 1: line break, 2: html anchor link open tag, 3: html anchor link close tag
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:208
+msgid "Unable to update settings due to an internal error. %1$s To troubleshoot please click %2$s here. %3$s"
+msgstr ""
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:209
+#: public/class-wbte-woocommerce-gift-cards-free-public.php:88
+msgid "is required"
+msgstr ""
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:210
+#: public/class-wbte-woocommerce-gift-cards-free-public.php:89
+msgid "Copied!"
+msgstr ""
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:211
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:361
+#: admin/modules/gift_card/gift_card.php:795
+#: admin/modules/gift_card/gift_card.php:1085
+#: public/class-wbte-woocommerce-gift-cards-free-public.php:90
+msgid "Error"
+msgstr ""
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:212
+#: public/class-wbte-woocommerce-gift-cards-free-public.php:91
+msgid "Loading..."
+msgstr ""
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:213
+#: public/class-wbte-woocommerce-gift-cards-free-public.php:92
+msgid "Please wait..."
+msgstr ""
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:214
+msgid "Are you sure?"
+msgstr ""
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:215
+msgid "Are you sure you want to delete?"
+msgstr ""
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:216
+msgid "Saving..."
+msgstr ""
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:384
+msgid "Settings Updated"
+msgstr ""
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:439
+msgid "Settings"
+msgstr ""
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:440
+msgid "Premium Upgrade"
+msgstr ""
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:457
+msgid "Docs"
+msgstr ""
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:458
+msgid "Support"
+msgstr ""
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:459
+msgid "Review"
+msgstr ""
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:537
+msgid "Allowed email(s)"
+msgstr ""
+
+#: admin/modules/freevspro/freevspro.php:64
+#: admin/modules/freevspro/freevspro.php:69
+msgid "Free vs. Pro"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:22
+msgid "Number of gift cards"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:24
+msgid "Unlimited"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:27
+msgid "Physical gift cards"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:32
+msgid "Available templates for gift card"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:37
+msgid "Gift card amounts"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:38
+msgid "Set predefined value"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:39
+msgid "Set predefined and custom values with min and max control"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:42
+msgid "'Gift this product' option (Create gift cards worth of a specific product)"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:47
+msgid "Redeem gift cards to wallet"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:52
+msgid "Allow users to use custom images for gift cards"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:57
+msgid "Category-wise template listing"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:62
+msgid "Allow users to schedule gift cards"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:67
+msgid "Allow users to print gift cards"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:72
+msgid "Upload custom gift card templates"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:77
+msgid "Refunds to store credit"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:82
+msgid "Choose templates for sending gift cards from the admin side"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:87
+msgid "Give discounts on gift cards"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:92
+msgid "Attach gift cards as PDFs to emails"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:97
+msgid "Set expiry and advanced usage restrictions"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:102
+msgid "Control gift card form fields"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:107
+msgid "Add captions for gift cards"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:141
+msgid "Unlock the full potential of gift cards with a"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:141
+msgid "premium upgrade"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:142
+msgid "See what you are missing on your free version!"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:143
+msgid "99% Customer Satisfaction"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:143
+msgid "30 Day money back guarantee"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:146
+msgid "Unlock pro features"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:152
+msgid "FEATURES"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:153
+msgid "FREE"
+msgstr ""
+
+#: admin/modules/freevspro/views/comparison-table.php:154
+msgid "PREMIUM"
+msgstr ""
+
+#: admin/modules/gift_card/data/data-tooltip.php:4
+msgid "Enable to add gift card products and purchase functionality to the store. When disabled hides all gift cards and disables purchasing option"
+msgstr ""
+
+#: admin/modules/gift_card/data/data-tooltip.php:5
+msgid "Set to generate Gift cards when the order reaches the selected order status"
+msgstr ""
+
+#: admin/modules/gift_card/data/data-tooltip.php:6
+msgid "Image to be used in the gift card template"
+msgstr ""
+
+#: admin/modules/gift_card/data/data-tooltip.php:7
+msgid "Adds template to the specified gift card category"
+msgstr ""
+
+#: admin/modules/gift_card/data/data-tooltip.php:9
+msgid "Enable this option to sell gift cards without email restrictions. Gift cards can be redeemed by anyone who enters the correct code during checkout."
+msgstr ""
+
+#: admin/modules/gift_card/data/data-tooltip.php:14
+msgid "Selected templates will be available on gift card product page"
+msgstr ""
+
+#: admin/modules/gift_card/data/data-tooltip.php:17
+msgid "Allows to choose between  pre-defined gift card value or set custom gift card values"
+msgstr ""
+
+#: admin/modules/gift_card/data/data-tooltip.php:18
+msgid "Predefined gift card values to display on the product page. Separate multiple amounts with a comma"
+msgstr ""
+
+#: admin/modules/gift_card/data/data-tooltip.php:19
+msgid "Enable to allow users to choose template from the front end"
+msgstr ""
+
+#: admin/modules/gift_card/data/data-tooltip.php:24
+msgid "Value of the gift card"
+msgstr ""
+
+#: admin/modules/gift_card/data/data-tooltip.php:25
+msgid "The text will be displayed in the gift card email"
+msgstr ""
+
+#: admin/modules/gift_card/data/data-tooltip.php:26
+msgid "Recipient list to send the gift card"
+msgstr ""
+
+#: admin/modules/gift_card/data/data-tooltip.php:27
+msgid "Redirects to WooCommerce Email settings > Store credit email section. Can configure the store credit email from there"
+msgstr ""
+
+#: admin/modules/gift_card/data/data-tooltip.php:33
+msgid "Copy and paste the shortcode into any page within your store to showcase the gift card product on that specific page."
+msgstr ""
+
+#: admin/modules/gift_card/data/data-tooltip.php:35
+msgid "The text will serve as the title of the gift card product page"
+msgstr ""
+
+#: admin/modules/gift_card/data/data-tooltip.php:36
+msgid "The text will serve as the title for the template selection section on the gift card product page"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:158
+msgid "Unable to load template list."
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:296
+msgid "Delete template"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:320
+msgid "No templates have been chosen. Navigate to %s General Settings > Template Settings %s and select the desired templates."
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:350
+msgid "Enable gift card product"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:353
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:66
+msgid "Enable"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:357
+msgid "Order status to generate gift cards"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:360
+msgid "Gift cards will be generated upon reaching the selected order status."
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:364
+msgid "Disable email restrictions for gift cards"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:367
+msgid "Allow gift cards to be redeemed regardless of the buyer’s email address."
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:438
+msgid "Gift card products"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:439
+msgid "Send gift card"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:506
+msgid "Hide preview"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:507
+msgid "Show preview"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:508
+msgid "Unable to load the preview."
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:509
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:258
+msgid "from"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:510
+msgid "Expiry date: "
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:642
+msgid "Edit gift card product"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:645
+msgid "View gift card products"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:702
+msgid "Product data"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:820
+msgid "Please enter valid email address."
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:827
+msgid "Please enter valid amount."
+msgstr ""
+
+#. translators: %s: Coupon count.
+#: admin/modules/gift_card/gift_card.php:901
+msgid "Success. Total %s coupon(s) created and mailed."
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:972
+msgid "Coupon"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:973
+msgid "Coupon amount"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:982
+#: common/modules/gift_card/gift_card.php:162
+msgid "Recipient email"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:1048
+msgid "Gift cards purchased"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:1108
+msgid "Something went wrong"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:1118
+msgid "Success"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:1133
+msgid "You do not have sufficient permission to perform this operation"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:1176
+#: admin/modules/gift_card/views/gift-card-product.php:133
+msgid "Edit"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:1194
+msgid "Gift card product"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:1249
+#: common/modules/gift_card/data/data.template.php:42
+msgid "Gift card"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:1303
+msgid "Gift Card"
+msgstr ""
+
+#: admin/modules/gift_card/gift_card.php:1305
+msgid "This is an automatically created product for Gift card."
+msgstr ""
+
+#: admin/modules/gift_card/views/---gift-card-template.php:28
+msgid "View larger"
+msgstr ""
+
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:16
+msgid "Requires mPDF library to add PDF support. %s Click here %s to install the %s mPDF add-on by WebToffee %s (free)."
+msgstr ""
+
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:21
+msgid "Requires mPDF version %s or greater to add PDF support. %s Click here %s to update the %s mPDF add-on by WebToffee %s (free)."
+msgstr ""
+
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:27
+msgid "Requires mPDF library to add PDF support. %s Click here %s to activate the %s mPDF add-on by WebToffee %s(free)."
+msgstr ""
+
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:36
+msgid "Requires mPDF library to add PDF support. Please install the %s mPDF add-on by WebToffee %s(free)."
+msgstr ""
+
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:49
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:54
+#: admin/modules/gift_card/views/email-gift-card.php:67
+msgid "Configure gift card email"
+msgstr ""
+
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:58
+#: admin/modules/gift_card/views/email-gift-card.php:71
+msgid "Configure email"
+msgstr ""
+
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:59
+msgid "Redirects to WooCommerce > Settings > Emails. Can configure the gift cards related email from there"
+msgstr ""
+
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:63
+msgid "Attach Gift Card as PDF"
+msgstr ""
+
+#: admin/modules/gift_card/views/--template-settings-tab.php:14
+msgid "Templates"
+msgstr ""
+
+#: admin/modules/gift_card/views/--title-customization-settings-tab.php:16
+msgid "Customize product page titles"
+msgstr ""
+
+#: admin/modules/gift_card/views/--title-customization-settings-tab.php:21
+msgid "Custom page title"
+msgstr ""
+
+#: admin/modules/gift_card/views/--title-customization-settings-tab.php:25
+msgid "By default, the page title will showcase the name of the gift card product."
+msgstr ""
+
+#: admin/modules/gift_card/views/--title-customization-settings-tab.php:26
+msgid "Gift card product name"
+msgstr ""
+
+#: admin/modules/gift_card/views/--title-customization-settings-tab.php:29
+msgid "Template selection"
+msgstr ""
+
+#: admin/modules/gift_card/views/-gift-cards-metabox-html.php:32
+#: admin/modules/gift_card/views/-gift-cards-metabox-html.php:48
+msgid "Unknown"
+msgstr ""
+
+#: admin/modules/gift_card/views/-gift-cards-metabox-html.php:38
+msgid "Sent"
+msgstr ""
+
+#: admin/modules/gift_card/views/-gift-cards-metabox-html.php:39
+#: admin/modules/gift_card/views/-gift-cards-metabox-html.php:135
+msgid "Resend"
+msgstr ""
+
+#: admin/modules/gift_card/views/-gift-cards-metabox-html.php:43
+msgid "Not activated, awaiting order status update"
+msgstr ""
+
+#: admin/modules/gift_card/views/-gift-cards-metabox-html.php:44
+msgid "Force send and activate"
+msgstr ""
+
+#: admin/modules/gift_card/views/-gift-cards-metabox-html.php:49
+msgid "Send"
+msgstr ""
+
+#: admin/modules/gift_card/views/-gift-cards-metabox-html.php:67
+msgid "Coupon amount: "
+msgstr ""
+
+#: admin/modules/gift_card/views/-gift-cards-metabox-html.php:77
+msgid "Coupon code: "
+msgstr ""
+
+#: admin/modules/gift_card/views/-gift-cards-metabox-html.php:98
+msgid "Expiry: "
+msgstr ""
+
+#: admin/modules/gift_card/views/-gift-cards-metabox-html.php:102
+msgid "Status: "
+msgstr ""
+
+#: admin/modules/gift_card/views/-gift-cards-metabox-html.php:113
+msgid "Last sent: "
+msgstr ""
+
+#: admin/modules/gift_card/views/-product-data-meta-box.php:21
+msgid "Set predefined amounts"
+msgstr ""
+
+#: admin/modules/gift_card/views/-product-data-meta-box.php:28
+msgid "Multiple values need to be separated by comma."
+msgstr ""
+
+#: admin/modules/gift_card/views/-template-preview-popup.php:10
+msgid "Template preview"
+msgstr ""
+
+#: admin/modules/gift_card/views/email-gift-card.php:20
+msgid "Email preview"
+msgstr ""
+
+#: admin/modules/gift_card/views/email-gift-card.php:42
+msgid "Credit amount"
+msgstr ""
+
+#: admin/modules/gift_card/views/email-gift-card.php:50
+msgid "Recipient email(s)"
+msgstr ""
+
+#: admin/modules/gift_card/views/email-gift-card.php:53
+msgid "Multiple emails can be inputted by separating with commas."
+msgstr ""
+
+#: admin/modules/gift_card/views/email-gift-card.php:56
+#: common/modules/gift_card/gift_card.php:165
+msgid "Sender name"
+msgstr ""
+
+#: admin/modules/gift_card/views/email-gift-card.php:61
+msgid "Gift card message"
+msgstr ""
+
+#: admin/modules/gift_card/views/email-gift-card.php:81
+msgid "Send email"
+msgstr ""
+
+#: admin/modules/gift_card/views/email-gift-card.php:81
+msgid "Preview email"
+msgstr ""
+
+#: admin/modules/gift_card/views/gift-card-product.php:12
+#: admin/modules/gift_card/views/gift-card-product.php:155
+msgid "Trash"
+msgstr ""
+
+#: admin/modules/gift_card/views/gift-card-product.php:13
+msgid "Auto draft"
+msgstr ""
+
+#: admin/modules/gift_card/views/gift-card-product.php:58
+msgid "Gift Card Products"
+msgstr ""
+
+#: admin/modules/gift_card/views/gift-card-product.php:59
+msgid "Add new"
+msgstr ""
+
+#: admin/modules/gift_card/views/gift-card-product.php:67
+msgid "Title"
+msgstr ""
+
+#: admin/modules/gift_card/views/gift-card-product.php:68
+msgid "Price"
+msgstr ""
+
+#: admin/modules/gift_card/views/gift-card-product.php:69
+msgid "Status"
+msgstr ""
+
+#: admin/modules/gift_card/views/gift-card-product.php:70
+msgid "Date"
+msgstr ""
+
+#: admin/modules/gift_card/views/gift-card-product.php:71
+msgid "Shortcode"
+msgstr ""
+
+#: admin/modules/gift_card/views/gift-card-product.php:88
+msgid "(no title)"
+msgstr ""
+
+#: admin/modules/gift_card/views/gift-card-product.php:150
+msgid "Restore"
+msgstr ""
+
+#: admin/modules/gift_card/views/gift-card-product.php:164
+msgid "View"
+msgstr ""
+
+#: admin/modules/gift_card/views/gift-card-product.php:225
+msgid "Copied"
+msgstr ""
+
+#: admin/modules/gift_card/views/gift-card-product.php:238
+msgid "No products to display."
+msgstr ""
+
+#: admin/views/-admin-settings-general.php:19
+#: common/modules/gift_card/gift_card.php:214
+msgid "General"
+msgstr ""
+
+#: admin/views/-admin-settings-general.php:27
+msgid "Save"
+msgstr ""
+
+#: admin/views/admin-settings-save-button.php:6
+msgid "Save settings"
+msgstr ""
+
+#: admin/views/settings-page.php:20
+msgid "WooCommerce Gift Cards"
+msgstr ""
+
+#: admin/views/settings-page.php:28
+msgid "General settings"
+msgstr ""
+
+#: admin/views/settings-page.php:32
+msgid "Debug"
+msgstr ""
+
+#: admin/views/settings-page.php:98
+msgid "Boost Your Sales and Customer Loyalty With Premium Gift Card Features!"
+msgstr ""
+
+#: admin/views/settings-page.php:102
+msgid "Create an unlimited number of gift cards"
+msgstr ""
+
+#: admin/views/settings-page.php:103
+msgid "Create physical gift cards"
+msgstr ""
+
+#: admin/views/settings-page.php:104
+msgid "'Gift this product' option"
+msgstr ""
+
+#: admin/views/settings-page.php:105
+msgid "Let users schedule gift card delivery"
+msgstr ""
+
+#: admin/views/settings-page.php:106
+msgid "Print gift cards"
+msgstr ""
+
+#: admin/views/settings-page.php:107
+msgid "Allow users to upload custom images for gift cards"
+msgstr ""
+
+#: admin/views/settings-page.php:108
+msgid "Recommend products on gift certificates"
+msgstr ""
+
+#: admin/views/settings-page.php:109
+msgid "Accept gift cards as payment method"
+msgstr ""
+
+#: admin/views/settings-page.php:110
+msgid "Apply store credit on shipping, tax, and other fees"
+msgstr ""
+
+#: admin/views/settings-page.php:115
+msgid "Try with confidence"
+msgstr ""
+
+#: admin/views/settings-page.php:126
+msgid "Check Out Premium"
+msgstr ""
+
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:388
+#: common/classes/class-wbte-gc-store-credit-apply-free.php:362
+msgid "Store credit"
+msgstr ""
+
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:591
+msgid "Processing"
+msgstr ""
+
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:592
+msgid "Completed"
+msgstr ""
+
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:612
+msgid "Refunded"
+msgstr ""
+
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:613
+msgid "Cancelled"
+msgstr ""
+
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:614
+msgid "Failed"
+msgstr ""
+
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:723
+msgid "Reimburse credit value"
+msgstr ""
+
+#: common/classes/class-wbte-gc-store-credit-apply-free.php:166
+msgid "Sorry, you cannot purchase store credit with this coupon."
+msgstr ""
+
+#: common/classes/class-wbte-gc-store-credit-apply-free.php:437
+msgid "Store credit used:"
+msgstr ""
+
+#: common/classes/class-wbte-gc-store-credit-apply-free.php:595
+msgid "-"
+msgstr ""
+
+#: common/modules/gift_card/classes/class-wbte-woocommerce-gift-cards-free-email.php:11
+#: common/modules/gift_card/classes/class-wbte-woocommerce-gift-cards-free-email.php:14
+msgid "You have received a Gift card"
+msgstr ""
+
+#: common/modules/gift_card/classes/class-wbte-woocommerce-gift-cards-free-email.php:12
+msgid "This email will be sent to customers when they purchase the gift card or when the admin mails a gift card manually."
+msgstr ""
+
+#: common/modules/gift_card/classes/class-wbte-woocommerce-gift-cards-free-email.php:15
+msgctxt "default email subject for active emails sent to the customer"
+msgid "You've got a gift!"
+msgstr ""
+
+#: common/modules/gift_card/data/data.template.php:79
+#: common/modules/gift_card/email/gift-card-email.php:87
+msgid "Gift card code:"
+msgstr ""
+
+#: common/modules/gift_card/data/data.template.php:83
+#: common/modules/gift_card/email/gift-card-email.php:92
+#: common/modules/gift_card/email/plain/coupon-email.php:59
+msgid "Amount:"
+msgstr ""
+
+#. translators: %s Expiry date
+#: common/modules/gift_card/data/data.template.php:94
+#: common/modules/gift_card/email/coupon-email.php:92
+#: common/modules/gift_card/email/gift-card-email.php:105
+#: common/modules/gift_card/email/plain/coupon-email.php:62
+msgid "Expiry date: %s"
+msgstr ""
+
+#: common/modules/gift_card/data/data.template.php:107
+msgid "From:"
+msgstr ""
+
+#: common/modules/gift_card/data/data.template.php:117
+msgid "To:"
+msgstr ""
+
+#: common/modules/gift_card/data/data.template.php:127
+msgid "Message:"
+msgstr ""
+
+#: common/modules/gift_card/data/data.template.php:139
+msgid "To redeem this gift card, you can enter the gift card code in the dedicated field during checkout."
+msgstr ""
+
+#. translators: %s reciever name wrapped by HTML span.
+#. translators: %s reciever name
+#: common/modules/gift_card/email/coupon-email.php:41
+#: common/modules/gift_card/email/gift-card-email.php:45
+#: common/modules/gift_card/email/plain/coupon-email.php:35
+msgid "Hi %s,"
+msgstr ""
+
+#. translators: 1.HTML `span` tag open, 2. HTML `span` tag closing
+#. translators: 1. HTML span tag open, 2. HTML span tag close
+#: common/modules/gift_card/email/coupon-email.php:44
+#: common/modules/gift_card/email/gift-card-email.php:48
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:260
+msgid "Hi %1$sthere%2$s,"
+msgstr ""
+
+#. translators: 1.HTML tag open, 2. HTML tag closing
+#: common/modules/gift_card/email/coupon-email.php:56
+msgid "Congratulations! You have received a store credit %1$sfrom %2$s."
+msgstr ""
+
+#. translators: HTML code
+#: common/modules/gift_card/email/coupon-email.php:59
+msgid "Congratulations! You have received a store credit %s."
+msgstr ""
+
+#: common/modules/gift_card/email/coupon-email.php:74
+#: common/modules/gift_card/email/plain/coupon-email.php:56
+msgid "Coupon code:"
+msgstr ""
+
+#: common/modules/gift_card/email/coupon-email.php:79
+msgid "Amount is here!:"
+msgstr ""
+
+#: common/modules/gift_card/email/coupon-email.php:104
+#: common/modules/gift_card/email/plain/coupon-email.php:65
+msgid "To redeem this store credit, you can enter the coupon code in the dedicated field during the checkout."
+msgstr ""
+
+#. translators: 1.HTML tag open, 2. HTML tag closing
+#: common/modules/gift_card/email/gift-card-email.php:60
+msgid "Congratulations! You have received a gift card %1$sfrom %2$s."
+msgstr ""
+
+#. translators: HTML code
+#: common/modules/gift_card/email/gift-card-email.php:63
+msgid "Congratulations! You have received a gift card %s."
+msgstr ""
+
+#: common/modules/gift_card/email/gift-card-email.php:118
+msgid "To redeem this gift card, you can enter the gift card code in the dedicated field during the checkout."
+msgstr ""
+
+#: common/modules/gift_card/email/plain/coupon-email.php:37
+msgid "Hi there,"
+msgstr ""
+
+#. translators: from name
+#: common/modules/gift_card/email/plain/coupon-email.php:45
+msgid "Congratulations! You have received a store credit from %s."
+msgstr ""
+
+#: common/modules/gift_card/email/plain/coupon-email.php:47
+msgid "Congratulations! You have received a store credit."
+msgstr ""
+
+#: common/modules/gift_card/gift_card.php:96
+msgid "Customise your gift card"
+msgstr ""
+
+#: common/modules/gift_card/gift_card.php:97
+msgid "Select template"
+msgstr ""
+
+#: common/modules/gift_card/gift_card.php:98
+msgid "How do you want to send it"
+msgstr ""
+
+#: common/modules/gift_card/gift_card.php:163
+msgid "Recipient name"
+msgstr ""
+
+#: common/modules/gift_card/gift_card.php:164
+msgid "Sender email"
+msgstr ""
+
+#: common/modules/gift_card/gift_card.php:166
+msgid "Message"
+msgstr ""
+
+#: common/modules/gift_card/gift_card.php:596
+msgid "Email gift card"
+msgstr ""
+
+#: common/modules/gift_card/gift_card.php:612
+msgid "Email to recipient"
+msgstr ""
+
+#. translators: %s coupon code.
+#: common/modules/gift_card/gift_card.php:884
+msgid "Gift card %s resent to recipient using the Resend button."
+msgstr ""
+
+#. translators: %s coupon code.
+#: common/modules/gift_card/gift_card.php:889
+msgid "Gift card %s emailed to recipient manually using the force sent button."
+msgstr ""
+
+#. translators: %s coupon code.
+#: common/modules/gift_card/gift_card.php:894
+msgid "Gift card %s emailed to recipient."
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:24
+msgid "Used it successfully. Don't need anymore."
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:26
+msgid "Have used it successfully and aint in need of it anymore"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:30
+msgid "I couldn't understand how to make it work"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:32
+msgid "Would you like us to assist you?"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:36
+msgid "I found a better plugin"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:38
+msgid "Which plugin?"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:42
+msgid "The plugin is great, but I need specific feature that you don't support"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:44
+msgid "Could you tell us more about that feature?"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:48
+msgid "The plugin is not working"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:50
+msgid "Could you tell us a bit more whats not working?"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:54
+msgid "It's not what I was looking for"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:60
+msgid "The plugin didn't work as expected"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:62
+msgid "What did you expect?"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:66
+msgid "Other"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:68
+msgid "Could you tell us a bit more?"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:86
+msgid "If you have a moment, please let us know why you are deactivating:"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:97
+msgid "We do not collect any personal data when you submit this form. It's your feedback that we value."
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:98
+msgid "Privacy Policy"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:102
+msgid "I rather wouldn't say"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:103
+msgid "Contact Support"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:104
+msgid "Submit & Deactivate"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:105
+msgid "Cancel"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:204
+msgid "Deactivate and leave a review"
+msgstr ""
+
+#: includes/class-wbte-uninstall-feedback.php:206
+msgid "Let our support team help you"
+msgstr ""
+
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:100
+msgid "There seems to be a theme compatibility issue. Please reach out to our <a href=\"https://www.webtoffee.com/contact/\" target=\"_blank\"  style=\" color: #0202e5; text-decoration: underline;\">support team</a> to resolve this issue."
+msgstr ""
+
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:103
+msgid "Please select a template"
+msgstr ""
+
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:111
+msgid "Amount is required!"
+msgstr ""
+
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:121
+msgid "Please enter valid email address "
+msgstr ""
+
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:127
+msgid "Recipient email is required "
+msgstr ""
+
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:393
+msgid "Gift card <strong>%s</strong> generated. Awaiting %s order status for activation."
+msgstr ""
+
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:179
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:474
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:721
+msgid "Error. No user actions enabled."
+msgstr ""
+
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:307
+msgid "Gift card product is not enabled."
+msgstr ""
+
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:625
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:638
+msgid "Select options"
+msgstr ""
+
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:709
+msgid "Invalid gift card product."
+msgstr ""
+
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:730
+msgid "Error. Select templates to display Gift card."
+msgstr ""
+
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:759
+msgid "Please update your template"
+msgstr ""
+
+#: public/modules/gift_card/gift_card.php:167
+msgid "Error. There is no template(s) selected for this product."
+msgstr ""
+
+#: public/modules/gift_card/gift_card.php:173
+msgid "Your name"
+msgstr ""
+
+#: public/modules/gift_card/views/-myaccount-store-credit-coupons.php:25
+msgid "Available coupons"
+msgstr ""
+
+#: public/modules/gift_card/views/-store-credit-form.php:24
+msgid "Amount"
+msgstr ""
+
+#: wt-gift-cards-woocommerce.php:78
+msgid "Oops! Woocommerce not activated, It should required for `Gift cards for woocommerce`."
+msgstr ""
