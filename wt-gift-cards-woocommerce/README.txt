@@ -1,12 +1,12 @@
-=== WebToffee WooCommerce Gift Cards - The Ultimate Gift Card Plugin for WooCommerce ===
+=== WebToffee WooCommerce Gift Cards - Create & Manage Gift Cards for WooCommerce ===
 Contributors: WebToffee
-Version: 1.2.3
+Version: 1.2.4
 Donate link:https://www.webtoffee.com/product/woocommerce-gift-cards/
-Tags: gift cards, woocommerce gift cards,  store credit, gift voucher, advanced gift cards
+Tags: gift cards, woocommerce gift cards,  gift certificates, gift voucher, advanced gift cards
 Requires at least: 3.5
 Tested up to: 6.8
 Requires PHP: 5.6
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -14,14 +14,15 @@ Create and sell WooCommerce gift cards in your store. Allow your customers to bu
 
 == Description ==
 
-<strong>WebToffee WooCommerce Gift Cards Plugin lets you create a digital gift card for multiple amounts in your WooCommerce store. You can allow your customers to purchase, redeem, and share gift vouchers from your store.</strong> 
+**Create and sell digital gift cards on your WordPress website with a complete WooCommerce gift certificates solution. Easily generate, redeem, and manage WooCommerce gift cards. Offer personalized WooCommerce gift cards, set beautiful festive gift voucher templates, and share gift vouchers via email with your customers.**
+
 
 == Create WooCommerce Gift Cards ==
-The WebToffee WooCommerce Gift Cards plugin is a digital gift card solution (also called as WooCommerce gift card generator) that helps create gift certificates in WooCommerce. You can easily generate eye-catching personalized gift cards with a beginner-friendly interface.
+The WebToffee WooCommerce Gift Cards plugin (also known as WooCommerce gift voucher plugin) is a digital gift card solution that helps create gift certificates in WooCommerce. You can easily generate eye-catching customized WooCommerce gift cards with a beginner-friendly interface.
 
-This free gift card plugin is the ultimate gift card solution for WooCommerce stores. It lets you create a gift card like Amazon gift vouchers and allows your customers to conveniently purchase and redeem from your store.
+This free gift card plugin is the ultimate gift card solution for WooCommerce stores. It lets you create Amazon-like gift vouchers and allows your customers to conveniently purchase and redeem from your store.
 
-== Key Features of the Advanced WooCommerce Gift Cards Plugin ==
+== Key Features of this Free Gift Cards Plugin ==
 &#128312; **Create digital gift card** - Create and sell digital gift card in WooCommerce. 
 &#128312; **Free gift card template** - The WooCommerce gift voucher plugin offers four gift cards free templates. 
 &#128312; **Send free gift card to customers** - You can send free gift card to your WooCommerce customers. Add multiple recipients to gift card email. 
@@ -61,7 +62,7 @@ The gift card generator plugin also auto-generates and send gift cards to the re
 
 == Why Choose This WooCommerce Gift Voucher Plugin? ==
 
-The WebToffee WooCommerce Gift Cards Plugin is your go-to choice for creating WooCommerce gift cards and offering flexible gift vouchers effortlessly. With a simple, user-friendly UI, it makes managing gift cards easy for both store owners and customers.
+The WebToffee WooCommerce Gift Cards Plugin is your go-to choice for creating WooCommerce gift cards and gift vouchers effortlessly. Whether you want to create gift card products in WooCommerce, offer free gift cards to customers, or set up advanced store credits for WooCommerce, this plugin covers it all. With a simple, user-friendly UI, it makes managing gift cards easy for both store owners and customers.
 
 As a trusted WordPress plugin developer, we deliver reliable plugins backed by priority support and regular compatibility updates. If you’re looking for a powerful, advanced ecommerce gift cards plugin for WooCommerce, you can count on WebToffee!
 
@@ -121,6 +122,10 @@ Step 5: After installation, click "Activate" to activate the plugin.
 = What is the maximum number of gift cards I can create? =
 You can create only one gift card with the free version of this plugin. The premium version allows you to create unlimited gift cards on your WooCommerce store.
 
+
+= How can I create WooCommerce gift cards for my customers? =
+Simply install the plugin and add a new gift card product on your store. Configure the gift card products with predetermined values and templates. You can allow your customers to buy, redeem, and share gift cards to their loved ones.
+
 = Are WooCommerce gift vouchers downloadable? =
 Yes, the plugin offers downloadable gift certificates with attach gift cards as PDF feature.
 
@@ -167,80 +172,10 @@ The gift card code will be sent along with the gift card email. Customers can fi
 
 == Changelog ==
 
-= 1.2.3 2025-04-30 =
-*[Enhancement] - Add multiple gift cards to the cart without restrictions.
-*[Enhancement] - Allow users to check gift card balances from the front end using the shortcode [wt_gc_check_gift_card_balance].
-*[Compatibility] - Tested OK with WooCommerce 9.8.2
-*[Compatibility] - Tested OK with WordPress 6.8
-
-= 1.2.2 2025-03-05 =
-*[Add] - Display "Coupon code or gift card" text inside the Apply Coupon Code field in Checkout and Cart.
-*[Compatibility] - Tested OK with WooCommerce 9.7.1
-*[Compatibility] - Tested OK with WordPress 6.7.2
-
-= 1.2.1 2024-12-27 =
-*[Enhancements] - Translation updates.
-*[Fix] - Resolved an issue with accessing coupon properties directly, ensuring compatibility with WooCommerce standards.
-*[Fix] - Remove the not activate and gift card flags from coupon listing page.
-
-= 1.2.0 2024-12-26 =
-*[Enhancements] - Add option to remove email restrictions from generated Gift cards.
-*[Enhancements] - Add flag in coupon listing page.
-*[Enhancements] - Add order note regarding coupon activation & required order status.
-*[Enhancements] - Translation updates.
-*[Compatibility] - Tested OK with WooCommerce 9.5.1
-*[Compatibility] - Tested OK with WordPress 6.7.1
-
-= 1.1.4 2024-12-11 =
-*[Enhancements] - Translation updates.
-
-= 1.1.3 2024-11-19 =
-*[Fix] - Prevent loading translation too early in WP 6.7
-
-= 1.1.2 2024-11-13 =
-*[Compatibility] - Tested OK with WooCommerce 9.4.1
-*[Compatibility] - Tested OK with WordPress 6.7
-
-= 1.1.1 2024-10-11 =
-*[Compatibility] - Tested OK with WooCommerce 9.3.3
-
-= 1.1.0 2024-09-19 =
-*[Compatibility] - Tested OK with WooCommerce 9.3.2
-*[Compatibility] - Tested OK with WordPress 6.6.2
-*[Add] - Attach PDFs on emails
-*[Add] - Shortcode support for Gift Card products
-*[Add] - Title customization support
-
-= 1.0.5  2024-08-05 =
-*[Compatibility] - Tested OK with WooCommerce 9.1.4
-*[Compatibility] - Tested OK with WordPress 6.6.1
-
-= 1.0.4  2024-07-05 =
-*[Add] - Filter to restrict gift card mandatory fields.
-*[Add] - Filter to coupon email restriction.
-
-= 1.0.3  2024-07-02 =
-*[Fix] - New product block in empty cart page compatibility issues.
-*[Fix] - Template missing error on gift card product add to cart action.
-*[Compatibility] - Tested OK with WooCommerce 9.0.2
-
-= 1.0.2  2024-05-28 =
-*[Fix] - Theme compatibility issues.
-*[Compatibility] - Tested OK with WooCommerce 8.9.1
-*[Compatibility] - Tested OK with WordPress 6.5.3
-
-= 1.0.1  2024-04-09 =
-*[Compatibility] - Tested OK with WooCommerce 8.7.0
-*[Compatibility] - Tested OK with WordPress 6.5
-
-= 1.0.0  2024-02-02 =
-* Initial version.
+[See changelog for all versions](https://plugins.svn.wordpress.org/wt-gift-cards-woocommerce/trunk/changelog.txt)
 
 
 == Upgrade Notice ==
 
-= 1.2.3 =
-*[Enhancement] - Add multiple gift cards to the cart without restrictions.
-*[Enhancement] - Allow users to check gift card balances from the front end using the shortcode [wt_gc_check_gift_card_balance].
-*[Compatibility] - Tested OK with WooCommerce 9.8.2
-*[Compatibility] - Tested OK with WordPress 6.8
+= 1.2.4 =
+*[Compatibility] - Tested OK with WooCommerce 10.1

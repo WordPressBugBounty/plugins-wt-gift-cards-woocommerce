@@ -91,7 +91,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Public {
 				'error'       		 => __( 'Error', 'wt-gift-cards-woocommerce' ),
 				'loading'     		 => __( 'Loading...', 'wt-gift-cards-woocommerce' ),
 				'please_wait' 		 => __( 'Please wait...', 'wt-gift-cards-woocommerce' ),
-				'ajax_error'  		 => __( 'An error occurred, please try again.', 'wt-woocommerce-gift-cards')
+				'ajax_error'  		 => __( 'An error occurred, please try again.', 'wt-gift-cards-woocommerce')
 			),
 		);
 
@@ -137,9 +137,9 @@ class Wbte_Woocommerce_Gift_Cards_Free_Public {
 				<script>
 					function wbte_gc_change_text_couponcode_to_giftcard(){
 						
-						jQuery( '.checkout_coupon.woocommerce-form-coupon p.form-row.form-row-first input' ).attr( 'placeholder', '<?php esc_html_e( 'Coupon code or gift card', 'wt-woocommerce-gift-cards' ); ?>' );
+						jQuery( '.checkout_coupon.woocommerce-form-coupon p.form-row.form-row-first input' ).attr( 'placeholder', '<?php esc_html_e( 'Coupon code or gift card', 'wt-gift-cards-woocommerce' ); ?>' );
 
-						jQuery( 'table.cart div.coupon input' ).attr( 'placeholder', '<?php esc_html_e( 'Coupon code or gift card', 'wt-woocommerce-gift-cards' ); ?>' );
+						jQuery( 'table.cart div.coupon input' ).attr( 'placeholder', '<?php esc_html_e( 'Coupon code or gift card', 'wt-gift-cards-woocommerce' ); ?>' );
 
 						if( 0 < ( inputElement = jQuery( 'table.cart div.coupon input' ) ).length ) {
 							inputElement.attr( 'size' , inputElement.attr( 'placeholder' ).length );
@@ -166,6 +166,6 @@ class Wbte_Woocommerce_Gift_Cards_Free_Public {
 	*/
 	public function alter_have_a_coupon_text( $text ){
 
-		return esc_html__( 'Have a coupon or gift card?', 'wt-woocommerce-gift-cards' ) . ' <a href="#" class="showcoupon">' . esc_html__( 'Click here to enter your code', 'wt-woocommerce-gift-cards' ) . '</a>' ;
+		return esc_html__( 'Have a coupon or gift card?', 'wt-gift-cards-woocommerce' ) . ' <a href="#" class="showcoupon">' . esc_html__( 'Click here to enter your code', 'wt-gift-cards-woocommerce' ) . '</a>' ;
 	}
 }

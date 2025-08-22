@@ -1067,10 +1067,10 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
         ob_start();
 		$args = array(
 			'enable_email_field'=> true,
-			'email_field_subtitle'=> __('Enter your email', 'wt-woocommerce-gift-cards')
+			'email_field_subtitle'=> __('Enter your email', 'wt-gift-cards-woocommerce')
 		);
-        $form_title    				= apply_filters('wbte_gc_balance_check_title', __('CHECK YOUR BALANCE', 'wt-woocommerce-gift-cards'));
-        $coupon_code_label 			= apply_filters('wbte_gc_balance_check_subtitle', __('Enter Gift Card code', 'wt-woocommerce-gift-cards'));
+        $form_title    				= apply_filters('wbte_gc_balance_check_title', __('CHECK YOUR BALANCE', 'wt-gift-cards-woocommerce'));
+        $coupon_code_label 			= apply_filters('wbte_gc_balance_check_subtitle', __('Enter Gift Card code', 'wt-gift-cards-woocommerce'));
         $restricted_email_label	    = apply_filters('wbte_gc_balance_check_restricted_email', $args);
         ?>
 		
@@ -1090,7 +1090,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 						
 						<?php endif; ?>
 						
-						<button type="submit"><?php esc_html_e('Submit', 'wt-woocommerce-gift-cards'); ?></button>
+						<button type="submit"><?php esc_html_e('Submit', 'wt-gift-cards-woocommerce'); ?></button>
 					</form>
 
 					<div class="wbte_gc_balance_result"></div>

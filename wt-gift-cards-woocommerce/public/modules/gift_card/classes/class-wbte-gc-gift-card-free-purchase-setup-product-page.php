@@ -251,8 +251,7 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Setup_Product_Page extends Wbte_Gc_Gift_Ca
 			'dummy_template_img_url' => ( isset( $dummy_template_data['image_url'] ) && is_string( $dummy_template_data['image_url'] ) ? esc_url( $dummy_template_data['image_url'] ) : Wbte_Woocommerce_Gift_Cards_Free_Common::$no_image ),
 			'msgs'                   => array(
 				'from'     => __( 'from', 'wt-gift-cards-woocommerce' ),
-				/* translators: 1. HTML span tag open, 2. HTML span tag close */
-				'hi_there' => sprintf( __( 'Hi %1$sthere%2$s,', 'wt-gift-cards-woocommerce' ), '<span class="wt_gc_reciever_name">', '</span>' ),
+				'hi_there' => __( 'Hi there,', 'wt-gift-cards-woocommerce' ),
 			),
 		);
 

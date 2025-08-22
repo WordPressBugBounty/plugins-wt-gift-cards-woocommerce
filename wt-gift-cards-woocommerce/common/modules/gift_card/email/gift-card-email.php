@@ -44,8 +44,7 @@ $order_currency = $order ? $order->get_currency() : get_woocommerce_currency();
 					/* translators: %s reciever name wrapped by HTML span. */
 					echo wp_kses_post( sprintf( __( 'Hi %s,', 'wt-gift-cards-woocommerce' ), '<span class="wt_gc_reciever_name">' . $reciever_name . '</span>' ) );
 				} else {
-					/* translators: 1.HTML `span` tag open, 2. HTML `span` tag closing */
-					echo wp_kses_post( sprintf( __( 'Hi %1$sthere%2$s,', 'wt-gift-cards-woocommerce' ), '<span class="wt_gc_reciever_name">', '</span>' ) );
+					echo esc_html__( 'Hi there,', 'wt-gift-cards-woocommerce' );	
 				}
 
 				?>
@@ -60,7 +59,7 @@ $order_currency = $order ? $order->get_currency() : get_woocommerce_currency();
 					echo wp_kses_post( sprintf( __( 'Congratulations! You have received a gift card %1$sfrom %2$s.', 'wt-gift-cards-woocommerce' ), '<span class="wt_gc_from_name_box"><span class="wt_gc_from_name_prefix">', '</span><span class="wt_gc_from_name"> ' . $from . '</span></span>' ) );
 				} else {
 					/* translators: HTML code */
-					echo wp_kses_post( sprintf( __( 'Congratulations! You have received a gift card %s.', 'wt-gift-cards-woocommerce' ), '<span class="wt_gc_from_name_box"><span class="wt_gc_from_name_prefix"></span><span class="wt_gc_from_name"></span></span>' ) );
+					echo esc_html__( 'Congratulations! You have received a gift card.', 'wt-gift-cards-woocommerce' );	
 				}
 
 				?>

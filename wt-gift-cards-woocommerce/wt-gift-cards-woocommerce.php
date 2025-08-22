@@ -8,7 +8,7 @@
  * Plugin Name:       WebToffee Gift Cards for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/wt-gift-cards-woocommerce/
  * Description:       Create and manage beautiful gift cards for your WooCommerce store.
- * Version:           1.2.3
+ * Version:           1.2.4
  * Author:            WebToffee
  * Author URI:        https://www.webtoffee.com/
  * License:           GPLv3
@@ -34,7 +34,7 @@ if ( is_plugin_active( 'wt-woocommerce-gift-cards/wt-woocommerce-gift-cards.php'
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
  */
-define( 'WBTE_GC_FREE_VERSION', '1.2.3' );
+define( 'WBTE_GC_FREE_VERSION', '1.2.4' );
 
 define( 'WBTE_GC_FREE_FILE_NAME', __FILE__ );
 define( 'WBTE_GC_FREE_BASE_NAME', plugin_basename( WBTE_GC_FREE_FILE_NAME ) );
