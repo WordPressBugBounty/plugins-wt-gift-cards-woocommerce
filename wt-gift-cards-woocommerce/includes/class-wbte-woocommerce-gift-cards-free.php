@@ -78,7 +78,7 @@ class Wbte_Woocommerce_Gift_Cards_Free {
 		if ( defined( 'WBTE_GC_FREE_VERSION' ) ) {
 			$this->version = WBTE_GC_FREE_VERSION;
 		} else {
-			$this->version = '1.2.4';
+			$this->version = '1.2.5';
 		}
 		$this->plugin_name = WBTE_GC_FREE_PLUGIN_NAME;
 

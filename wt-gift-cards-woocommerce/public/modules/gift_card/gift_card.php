@@ -33,11 +33,6 @@ class Wbte_Gc_Gift_Card_Free_Public extends Wbte_Gc_Gift_Card_Free_Common {
 		 */
 		include_once $this->module_path . 'classes/class-wbte-gc-gift-card-free-purchase.php';
 		Wbte_Gc_Gift_Card_Free_Purchase::get_instance();
-
-		/**
-		 *  Store credit coupon section in my account
-		 */
-		add_action( 'wt_gc_myaccount_store_credit_page_content', array( $this, 'myaccount_store_credit_page_content' ), 10 );
 	}
 
 	/**
@@ -62,80 +57,6 @@ class Wbte_Gc_Gift_Card_Free_Public extends Wbte_Gc_Gift_Card_Free_Common {
 		self::$module_id_static = $this->module_id;
 		$this->module_path      = plugin_dir_path( __FILE__ );
 		$this->module_url       = plugin_dir_url( __FILE__ );
-	}
-
-	/**
-	 *  Show store credit coupons in my account page
-	 *  This method works only when Webtoffee Smart coupon plugin is activated
-	 *  By default this method will only show the coupons created via Smart coupon plugin.
-	 *  Use filter `wt_gc_exclude_coupons_created_via_gift_cards_plugin` to show all coupons.
-	 *
-	 *  @since 1.0.0
-	 */
-	public function myaccount_store_credit_page_content() {
-		include_once ABSPATH . 'wp-admin/includes/plugin.php';
-
-		if ( Wbte_Woocommerce_Gift_Cards_Free::is_smart_coupon_active() ) {
-			if ( ! class_exists( 'Wt_Smart_Coupon_Public' )
-				|| ! method_exists( 'Wt_Smart_Coupon_Public', 'get_coupon_meta_data' )
-				|| ! method_exists( 'Wt_Smart_Coupon_Public', 'get_coupon_html' )
-			) {
-				return;
-			}
-
-			$user  = wp_get_current_user();
-			$email = $user->user_email;
-
-			$args = array(
-				'post_type' => 'shop_coupon',
-			);
-
-			$meta_query = array(
-				array(
-					'key'     => 'customer_email',
-					'value'   => $email,
-					'compare' => 'LIKE',
-				),
-				array(
-					'key'     => 'discount_type',
-					'value'   => Wbte_Woocommerce_Gift_Cards_Free_Common::$store_credit_coupon_type_name,
-					'compare' => 'LIKE',
-				),
-				array(
-					'key'     => '_wt_smart_coupon_credit_activated',
-					'value'   => true,
-					'compare' => 'EXISTS',
-				),
-				array(
-					'key'     => 'coupon_amount',
-					'value'   => 0,
-					'compare' => '>',
-				),
-			);
-
-			/* exclude store credits coupons created via Gift card plugin */
-			if ( apply_filters( 'wt_gc_exclude_coupons_created_via_gift_cards_plugin', true ) ) {
-				$meta_query[] = array(
-					'key'     => '_wt_gc_auto_generated_store_credit_coupon',
-					'value'   => 'completely', // a dummy value to fix WP bug #23268 [https://core.trac.wordpress.org/ticket/23268]
-					'compare' => 'NOT EXISTS',
-				);
-
-				$meta_query[] = array(
-					'key'     => '_wt_gc_store_credit_coupon',
-					'value'   => 'completely', // a dummy value to fix WP bug #23268 [https://core.trac.wordpress.org/ticket/23268]
-					'compare' => 'NOT EXISTS',
-				);
-			}
-
-			$args['meta_query'] = $meta_query;
-
-			$the_query = new WP_Query( $args );
-
-			if ( $the_query->have_posts() ) {
-				include 'views/-myaccount-store-credit-coupons.php';
-			}
-		}
 	}
 
 

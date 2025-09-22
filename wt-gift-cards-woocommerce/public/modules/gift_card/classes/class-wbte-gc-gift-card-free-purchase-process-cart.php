@@ -334,8 +334,9 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Process_Cart extends Wbte_Gc_Gift_Card_Fre
 		$product_id   = $product->get_id();
 		$credit_value = floatval( $legacy_values['wt_credit_amount'] );
 		$settings     = self::get_product_metas( $product_id ); // gift card product settings
+		$billing_email = isset($_REQUEST['billing_email']) ? sanitize_email( wp_unslash( $_REQUEST['billing_email'] ) ) : '';
 
-		$email_id = isset( $legacy_values['wt_store_credit_template']['wt_credit_coupon_send_to'] ) ? sanitize_email( $legacy_values['wt_store_credit_template']['wt_credit_coupon_send_to'] ) : sanitize_email( wp_unslash( $_REQUEST['billing_email'] ) );
+		$email_id = isset( $legacy_values['wt_store_credit_template']['wt_credit_coupon_send_to'] ) ? sanitize_email( $legacy_values['wt_store_credit_template']['wt_credit_coupon_send_to'] ) : $billing_email;
 		$message  = isset( $legacy_values['wt_store_credit_template']['wt_credit_coupon_send_to_message'] ) ? sanitize_textarea_field( $legacy_values['wt_store_credit_template']['wt_credit_coupon_send_to_message'] ) : '';
 
 		/**
@@ -417,9 +418,10 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Process_Cart extends Wbte_Gc_Gift_Card_Fre
 						$formatted_status = implode(', ', array_slice($status_list, 0, -1));
 						$last_status = end($status_list);
 						$order_status_for_gift_card_email = $formatted_status ? $formatted_status . ' or ' . $last_status : $last_status;
-						$order->add_order_note(sprintf(__('Gift card <strong>%s</strong> generated. Awaiting %s order status for activation.','wt-gift-cards-woocommerce'), $coupon_code,$order_status_for_gift_card_email));
+						/* translators: 1: Gift card code, 2: Order status */
+						$order->add_order_note(sprintf(__('Gift card <strong>%1$s</strong> generated. Awaiting %2$s order status for activation.','wt-gift-cards-woocommerce'), $coupon_code,$order_status_for_gift_card_email));
 					}else{
-						$order->add_order_note(__('Gift card generated. Not activated.'), 'wt-gift-cards-woocommerce');
+						$order->add_order_note(__('Gift card generated. Not activated.', 'wt-gift-cards-woocommerce'));
 					}	
 				}
 			}

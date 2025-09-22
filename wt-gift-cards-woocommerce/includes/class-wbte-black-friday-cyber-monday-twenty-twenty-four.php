@@ -64,22 +64,24 @@ if ( !class_exists( 'Wbte_Bfcm_Twenty_Twenty_Four' ) ) {
                     <div class="wbte-bfcm-banner-2024 notice is-dismissible">
                         <div class="wbte-bfcm-banner-body">
                             <div class="wbte-bfcm-banner-body-img-section">
-                                <img src="<?php echo plugins_url( 'admin/images/black-friday-2024.svg', dirname(__FILE__) ); ?>" alt="Black Friday Cyber Monday 2024">
+                                <img src="<?php echo esc_url( plugins_url( 'admin/images/black-friday-2024.svg', dirname( __FILE__ ) ) ); ?>" 
+                                     alt="<?php esc_attr_e( 'Black Friday Cyber Monday 2024', 'wt-gift-cards-woocommerce' ); ?>">
                             </div>
                             <div class="wbte-bfcm-banner-body-info">
                                 <div class="never-miss-this-deal">
-                                    <p><?php echo esc_html__( 'Never Miss This Deal', '' ); ?></p>
+                                    <p><?php echo esc_html__( 'Never Miss This Deal', 'wt-gift-cards-woocommerce' ); ?></p>
                                 </div>
                                 <div class="info">
                                     <p><?php 
-                                        echo sprintf(
-                                                __( 'Your Last Chance to Avail %1$s on WebToffee Plugins. Grab the deal before it`s gone!', '' ), 
-                                                '<span>30% '.__("OFF","").'</span>'
-                                            );
+                                       echo sprintf(
+                                            /* translators: %1$s: Discount text with span wrapper, e.g. <span>30% OFF</span>. */
+                                            esc_html__( 'Your Last Chance to Avail %1$s on WebToffee Plugins. Grab the deal before it`s gone!', 'wt-gift-cards-woocommerce' ),
+                                            '<span>' . esc_html__( '30% OFF', 'wt-gift-cards-woocommerce' ) . '</span>'
+                                        )
                                     ?></p>
                                 </div>
                                 <div class="wbte-bfcm-banner-body-button">
-                                    <a href="<?php echo self::$promotion_link; ?>" class="bfcm_cta_button" target="_blank"><?php echo esc_html__( 'View plugins', '' ); ?> <span class="dashicons dashicons-arrow-right-alt"></span></a>
+                                    <a href=" <?php echo esc_url( self::$promotion_link ); ?> " class="bfcm_cta_button" target="_blank"><?php echo esc_html__( 'View plugins', 'wt-gift-cards-woocommerce' ); ?> <span class="dashicons dashicons-arrow-right-alt"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -145,8 +147,8 @@ if ( !class_exists( 'Wbte_Bfcm_Twenty_Twenty_Four' ) ) {
     		check_ajax_referer( 'wbte_bfcm_twenty_twenty_four_banner_nonce' );
     		if ( isset( $_POST['wbte_bfcm_twenty_twenty_four_banner_action_type'] ) ) {
 	            
-	            $action_type = absint( sanitize_text_field( $_POST['wbte_bfcm_twenty_twenty_four_banner_action_type'] ) );
-	            // Current action is allowed?
+				$action_type = absint( sanitize_text_field( wp_unslash( $_POST['wbte_bfcm_twenty_twenty_four_banner_action_type'] ) ));
+                // Current action is allowed?
 	            if ( in_array( $action_type, array( 2, 3 ) ) ) {
 	                update_option( self::$banner_state_option_name, $action_type );
 	            }

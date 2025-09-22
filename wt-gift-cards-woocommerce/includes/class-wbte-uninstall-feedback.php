@@ -89,7 +89,7 @@ if (!class_exists('WT_GiftCards_Uninstall_Feedback')) :
                         <ul class="reasons">
                             <?php foreach ($reasons as $reason) { ?>
                                 <li data-type="<?php echo esc_attr($reason['type']); ?>" data-placeholder="<?php echo esc_attr($reason['placeholder']); ?>">
-                                    <label><input type="radio" name="selected-reason" value="<?php esc_html_e( $reason['id'] ); ?>"> <?php esc_html_e( $reason['text'] ); ?></label>
+                                    <label><input type="radio" name="selected-reason" value="<?php echo esc_attr( $reason['id'] ); ?>"> <?php echo esc_html( $reason['text'] ); ?></label>
                                 </li>
                             <?php } ?>
                         </ul>
@@ -100,7 +100,7 @@ if (!class_exists('WT_GiftCards_Uninstall_Feedback')) :
                     </div>
                     <div class="wbtegiftcards-modal-footer">
                         <a href="#" class="dont-bother-me"><?php esc_html_e('I rather wouldn\'t say', 'wt-gift-cards-woocommerce'); ?></a>                      
-                        <a href="https://wordpress.org/support/plugin/wt-gift-cards-woocommerce/#new-topic-0" target="_blank" class="button-primary wbtegiftcards-model-submit"><span class="dashicons dashicons-external" style="margin-top:3px;"></span> <?php _e('Contact Support', 'wt-gift-cards-woocommerce'); ?></a>
+                        <a href="https://wordpress.org/support/plugin/wt-gift-cards-woocommerce/#new-topic-0" target="_blank" class="button-primary wbtegiftcards-model-submit"><span class="dashicons dashicons-external" style="margin-top:3px;"></span> <?php esc_html_e('Contact Support', 'wt-gift-cards-woocommerce'); ?></a>
                         <button class="button-primary wbtegiftcards-model-submit"><?php esc_html_e('Submit & Deactivate', 'wt-gift-cards-woocommerce'); ?></button>
                         <button class="button-secondary wbtegiftcards-model-cancel"><?php esc_html_e('Cancel', 'wt-gift-cards-woocommerce'); ?></button>
                     </div>
@@ -173,6 +173,7 @@ if (!class_exists('WT_GiftCards_Uninstall_Feedback')) :
             </style>
             <script type="text/javascript">
                 (function ($) {
+                    var wbtegiftcardsNonce = '<?php echo esc_js( wp_create_nonce( 'wbtegiftcards_uninstall_nonce' ) ); ?>';
                     $(function () {
                         var modal = $('#wbtegiftcards-wbtegiftcards-modal');
                         var deactivateLink = '';
@@ -201,9 +202,9 @@ if (!class_exists('WT_GiftCards_Uninstall_Feedback')) :
                                     inputPlaceholder = parent.data('placeholder');
 
                             if ('reviewhtml' === inputType) {
-                                var reasonInputHtml = '<div class="reviewlink reason-block"><a href="#" target="_blank" class="review-and-deactivate"><?php _e('Deactivate and leave a review', 'wt-gift-cards-woocommerce'); ?> <span class="wt-wbtegiftcards-rating-link"> &#9733;&#9733;&#9733;&#9733;&#9733; </span></a></div>';
+                                var reasonInputHtml = '<div class="reviewlink reason-block"><a href="#" target="_blank" class="review-and-deactivate"><?php esc_html_e('Deactivate and leave a review', 'wt-gift-cards-woocommerce'); ?> <span class="wt-wbtegiftcards-rating-link"> &#9733;&#9733;&#9733;&#9733;&#9733; </span></a></div>';
                             } else if ('supportlink' === inputType) {
-                                var reasonInputHtml = '<div class="support_link reason-block"> <a href="https://www.webtoffee.com/contact" target="_blank" class="reach-via-support"><?php _e('Let our support team help you', 'wt-gift-cards-woocommerce'); ?> </a>' + '</div>';
+                                var reasonInputHtml = '<div class="support_link reason-block"> <a href="https://www.webtoffee.com/contact" target="_blank" class="reach-via-support"><?php esc_html_e('Let our support team help you', 'wt-gift-cards-woocommerce'); ?> </a>' + '</div>';
                             } else {
                                 var reasonInputHtml = '<div class="reason-input reason-block">' + (('text' === inputType) ? '<input type="text" class="input-text" size="40" />' : '<textarea rows="5" cols="45"></textarea>') + '</div>';
                             }
@@ -232,7 +233,8 @@ if (!class_exists('WT_GiftCards_Uninstall_Feedback')) :
                                 data: {
                                     action: 'wbtegiftcards_submit_uninstall_reason',
                                     reason_id: $reason_id,
-                                    reason_info: $reason_info
+                                    reason_info: $reason_info,
+                                    nonce: wbtegiftcardsNonce
                                 },
                                 beforeSend: function () {
                                     button.addClass('disabled');
@@ -257,15 +259,24 @@ if (!class_exists('WT_GiftCards_Uninstall_Feedback')) :
                 wp_send_json_error();
             }
 
+            // Verify nonce
+            if ( ! isset( $_POST['nonce'] ) ) {
+                wp_send_json_error( array( 'message' => 'Bad request' ), 400 );
+            }
+            $nonce = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
+            if ( ! wp_verify_nonce( $nonce, 'wbtegiftcards_uninstall_nonce' ) ) {
+                wp_send_json_error( array( 'message' => 'Invalid nonce' ), 403 );
+            }
+
             $data = array(
-                'reason_id' => sanitize_text_field($_POST['reason_id']),
+                'reason_id' => sanitize_text_field(wp_unslash($_POST['reason_id'])),
                 'plugin' => "wbtegiftcards",
                 'auth' => 'wbtegiftcards_uninstall_1234#',
                 'date' => gmdate("M d, Y h:i:s A"),
                 'url' => '',
                 'user_email' => '',
-                'reason_info' => isset($_REQUEST['reason_info']) ? trim(stripslashes($_REQUEST['reason_info'])) : '',
-                'software' => $_SERVER['SERVER_SOFTWARE'],
+                'reason_info' => isset($_REQUEST['reason_info']) ? sanitize_textarea_field( wp_unslash( $_REQUEST['reason_info'] ) ) : '',
+                'software' => isset($_SERVER['SERVER_SOFTWARE']) ? sanitize_text_field( wp_unslash( $_SERVER['SERVER_SOFTWARE'] ) ) : '',
                 'php_version' => phpversion(),
                 'mysql_version' => $wpdb->db_version(),
                 'wp_version' => get_bloginfo('version'),

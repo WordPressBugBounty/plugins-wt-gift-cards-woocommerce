@@ -1079,7 +1079,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 					<h2><?php echo esc_html($form_title); ?></h2>
 
 					<form class="wbte_gc_check_balance_form">
-						<?php wp_nonce_field('wbte_gc_check_balance', 'wbte_gc_check_balance_nonce'); ?>
+						<?php wp_nonce_field(WBTE_GC_FREE_PLUGIN_NAME); ?>
 						<label for="wbte_gc_coupon_code"><?php echo esc_html($coupon_code_label); ?></label>
 						<input type="text" name="wbte_gc_coupon_code" class="wbte_gc_coupon_code" required>
 						
@@ -1116,8 +1116,12 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 
 		$nonce = ( isset( $_REQUEST['_wpnonce'] ) ? sanitize_key( wp_unslash( $_REQUEST['_wpnonce'] ) ) : '' );
 		$nonce = ( is_array( $nonce ) ? reset( $nonce ) : $nonce );
-		if ( ! $nonce ) {
-			echo wp_send_json_error( $out ); 
+		if ( ! $nonce || ! wp_verify_nonce( $nonce, WBTE_GC_FREE_PLUGIN_NAME ) ) {
+			$out = array(
+				'balance' => '',
+				'message'    => esc_html__( 'Security check failed.', 'wt-gift-cards-woocommerce' ),
+			);
+			wp_send_json_error( $out ); 
 			exit();
 		}
 
@@ -1158,9 +1162,10 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 
         $balance = $coupon->get_amount();
         $currency = get_woocommerce_currency();
-        $formatted_balance = strip_tags(wc_price($balance, array('currency' => $currency)));
+        $formatted_balance = wp_strip_all_tags( wc_price( $balance, array( 'currency' => $currency ) ));
         
         $success_message = sprintf(
+			/* translators: 1: Gift card balance */
             esc_html__('Your gift card balance is&nbsp;%s', 'wt-gift-cards-woocommerce'),
             '<span class="wt_gc_balance_amount">' . $formatted_balance . '</span>'
         );

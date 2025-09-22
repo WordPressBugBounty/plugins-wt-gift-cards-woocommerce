@@ -163,7 +163,7 @@ class Wbte_Gc_Store_Credit_Apply_Free extends Wbte_Woocommerce_Gift_Cards_Free_C
 				foreach ( $discount->get_items_to_validate() as $item ) {
 					if ( isset( $item->object['wt_credit_amount'] ) || isset( $item->object['wt_credit_coupon_generated'] ) ) {
 						$valid = false;
-						throw new Exception( __( 'Sorry, you cannot purchase store credit with this coupon.', 'wt-gift-cards-woocommerce' ) );
+						throw new Exception( esc_html__( 'Sorry, you cannot purchase store credit with this coupon.', 'wt-gift-cards-woocommerce' ) );
 						break;
 					}
 				}

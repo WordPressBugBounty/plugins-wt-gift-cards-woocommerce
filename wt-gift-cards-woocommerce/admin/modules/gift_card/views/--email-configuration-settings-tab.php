@@ -13,18 +13,21 @@ if(current_user_can('install_plugins') && current_user_can('update_plugins'))
 
     if(!$is_mpdf_active && !$is_mpdf_exists)
     {
-        $enable_mpdf_msg = __('Requires mPDF library to add PDF support. %s Click here %s to install the %s mPDF add-on by WebToffee %s (free).', 'wt-gift-cards-woocommerce');
+        /* translators: 1: Opening link tag, 2: Closing link tag, 3: Opening link tag, 4: Closing link tag */
+        $enable_mpdf_msg = __('Requires mPDF library to add PDF support. %1$s Click here %2$s to install the %3$s mPDF add-on by WebToffee %4$s (free).', 'wt-gift-cards-woocommerce');
         $placeholder_arr[0] = '<a href="' . esc_url(wp_nonce_url(self_admin_url('update.php?action=install-plugin&plugin=' . $mpdf_slug), 'install-plugin_' . $mpdf_slug)) . '">';
 
     }elseif($is_mpdf_active && !$is_required_mpdf_version_installed)
     {
-        $enable_mpdf_msg = __('Requires mPDF version %s or greater to add PDF support. %s Click here %s to update the %s mPDF add-on by WebToffee %s (free).', 'wt-gift-cards-woocommerce');
+		/* translators: 1: mPDF version, 2: Opening link tag, 3: Closing link tag, 4: Opening link tag, 5: Closing link tag */
+        $enable_mpdf_msg = __('Requires mPDF version %1$s or greater to add PDF support. %2$s Click here %3$s to update the %4$s mPDF add-on by WebToffee %5$s (free).', 'wt-gift-cards-woocommerce');
         $placeholder_arr[0] = '<a href="' . esc_url(wp_nonce_url(self_admin_url('update.php?action=upgrade-plugin&plugin=' . $mpdf_slug), 'upgrade-plugin_' . $mpdf_slug)) . '">';
         array_unshift($placeholder_arr , $mpdf_required_version);
 
     }elseif(!$is_mpdf_active && $is_mpdf_exists)
     {
-        $enable_mpdf_msg = __('Requires mPDF library to add PDF support. %s Click here %s to activate the %s mPDF add-on by WebToffee %s(free).', 'wt-gift-cards-woocommerce');
+		/* translators: 1: Opening link tag, 2: Closing link tag, 3: Opening link tag, 4: Closing link tag */
+        $enable_mpdf_msg = __('Requires mPDF library to add PDF support. %1$s Click here %2$s to activate the %3$s mPDF add-on by WebToffee %4$s(free).', 'wt-gift-cards-woocommerce');
         $placeholder_arr[0] = '<a href="' . esc_url(wp_nonce_url(self_admin_url('plugins.php?action=activate&plugin=' . urlencode($mpdf_path) . '&plugin_status=all&paged=1&s'), 'activate-plugin_' . $mpdf_path)) . '">';
     }else
     {
@@ -33,7 +36,8 @@ if(current_user_can('install_plugins') && current_user_can('update_plugins'))
     }
 }else
 {
-    $enable_mpdf_msg = __('Requires mPDF library to add PDF support. Please install the %s mPDF add-on by WebToffee %s(free).', 'wt-gift-cards-woocommerce');
+	/* translators: 1: Opening link tag, 2: Closing link tag */
+    $enable_mpdf_msg = __('Requires mPDF library to add PDF support. Please install the %1$s mPDF add-on by WebToffee %2$s(free).', 'wt-gift-cards-woocommerce');
     $placeholder_arr = array('<a href="'.esc_url($mpdf_wp_url).'" target="_blank">', '</a>');
 }
 

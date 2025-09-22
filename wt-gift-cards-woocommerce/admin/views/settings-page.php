@@ -115,11 +115,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 					<h3> <?php esc_html_e( 'Try with confidence', 'wt-gift-cards-woocommerce' ); ?> </h3>
 					<div class="wt_gc_extras_content" style="border-bottom: none; border-radius: 5px 5px 0px 0px;">
 						<img src="<?php echo esc_url(WBTE_GC_FREE_URL . 'admin/images/30day-money-back.svg')?>">
-						<h3  style="color: #606060;"><?php _e('100% No Risk Money Back Guarantee', 'wt-woocommerce-related-products'); ?></h3>
+						<h3  style="color: #606060;"><?php esc_html_e('100% No Risk Money Back Guarantee', 'wt-gift-cards-woocommerce'); ?></h3>
 					</div>
 					<div class="wt_gc_extras_content" style="border-radius: 0px 0px 5px 5px;">
 						<img src="<?php echo esc_url(WBTE_GC_FREE_URL . 'admin/images/satisfaction-rating.svg')?>">
-						<h3  style="color: #606060;"><?php _e('Excellent Support with 99% Satisfaction Rating', 'wt-woocommerce-related-products'); ?></h3>
+						<h3  style="color: #606060;"><?php esc_html_e('Excellent Support with 99% Satisfaction Rating', 'wt-gift-cards-woocommerce'); ?></h3>
 					</div>
 				</div>
 				<div class="wt_gc_upgrade_pro_button">

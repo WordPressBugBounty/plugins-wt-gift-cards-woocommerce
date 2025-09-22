@@ -89,6 +89,9 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 		add_filter( 'admin_url', array( $this, 'keep_gc_product_edit_url_param' ) );
 		add_action( 'submitpost_box', array( $this, 'add_hidden_gc_product_edit_input' ) ); // add a hidden input
 
+		// Banner  metabox on product edit page
+		add_action( 'add_meta_boxes', array( $this, 'add_banner_metabox' ) );
+
 		// add custom product data meta box
 		add_action( 'add_meta_boxes', array( $this, 'add_custom_product_data_meta_box' ) );
 
@@ -185,8 +188,9 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 			if ( ! empty( $gift_card_products ) ) {
 
 				$product_id = $gift_card_products[0];
-				$templates  = isset( $_POST['wt_gc_visible_gift_template'] ) ? wc_clean( wp_unslash( $_POST['wt_gc_visible_gift_template'] ) ) : array(); // phpcs:disable WordPress.Security.NonceVerification.Missing
-
+				$templates  = isset( $_POST['wt_gc_visible_gift_template'] ) ? (array) wc_clean( wp_unslash( $_POST['wt_gc_visible_gift_template'] ) ) : array(); // phpcs:disable WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+				$templates = array_map( 'sanitize_text_field', $templates );
+				
 				update_post_meta( $product_id, '_wt_gc_templates', $templates );
 				update_post_meta( $product_id, '_wt_gc_enable_template', ( empty( $templates ) ? 'no' : 'yes' ) ); // Disable template if list is empty
 			}
@@ -264,8 +268,10 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 			return;
 		}
 
-		$visible_gift_templates = ( isset( $_POST['wt_gc_visible_gift_template'] ) ? wc_clean( wp_unslash( $_POST['wt_gc_visible_gift_template'] ) ) : '' ); // phpcs:disable WordPress.Security.NonceVerification.Missing
-		$visible_gift_templates = ( ! is_array( $visible_gift_templates ) ? array() : $visible_gift_templates );
+
+		$visible_gift_templates = isset( $_POST['wt_gc_visible_gift_template'] ) ? (array) wp_unslash( $_POST['wt_gc_visible_gift_template'] ) : array(); // phpcs:disable WordPress.Security.NonceVerification.Missing, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+		$visible_gift_templates = array_map( 'sanitize_text_field', $visible_gift_templates );
+
 
 		$hidden_templates = array();
 		$templates        = array_keys( self::get_gift_card_templates() );
@@ -566,6 +572,15 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 				#wt_gc_general_product_data .wt_gc_form_help{ width:calc(100% - 50px); float:right; }
 				#delete-action .submitdelete.deletion{ display:none; }
 				.wrap a.page-title-action, a.page-title-action{ display:none; }
+
+				/* Hide arrow and close/move controls for upsell banner metabox */
+				#wt-gc-upsell-banner-metabox { background-color: #f0f0f1; border: none; box-shadow: none; }
+				#wt-gc-upsell-banner-metabox .handlediv,
+				#wt-gc-upsell-banner-metabox .handle-actions{ display:none !important; }
+				#wt-gc-upsell-banner-metabox .postbox-header,
+				#wt-gc-upsell-banner-metabox .hndle{ display:none !important; }
+				#wt-gc-upsell-banner-metabox .inside{ margin-top:0; padding-top:0; }
+				
 			</style>
 			<?php
 		}
@@ -629,7 +644,7 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 		if ( $this->is_product_edit_page() ) {
 			add_filter( 'wt_gc_include_admin_js_file', '__return_true', 1 ); // include admin JS file
 
-			$not_hide_meta_boxes  = apply_filters( 'wt_gc_product_page_non_hidden_metaboxes', array( '#submitdiv', '#postimagediv', '#product_catdiv', '#tagsdiv-product_tag', '#wt-gc-custom-product-data-meta-box' ) );
+			$not_hide_meta_boxes  = apply_filters( 'wt_gc_product_page_non_hidden_metaboxes', array( '#submitdiv', '#postimagediv', '#product_catdiv', '#tagsdiv-product_tag', '#wt-gc-custom-product-data-meta-box', '#wt-gc-upsell-banner-metabox' ) );
 			$gift_product_tab_url = admin_url( 'admin.php?page=' . WBTE_GC_FREE_PLUGIN_NAME . '&wt_gc_tab=' . $this->gift_card_product_tab_id );
 			?>
 			<script type="text/javascript">
@@ -770,6 +785,44 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 		$post_id = ( isset( $_REQUEST['post'] ) ? absint( wp_unslash( $_REQUEST['post'] ) ) : 0 );
 		return ( 0 === $post_id && isset( $_REQUEST['wt_gc_product_edit'] ) ? absint( wp_unslash( $_REQUEST['wt_gc_product_edit'] ) ) : $post_id );
 	}
+
+	/**
+	 * Register the upsell banner metabox on product edit screen (gift card products only)
+	 * 
+	 * @since 1.2.5
+	 * 
+	 */
+	public function add_banner_metabox() {
+		if ( ! $this->is_product_edit_page() ) {
+			return;
+		}
+
+		add_meta_box('wt-gc-upsell-banner-metabox',__( 'Gift Card Upsell Banner', 'wt-gift-cards-woocommerce' ),array( $this, 'render_gc_upsell_banner_metabox' ),'product','normal','default');
+	}
+
+
+	/**
+	 * Render the upsell banner metabox content
+	 * 
+	 * @since 1.2.5
+	 *
+	 */
+	public function render_gc_upsell_banner_metabox( ) {
+		/**
+		 * @var mixed
+		 * 
+		 * Display upsell banner
+		 */
+		$gc_pro_banner = Wbte_Gc_Upsell_Banner::get_instance(); 
+		?>
+			<div class="woocommerce">
+				<div class="panel-wrap product_data">
+					<?php $gc_pro_banner->pro_banner_content(); ?>
+				</div>
+			</div>
+		<?php
+	}
+
 
 	/**
 	 *  Print gift card email preview. Ajax callback
@@ -928,7 +981,7 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 		) {
 			foreach ( self::get_product_metas( $post_id ) as $meta_key => $meta_data ) {
 				if ( isset( $_POST[ $meta_key ] ) ) {
-					$meta_value = Wbte_Gc_Free_Security_Helper::sanitize_item( wc_clean( wp_unslash( $_POST[ $meta_key ] ) ), $meta_data['type'] );
+					$meta_value = Wbte_Gc_Free_Security_Helper::sanitize_item( wc_clean(  wp_unslash( $_POST[ $meta_key ] ) ), $meta_data['type'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 					update_post_meta( $post_id, $meta_key, $meta_value );
 				}
 			}
@@ -1130,7 +1183,7 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 	 */
 	public function process_shop_coupon_meta( $post_id, $post ) {
 		if ( ! current_user_can( 'manage_woocommerce' ) ) {
-			wp_die( __( 'You do not have sufficient permission to perform this operation', 'wt-gift-cards-woocommerce' ) );
+			wp_die( esc_html__( 'You do not have sufficient permission to perform this operation', 'wt-gift-cards-woocommerce' ) );
 		}
 
 		$coupon = new WC_Coupon( $post_id );

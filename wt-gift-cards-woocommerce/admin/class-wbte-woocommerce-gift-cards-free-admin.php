@@ -53,6 +53,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 	public static $modules = array(
 		'gift_card',
 		'freevspro',
+		'gc_pro_banner', /** @since 1.2.5 */
 	);
 
 	public static $existing_modules = array();
@@ -185,7 +186,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 		if ( WBTE_GC_FREE_PLUGIN_NAME === $gc_page || apply_filters( 'wt_gc_include_admin_css_file', false ) ) {
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wt-woocommerce-gift-cards-free-admin.css', array( 'wc-admin-layout' ), $this->version, 'all' );
 			wp_enqueue_style( 'wp-color-picker' );
-			wp_enqueue_style( 'woocommerce_admin_styles', WC()->plugin_url() . '/assets/css/admin.css' );
+			wp_enqueue_style( 'woocommerce_admin_styles', WC()->plugin_url() . '/assets/css/admin.css', array(), $this->version );
 		}
 	}
 
@@ -416,7 +417,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 
 		foreach ( $the_options as $key => $value ) {
 			if ( isset( $_POST[ $key ] ) ) {
-				$the_options[ $key ] = Wbte_Gc_Free_Security_Helper::sanitize_data( wc_clean( wp_unslash( $_POST[ $key ] ) ), $key, $validation_rule );
+				$the_options[ $key ] = Wbte_Gc_Free_Security_Helper::sanitize_data( wc_clean( wp_unslash( $_POST[ $key ] ) ), $key, $validation_rule ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			} elseif ( array_key_exists( $key, $default_val_needed_fields ) ) {
 					/* Set a hidden field for every multi-select, checkbox etc fields in the form. This will be used to add a default value when it does not have any POST value. */
 				if ( isset( $_POST[ $key . '_hidden' ] ) ) {

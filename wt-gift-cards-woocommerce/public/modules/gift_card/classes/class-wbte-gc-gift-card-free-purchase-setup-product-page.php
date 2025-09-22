@@ -731,7 +731,7 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Setup_Product_Page extends Wbte_Gc_Gift_Ca
 
 					// Show a warning message for admins 
 					if ( current_user_can( 'manage_options' ) ) {               
-						_e( 'Please update your template', 'wt-gift-cards-woocommerce' );          
+						esc_html_e( 'Please update your template', 'wt-gift-cards-woocommerce' );          
 					}         
 				}, 9999 );
 			}

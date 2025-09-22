@@ -5,6 +5,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <style>
 /* hide default sidebar */
+.wt-gc-tab-container{ background:none; }
 .wt-gc-tab-container, .wt-gc-tab-head{ width:100%; }
 .wt-gc-tab-right-container{ display:none; }
 
@@ -15,6 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 .wt_gc_freevspro_table_hd_tr td{ padding:20px 15px; padding-left:45px; font-weight:600; text-transform:uppercase; color:#000; font-size:16px; }
 .wt_gc_freevspro_table_subhd_tr td{ background:#f0f0f0; font-weight:600; font-size:14px; }
 .wt_gc_freevspro_table_subhd_desc{ font-weight:400; font-size:13px; display:inline-block; margin-left:30px; }
+.wt_gc_freevs_pro .wt_gc_upsell_text_align_center, .wt_gc_freevspro_table_body_tr .wt_gc_upsell_text_align_center{ text-align:center ; }
 
 </style>
 <script type="text/javascript">

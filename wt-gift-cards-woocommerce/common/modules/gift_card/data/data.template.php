@@ -91,7 +91,10 @@ $order_currency = $order ? $order->get_currency() : get_woocommerce_currency();
                             ?>
                         </div>
                         <div class="wt_gc_pdf_coupon_expiry">
-                            <?php echo ("" !== $expiry_date ? sprintf(__('Expiry date: %s', 'wt-gift-cards-woocommerce'), $expiry_date) : ''); ?>
+                            <?php
+                            /* translators: 1: Expiry date */
+                            echo ( "" !== $expiry_date ? sprintf( esc_html__( 'Expiry date: %s', 'wt-gift-cards-woocommerce' ),esc_html( $expiry_date )) : '');
+                            ?>
                         </div>
                     </td>
                 </tr>
@@ -104,7 +107,7 @@ $order_currency = $order ? $order->get_currency() : get_woocommerce_currency();
                 if("" !== trim($from))
                 { ?>
                     <tr>
-                        <td align="left" valign="bottom"><?php _e('From:', 'wt-gift-cards-woocommerce'); ?></td>
+                        <td align="left" valign="bottom"><?php esc_html_e('From:', 'wt-gift-cards-woocommerce'); ?></td>
                         <td><?php echo esc_html($from);?></td>
                     </tr>
                 <?php 
@@ -114,7 +117,7 @@ $order_currency = $order ? $order->get_currency() : get_woocommerce_currency();
                 {
                 ?>
                 <tr>
-                    <td align="left" valign="bottom"><?php _e('To:', 'wt-gift-cards-woocommerce'); ?></td>
+                    <td align="left" valign="bottom"><?php esc_html_e('To:', 'wt-gift-cards-woocommerce'); ?></td>
                     <td><?php echo esc_html($reciever_name);?></td>
                 </tr>
                 <?php 
@@ -124,7 +127,7 @@ $order_currency = $order ? $order->get_currency() : get_woocommerce_currency();
                 {
                 ?>
                 <tr>
-                    <td align="left" valign="bottom"><?php _e('Message:', 'wt-gift-cards-woocommerce'); ?></td>
+                    <td align="left" valign="bottom"><?php esc_html_e('Message:', 'wt-gift-cards-woocommerce'); ?></td>
                     <td><?php echo esc_html($coupon_message);?></td>
                 </tr>
                 <?php 
@@ -136,8 +139,13 @@ $order_currency = $order ? $order->get_currency() : get_woocommerce_currency();
         <div class="wt_gc_pdf_bottom">
             <div class="wt_gift_coupon_custom_additional_content">
                 <?php 
-                    $custom_addition_content = __('To redeem this gift card, you can enter the gift card code in the dedicated field during checkout.', 'wt-gift-cards-woocommerce');
-                    echo apply_filters('wt_gc_alter_gift_card_pdf_custom_addition_content', $custom_addition_content, $coupon_obj);
+                $custom_addition_content = __(
+					'To redeem this gift card, you can enter the gift card code in the dedicated field during checkout.',
+					'wt-gift-cards-woocommerce'
+				);
+
+				echo esc_html(apply_filters( 'wt_gc_alter_gift_card_pdf_custom_addition_content', $custom_addition_content, $coupon_obj ));
+
                 ?>  
             </div>
         </div>

@@ -1005,7 +1005,7 @@ class Wbte_Gc_Gift_Card_Free_Common {
 			}
 		}
 
-		while ( $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE post_type = 'shop_coupon' AND post_status ='publish' AND post_title = %s ", $random_coupon ) ) ) {
+		while ( wc_get_coupon_id_by_code( $random_coupon ) ) {
 			return self::generate_random_coupon_code();
 		}
 
@@ -1231,9 +1231,17 @@ class Wbte_Gc_Gift_Card_Free_Common {
         $upload_dir = $upload_dir.'/wt-gift-cards-woocommerce';
         $upload_url = $upload_url.'/wt-gift-cards-woocommerce';
 
+		global $wp_filesystem;
+		if ( ! $wp_filesystem ) {
+			require_once ABSPATH . '/wp-admin/includes/file.php';
+		}
+		WP_Filesystem();
+
         if(!is_dir($upload_dir))
         {
-            @mkdir($upload_dir, 0700); //create it if not exists
+            if ( ! $wp_filesystem->mkdir( $upload_dir, FS_CHMOD_DIR ) && ! is_dir( $upload_dir ) ) {
+				return false; // Failed to create directory.
+			}
         }
 
         if(is_dir($upload_dir)) //secure the directory
@@ -1242,16 +1250,12 @@ class Wbte_Gc_Gift_Card_Free_Common {
             
             foreach($files_to_create as $file => $file_content)
             {
-                if(!file_exists($upload_dir.'/'.$file))
-                {
-                    $fh = @fopen($upload_dir.'/'.$file, "w");
-                    
-                    if(is_resource($fh))
-                    {
-                        fwrite($fh, $file_content);
-                        fclose($fh);
-                    }
-                }
+                $file_path = trailingslashit( $upload_dir ) . $file;
+
+				if ( ! $wp_filesystem->exists( $file_path ) ) {
+
+					$wp_filesystem->put_contents( $file_path, $file_content, FS_CHMOD_FILE );
+				}
             }
         }else
         {

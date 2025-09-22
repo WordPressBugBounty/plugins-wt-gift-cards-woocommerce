@@ -19,3 +19,14 @@ $this->manage_template_css(); // insert css
 		<!-- Templates will load here by Ajax --> 
 	</div>
 </div>
+<div class="wt-upsell-banner" style="margin-top: 142px;">
+	<?php 
+		/**
+		 * @var mixed
+		 * 
+		 * Display upsell banner
+		 */
+		$gc_pro_banner = Wbte_Gc_Upsell_Banner::get_instance(); 
+		$gc_pro_banner->pro_banner_content(); 
+	?>
+</div>

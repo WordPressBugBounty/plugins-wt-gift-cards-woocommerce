@@ -118,8 +118,9 @@ if ( is_array( $args ) ) {
 					$checkbox_fields = isset( $value['checkbox_fields'] ) ? $value['checkbox_fields'] : array();
 
 					foreach ( $checkbox_fields as $checkbox_vl => $checkbox_label ) {
+						$vl = is_array( $vl ) ? $vl : ( ! empty( $vl ) ? array( $vl ) : array() );
 						?>
-						<span class="wt_gc_checkbox_list_item"><input type="checkbox" id="<?php echo esc_attr( $field_id . '_' . $checkbox_vl ); ?>" name="<?php echo esc_attr( $field_name ); ?>[]" class="<?php echo esc_attr( $css_class ); ?>" value="<?php echo esc_attr( $checkbox_vl ); ?>" <?php echo wp_kses_post( in_array( $checkbox_vl, $vl ) ? ' checked="checked"' : '' ); ?> <?php echo wp_kses_post( $fld_attr ); ?> /> <label for="<?php echo esc_attr( $field_id . '_' . $checkbox_vl ); ?>"><?php echo esc_html( $checkbox_label ); ?></label> </span>
+						<span class="wt_gc_checkbox_list_item"><input type="checkbox" id="<?php echo esc_attr( $field_id . '_' . $checkbox_vl ); ?>" name="<?php echo esc_attr( $field_name ); ?>[]" class="<?php echo esc_attr( $css_class ); ?>" value="<?php echo esc_attr( $checkbox_vl ); ?>" <?php echo wp_kses_post( in_array( $checkbox_vl, $vl, true ) ? ' checked="checked"' : '' ); ?> <?php echo wp_kses_post( $fld_attr ); ?> /> <label for="<?php echo esc_attr( $field_id . '_' . $checkbox_vl ); ?>"><?php echo esc_html( $checkbox_label ); ?></label> </span>
 						&nbsp;&nbsp;
 						<?php
 					}

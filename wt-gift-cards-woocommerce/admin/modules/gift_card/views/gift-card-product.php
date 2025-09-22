@@ -124,7 +124,7 @@ table.wp-list-table span.wc-image::before {
 								<?php
 								$actions = array(
 									/* translators: %d: Product ID. */
-									'id' => array( 'title' => sprintf( __( 'ID: %d', 'woocommerce' ), $product_id ) ),
+									'id' => array( 'title' => sprintf( __( 'ID: %d', 'wt-gift-cards-woocommerce' ), $product_id ) ),
 								);
 
 								if ( '' !== $edit_url ) {
@@ -244,4 +244,15 @@ table.wp-list-table span.wc-image::before {
 		</tbody>
 	</table>
 
+	<div class="wt_gc_upsell_banner_product_table">
+	<?php 
+		/**
+		 * @var mixed
+		 * 
+		 * Display upsell banner
+		 */
+		$gc_pro_banner = Wbte_Gc_Upsell_Banner::get_instance(); 
+		$gc_pro_banner->pro_banner_content(); 
+	?>
+	</div>
 </div>
