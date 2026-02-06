@@ -657,7 +657,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 			 *  @param string   $old_status     Old status of order
 			 *  @param string   $new_status     New status of order
 			 */
-			if ( apply_filters( 'wt_gc_remove_store_credit_from_order', false, $order, $old_status, $new_status ) ) {
+			if ( apply_filters( 'wt_gc_remove_store_credit_from_order', true, $order, $old_status, $new_status ) ) {
 				$this->reimburse_credit_value( $order );
 			}
 

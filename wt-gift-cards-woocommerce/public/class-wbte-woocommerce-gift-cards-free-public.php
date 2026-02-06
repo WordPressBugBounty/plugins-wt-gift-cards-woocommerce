@@ -83,7 +83,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Public {
 	public function enqueue_scripts() {
 
 		$params = array(
-			'ajax_url' => admin_url( 'admin-ajax.php' ),
+			'ajax_url' => esc_url(admin_url( 'admin-ajax.php' )),
 			'nonce' => wp_create_nonce( WBTE_GC_FREE_PLUGIN_NAME ),
 			'msgs'  => array(
 				'is_required' 		 => __( 'is required', 'wt-gift-cards-woocommerce' ),

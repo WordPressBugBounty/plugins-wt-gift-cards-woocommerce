@@ -78,7 +78,7 @@ class Wbte_Woocommerce_Gift_Cards_Free {
 		if ( defined( 'WBTE_GC_FREE_VERSION' ) ) {
 			$this->version = WBTE_GC_FREE_VERSION;
 		} else {
-			$this->version = '1.2.5';
+			$this->version = '1.2.8';
 		}
 		$this->plugin_name = WBTE_GC_FREE_PLUGIN_NAME;
 
@@ -155,8 +155,20 @@ class Wbte_Woocommerce_Gift_Cards_Free {
 		 * side of the site.
 		 */
 		require_once plugin_dir_path( __DIR__ ) . 'public/class-wbte-woocommerce-gift-cards-free-public.php';
+		
+		/**
+		 * EMA promotion banner added in Analytics page
+		 * 
+		 * @since 1.2.7
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'admin/modules/gc_pro_banner/class-wbte-gc-ema-banner.php';
 
-		require_once plugin_dir_path( __DIR__ ) . 'includes/class-wbte-black-friday-cyber-monday-twenty-twenty-four.php';
+		/**
+		 * BFCM banner in the Settings page
+		 * 
+		 * @since 1.2.7
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'admin/modules/gc_pro_banner/class-wt-bfcm-twenty-twenty-five.php';
 
 
 		$this->loader = new Wbte_Woocommerce_Gift_Cards_Free_Loader();
@@ -285,6 +297,29 @@ class Wbte_Woocommerce_Gift_Cards_Free {
 			$this->loader->add_action( 'manage_shop_coupon_posts_custom_column', $this->plugin_admin, 'add_coupon_allowed_email_column_content', 10, 2 );
 
 		}
+
+		/**
+		* BFCM banner for Smart coupons plugin
+		* 	
+		* @since 1.2.6
+		*/
+		$this->loader->add_action('admin_head-edit.php', $this->plugin_admin, 'bfcm_banner_coupon_page_settings_button');
+
+		/**
+		 *  Close BFCM promotion banner
+		 * 
+		 *  @since 1.2.6
+		 */
+		$this->loader->add_action( 'wp_ajax_wbte_gc_hide_promotion_banner', $this->plugin_admin, 'hide_bfcm_promotion_banner' );
+
+		/**
+		 *  Set screens to show promotional banner
+		 *
+		 *  @since 1.2.7
+		 */
+		$this->loader->add_filter( 'wt_bfcm_banner_screens', $this->plugin_admin, 'wt_bfcm_banner_screens' );
+
+
 	}
 
 	/**

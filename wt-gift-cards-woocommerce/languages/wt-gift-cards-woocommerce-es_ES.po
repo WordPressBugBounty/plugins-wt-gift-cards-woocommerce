@@ -1,56 +1,34 @@
-# Copyright (C) 2024 WebToffee
-# This file is distributed under the GPLv3.
 msgid ""
 msgstr ""
-"Project-Id-Version: WebToffee Gift Cards for WooCommerce 1.1.4\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wt-gift-cards-"
-"woocommerce\n"
-"POT-Creation-Date: 2024-12-27T04:55:21+00:00\n"
-"PO-Revision-Date: 2024-12-27 11:02+0530\n"
+"Project-Id-Version: WebToffee Gift Cards for WooCommerce\n"
+"POT-Creation-Date: 2025-10-15 16:01+0530\n"
+"PO-Revision-Date: 2025-10-15 16:09+0530\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.4\n"
-"X-Domain: wt-gift-cards-woocommerce\n"
+"X-Generator: Poedit 3.6\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: wt-gift-cards-woocommerce.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.min.js\n"
 
-#. Plugin Name of the plugin
-#: wt-gift-cards-woocommerce.php
-msgid "WebToffee Gift Cards for WooCommerce"
-msgstr "Tarjetas de regalo WebToffee para WooCommerce"
-
-#. Plugin URI of the plugin
-#: wt-gift-cards-woocommerce.php
-msgid "https://wordpress.org/plugins/wt-gift-cards-woocommerce/"
-msgstr "https://wordpress.org/plugins/wt-gift-cards-woocommerce/"
-
-#. Description of the plugin
-#: wt-gift-cards-woocommerce.php
-msgid "Create and manage beautiful gift cards for your WooCommerce store."
-msgstr ""
-"Crea y administra hermosas tarjetas de regalo para tu tienda WooCommerce."
-
-#. Author of the plugin
-#: wt-gift-cards-woocommerce.php
-msgid "WebToffee"
-msgstr "WebToffee"
-
-#. Author URI of the plugin
-#: wt-gift-cards-woocommerce.php
-msgid "https://www.webtoffee.com/"
-msgstr "https://www.webtoffee.com/"
-
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:116
 #: admin/class-wbte-woocommerce-gift-cards-free-admin.php:117
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:156
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:118
 #: admin/class-wbte-woocommerce-gift-cards-free-admin.php:157
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:158
 msgid "Gift cards"
 msgstr "Tarjetas de regalo"
 
 #. translators: 1: line break, 2: html anchor link open tag, 3: html anchor link close tag
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:208
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:209
+#, php-format
 msgid ""
 "Unable to update settings due to an internal error. %1$s To troubleshoot "
 "please click %2$s here. %3$s"
@@ -58,73 +36,101 @@ msgstr ""
 "No se puede actualizar la configuración debido a un error interno. %1$s Para "
 "solucionar el problema, haga clic %2$s aquí. %3$s"
 
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:209
-#: public/class-wbte-woocommerce-gift-cards-free-public.php:88
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:210
+#: public/class-wbte-woocommerce-gift-cards-free-public.php:89
 msgid "is required"
 msgstr "obligatorio"
 
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:210
-#: public/class-wbte-woocommerce-gift-cards-free-public.php:89
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:211
+#: public/class-wbte-woocommerce-gift-cards-free-public.php:90
 msgid "Copied!"
 msgstr "Copiado!"
 
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:211
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:361
-#: admin/modules/gift_card/gift_card.php:795
-#: admin/modules/gift_card/gift_card.php:1085
-#: public/class-wbte-woocommerce-gift-cards-free-public.php:90
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:212
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:362
+#: admin/modules/gift_card/gift_card.php:848
+#: admin/modules/gift_card/gift_card.php:1138
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:1114
+#: public/class-wbte-woocommerce-gift-cards-free-public.php:91
 msgid "Error"
 msgstr "Error"
 
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:212
-#: public/class-wbte-woocommerce-gift-cards-free-public.php:91
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:213
+#: public/class-wbte-woocommerce-gift-cards-free-public.php:92
 msgid "Loading..."
 msgstr "Cargando..."
 
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:213
-#: public/class-wbte-woocommerce-gift-cards-free-public.php:92
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:214
+#: public/class-wbte-woocommerce-gift-cards-free-public.php:93
 msgid "Please wait..."
 msgstr "Por favor espera..."
 
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:214
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:215
 msgid "Are you sure?"
 msgstr "¿Estás seguro?"
 
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:215
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:216
 msgid "Are you sure you want to delete?"
 msgstr "Estás seguro de que deseas eliminar?"
 
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:216
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:217
 msgid "Saving..."
 msgstr "Guardando…"
 
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:384
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:385
 msgid "Settings Updated"
 msgstr "Ajustes actualizados"
 
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:439
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:440
 msgid "Settings"
 msgstr "Ajustes"
 
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:440
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:441
 msgid "Premium Upgrade"
 msgstr "Actualizar a Premium"
 
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:457
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:458
 msgid "Docs"
 msgstr "Documentos"
 
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:458
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:459
 msgid "Support"
 msgstr "Soporte"
 
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:459
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:460
 msgid "Review"
 msgstr "Reseña"
 
-#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:537
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:538
 msgid "Allowed email(s)"
-msgstr "Correo electrónico permitido"
+msgstr "Correo(s) electrónico(s) permitido(s)"
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:600
+#: admin/modules/gc_pro_banner/gc_pro_banner.php:97
+msgid "Did you know?"
+msgstr "¿Sabías que…?"
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:604
+#, php-format
+msgid ""
+"With the %1$s Smart Coupons %2$s plugin, you can create Buy One Get One "
+"offers and advanced coupons that boost sales during BFCM."
+msgstr ""
+"Con el complemento %1$sCupones inteligentes%2$s, puedes crear ofertas de "
+"Compre uno y llévese otro gratis y cupones avanzados que aumentan las ventas "
+"durante BFCM."
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:611
+msgid "Get Plugin Now"
+msgstr "Obtener el complemento ahora"
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:612
+msgid "Maybe later"
+msgstr "Quizás más tarde"
+
+#: admin/class-wbte-woocommerce-gift-cards-free-admin.php:634
+msgid "Access denied"
+msgstr "Acceso denegado"
 
 #: admin/modules/freevspro/freevspro.php:64
 #: admin/modules/freevspro/freevspro.php:69
@@ -161,113 +167,133 @@ msgstr ""
 "Establezca valores predefinidos y personalizados con control mínimo y máximo"
 
 #: admin/modules/freevspro/views/comparison-table.php:42
+msgid "Allow users to schedule gift cards"
+msgstr "Permitir a los usuarios programar tarjetas de regalo"
+
+#: admin/modules/freevspro/views/comparison-table.php:47
+msgid "Category-wise template listing"
+msgstr "Listado de plantillas por categoría"
+
+#: admin/modules/freevspro/views/comparison-table.php:52
 msgid ""
 "'Gift this product' option (Create gift cards worth of a specific product)"
 msgstr ""
 "Opción 'Regalar este producto' (crear tarjetas de regalo por valor de un "
 "producto específico)"
 
-#: admin/modules/freevspro/views/comparison-table.php:47
+#: admin/modules/freevspro/views/comparison-table.php:57
 msgid "Redeem gift cards to wallet"
 msgstr "Canjear tarjetas de regalo en la billetera"
 
-#: admin/modules/freevspro/views/comparison-table.php:52
+#: admin/modules/freevspro/views/comparison-table.php:62
 msgid "Allow users to use custom images for gift cards"
 msgstr ""
 "Permitir a los usuarios utilizar imágenes personalizadas para tarjetas de "
 "regalo"
 
-#: admin/modules/freevspro/views/comparison-table.php:57
-msgid "Category-wise template listing"
-msgstr "Listado de plantillas por categoría"
-
-#: admin/modules/freevspro/views/comparison-table.php:62
-msgid "Allow users to schedule gift cards"
-msgstr "Permitir a los usuarios programar tarjetas de regalo"
-
 #: admin/modules/freevspro/views/comparison-table.php:67
+msgid "Manage store credit balances of users"
+msgstr "Administrar los saldos de crédito de la tienda de los usuarios"
+
+#: admin/modules/freevspro/views/comparison-table.php:72
 msgid "Allow users to print gift cards"
 msgstr "Permitir a los usuarios imprimir tarjetas de regalo"
 
-#: admin/modules/freevspro/views/comparison-table.php:72
+#: admin/modules/freevspro/views/comparison-table.php:77
 msgid "Upload custom gift card templates"
 msgstr "Subir plantillas de tarjetas de regalo personalizadas"
 
-#: admin/modules/freevspro/views/comparison-table.php:77
+#: admin/modules/freevspro/views/comparison-table.php:82
 msgid "Refunds to store credit"
 msgstr "Reembolsos al crédito de la tienda"
 
-#: admin/modules/freevspro/views/comparison-table.php:82
+#: admin/modules/freevspro/views/comparison-table.php:87
 msgid "Choose templates for sending gift cards from the admin side"
 msgstr ""
 "Elija plantillas para enviar tarjetas de regalo desde el lado del "
 "administrador"
 
-#: admin/modules/freevspro/views/comparison-table.php:87
-msgid "Give discounts on gift cards"
-msgstr "Ofrecer descuentos en tarjetas de regalo"
-
 #: admin/modules/freevspro/views/comparison-table.php:92
+msgid "Give discounts on gift card purchases"
+msgstr "Ofrecer descuentos en compras de tarjetas de regalo"
+
+#: admin/modules/freevspro/views/comparison-table.php:97
 msgid "Attach gift cards as PDFs to emails"
 msgstr ""
 "Adjunte tarjetas de regalo como archivos PDF a los correos electrónicos"
 
-#: admin/modules/freevspro/views/comparison-table.php:97
+#: admin/modules/freevspro/views/comparison-table.php:102
 msgid "Set expiry and advanced usage restrictions"
 msgstr "Establecer restricciones de caducidad y uso avanzado"
 
-#: admin/modules/freevspro/views/comparison-table.php:102
-msgid "Control gift card form fields"
-msgstr "Controlar los campos del formulario de la tarjeta de regalo"
-
 #: admin/modules/freevspro/views/comparison-table.php:107
+msgid "Control gift card form fields"
+msgstr "Controlar los campos del formulario de tarjetas de regalo"
+
+#: admin/modules/freevspro/views/comparison-table.php:112
 msgid "Add captions for gift cards"
 msgstr "Añadir subtítulos para tarjetas de regalo"
 
-#: admin/modules/freevspro/views/comparison-table.php:141
-msgid "Unlock the full potential of gift cards with a"
-msgstr "Desbloquee todo el potencial de las tarjetas de regalo con una"
+#: admin/modules/freevspro/views/comparison-table.php:147
+msgid ""
+"Upgrade to Premium and Enjoy the Full Potential of WooCommerce Gift Cards"
+msgstr ""
+"Actualice a Premium y disfrute de todo el potencial de las tarjetas de "
+"regalo de WooCommerce"
 
-#: admin/modules/freevspro/views/comparison-table.php:141
-msgid "premium upgrade"
-msgstr "actualización premium"
-
-#: admin/modules/freevspro/views/comparison-table.php:142
-msgid "See what you are missing on your free version!"
-msgstr "¡Mira lo que te estás perdiendo en tu versión gratuita!"
-
-#: admin/modules/freevspro/views/comparison-table.php:143
+#: admin/modules/freevspro/views/comparison-table.php:152
 msgid "99% Customer Satisfaction"
 msgstr "99% de satisfacción del cliente"
 
-#: admin/modules/freevspro/views/comparison-table.php:143
+#: admin/modules/freevspro/views/comparison-table.php:153
 msgid "30 Day money back guarantee"
 msgstr "Garantía de devolución de dinero de 30 días"
 
-#: admin/modules/freevspro/views/comparison-table.php:146
-msgid "Unlock pro features"
-msgstr "Desbloquea funciones profesionales"
+#: admin/modules/freevspro/views/comparison-table.php:160
+msgid "Unlock Pro Features"
+msgstr "Desbloquear funciones Pro"
 
-#: admin/modules/freevspro/views/comparison-table.php:152
+#: admin/modules/freevspro/views/comparison-table.php:167
 msgid "FEATURES"
 msgstr "FUNCIONALIDADES"
 
-#: admin/modules/freevspro/views/comparison-table.php:153
+#: admin/modules/freevspro/views/comparison-table.php:168
 msgid "FREE"
 msgstr "GRATIS"
 
-#: admin/modules/freevspro/views/comparison-table.php:154
+#: admin/modules/freevspro/views/comparison-table.php:169
 msgid "PREMIUM"
 msgstr "PREMIUM"
+
+#: admin/modules/gc_pro_banner/gc_pro_banner.php:98
+msgid ""
+"With the premium version, you’ll get access to 20+ templates for creating "
+"gift cards. You can also upload custom images as gift card images."
+msgstr ""
+"Con la versión premium, tendrás acceso a más de 20 plantillas para crear "
+"tarjetas de regalo. También puedes subir imágenes personalizadas para tus "
+"tarjetas."
+
+#: admin/modules/gc_pro_banner/gc_pro_banner.php:101
+msgid "Check out plugin →"
+msgstr "Echa un vistazo al complemento →"
+
+#: admin/modules/gc_pro_banner/gc_pro_banner.php:102
+msgid "Dismiss"
+msgstr "Descartar"
+
+#: admin/modules/gc_pro_banner/gc_pro_banner.php:146
+msgid "Permission denied"
+msgstr "Permiso denegado"
 
 #: admin/modules/gift_card/data/data-tooltip.php:4
 msgid ""
 "Enable to add gift card products and purchase functionality to the store. "
 "When disabled hides all gift cards and disables purchasing option"
 msgstr ""
-"Habilite la función de agregar productos con tarjetas de regalo y comprar en "
-"la tienda. Cuando está deshabilitada, oculta todas las tarjetas de regalo y "
-"deshabilita la opción de compra"
+"Habilitar la función de añadir tarjetas de regalo y comprar productos en la "
+"tienda. Al deshabilitarla, se ocultan todas las tarjetas de regalo y se "
+"desactiva la opción de compra."
 
 #: admin/modules/gift_card/data/data-tooltip.php:5
 msgid ""
@@ -278,7 +304,7 @@ msgstr ""
 
 #: admin/modules/gift_card/data/data-tooltip.php:6
 msgid "Image to be used in the gift card template"
-msgstr "Imagen que se utilizará en la plantilla de la tarjeta de regalo"
+msgstr "Imagen que se utilizará en la plantilla de la tarjeta de regalo."
 
 #: admin/modules/gift_card/data/data-tooltip.php:7
 msgid "Adds template to the specified gift card category"
@@ -290,14 +316,14 @@ msgid ""
 "can be redeemed by anyone who enters the correct code during checkout."
 msgstr ""
 "Habilite esta opción para vender tarjetas de regalo sin restricciones de "
-"correo electrónico. Las tarjetas de regalo pueden ser canjeadas por "
-"cualquier persona que ingrese el código correcto durante el proceso de pago."
+"correo electrónico. Cualquier persona que ingrese el código correcto al "
+"finalizar la compra podrá canjearlas."
 
 #: admin/modules/gift_card/data/data-tooltip.php:14
 msgid "Selected templates will be available on gift card product page"
 msgstr ""
 "Las plantillas seleccionadas estarán disponibles en la página del producto "
-"de la tarjeta de regalo"
+"de la tarjeta de regalo."
 
 #: admin/modules/gift_card/data/data-tooltip.php:17
 msgid ""
@@ -312,8 +338,8 @@ msgid ""
 "Predefined gift card values to display on the product page. Separate "
 "multiple amounts with a comma"
 msgstr ""
-"Valores de tarjetas de regalo predefinidos para mostrar en la página del "
-"producto. Separe los distintos montos con una coma"
+"Valores predefinidos de tarjetas de regalo para mostrar en la página del "
+"producto. Separe los importes con una coma."
 
 #: admin/modules/gift_card/data/data-tooltip.php:19
 msgid "Enable to allow users to choose template from the front end"
@@ -327,20 +353,20 @@ msgstr "Valor de la tarjeta de regalo"
 
 #: admin/modules/gift_card/data/data-tooltip.php:25
 msgid "The text will be displayed in the gift card email"
-msgstr "El texto se mostrará en el correo electrónico de la tarjeta de regalo"
+msgstr "El texto se mostrará en el correo electrónico de la tarjeta de regalo."
 
 #: admin/modules/gift_card/data/data-tooltip.php:26
 msgid "Recipient list to send the gift card"
-msgstr "Lista de destinatarios a los que enviar la tarjeta de regalo"
+msgstr "Lista de destinatarios para enviar la tarjeta de regalo"
 
 #: admin/modules/gift_card/data/data-tooltip.php:27
 msgid ""
 "Redirects to WooCommerce Email settings > Store credit email section. Can "
 "configure the store credit email from there"
 msgstr ""
-"Redirecciona a la sección de configuración de correo electrónico de "
-"WooCommerce > Correo electrónico de crédito de la tienda. Desde allí se "
-"puede configurar el correo electrónico de crédito de la tienda"
+"Redirecciona a la sección Configuración de correo electrónico de WooCommerce "
+"> Correo electrónico de crédito de la tienda. Desde allí, puedes configurar "
+"el correo electrónico de crédito de la tienda."
 
 #: admin/modules/gift_card/data/data-tooltip.php:33
 msgid ""
@@ -354,7 +380,7 @@ msgstr ""
 msgid "The text will serve as the title of the gift card product page"
 msgstr ""
 "El texto servirá como título de la página del producto de la tarjeta de "
-"regalo"
+"regalo."
 
 #: admin/modules/gift_card/data/data-tooltip.php:36
 msgid ""
@@ -362,157 +388,164 @@ msgid ""
 "gift card product page"
 msgstr ""
 "El texto servirá como título para la sección de selección de plantillas en "
-"la página del producto de la tarjeta de regalo"
+"la página del producto de la tarjeta de regalo."
 
-#: admin/modules/gift_card/gift_card.php:158
+#: admin/modules/gift_card/gift_card.php:161
 msgid "Unable to load template list."
 msgstr "No se puede cargar la lista de plantillas."
 
-#: admin/modules/gift_card/gift_card.php:296
+#: admin/modules/gift_card/gift_card.php:302
 msgid "Delete template"
 msgstr "Eliminar plantilla"
 
-#: admin/modules/gift_card/gift_card.php:320
+#: admin/modules/gift_card/gift_card.php:326
+#, php-format
 msgid ""
 "No templates have been chosen. Navigate to %s General Settings > Template "
 "Settings %s and select the desired templates."
 msgstr ""
-"No se ha seleccionado ninguna plantilla. Vaya a %s Configuración general > "
-"Configuración de plantilla %s y seleccione las plantillas que desee."
+"No se han seleccionado plantillas. Vaya a %s Configuración general > "
+"Configuración de plantillas %s y seleccione las plantillas que desee."
 
-#: admin/modules/gift_card/gift_card.php:350
+#: admin/modules/gift_card/gift_card.php:356
 msgid "Enable gift card product"
 msgstr "Habilitar producto de tarjeta de regalo"
 
-#: admin/modules/gift_card/gift_card.php:353
-#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:66
+#: admin/modules/gift_card/gift_card.php:359
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:70
 msgid "Enable"
 msgstr "Habilitar"
 
-#: admin/modules/gift_card/gift_card.php:357
+#: admin/modules/gift_card/gift_card.php:363
 msgid "Order status to generate gift cards"
 msgstr "Estado del pedido para generar tarjetas de regalo"
 
-#: admin/modules/gift_card/gift_card.php:360
+#: admin/modules/gift_card/gift_card.php:366
 msgid "Gift cards will be generated upon reaching the selected order status."
 msgstr ""
 "Las tarjetas de regalo se generarán al alcanzar el estado de pedido "
 "seleccionado."
 
-#: admin/modules/gift_card/gift_card.php:364
+#: admin/modules/gift_card/gift_card.php:370
 msgid "Disable email restrictions for gift cards"
-msgstr "Deshabilitar restricciones de correo para tarjetas de regalo"
+msgstr ""
+"Desactivar las restricciones de correo electrónico para las tarjetas de "
+"regalo"
 
-#: admin/modules/gift_card/gift_card.php:367
+#: admin/modules/gift_card/gift_card.php:373
 msgid ""
 "Allow gift cards to be redeemed regardless of the buyer’s email address."
 msgstr ""
-"Permitir canjear tarjetas de regalo sin importar el correo del comprador."
+"Permitir que las tarjetas de regalo se canjeen independientemente de la "
+"dirección de correo electrónico del comprador."
 
-#: admin/modules/gift_card/gift_card.php:438
+#: admin/modules/gift_card/gift_card.php:444
 msgid "Gift card products"
 msgstr "Productos de tarjetas de regalo"
 
-#: admin/modules/gift_card/gift_card.php:439
+#: admin/modules/gift_card/gift_card.php:445
 msgid "Send gift card"
 msgstr "Enviar tarjeta de regalo"
 
-#: admin/modules/gift_card/gift_card.php:506
+#: admin/modules/gift_card/gift_card.php:512
 msgid "Hide preview"
 msgstr "Ocultar vista previa"
 
-#: admin/modules/gift_card/gift_card.php:507
+#: admin/modules/gift_card/gift_card.php:513
 msgid "Show preview"
 msgstr "Mostrar vista previa"
 
-#: admin/modules/gift_card/gift_card.php:508
+#: admin/modules/gift_card/gift_card.php:514
 msgid "Unable to load the preview."
 msgstr "No se puede cargar la vista previa."
 
-#: admin/modules/gift_card/gift_card.php:509
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:258
+#: admin/modules/gift_card/gift_card.php:515
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:253
 msgid "from"
 msgstr "desde"
 
-#: admin/modules/gift_card/gift_card.php:510
+#: admin/modules/gift_card/gift_card.php:516
 msgid "Expiry date: "
-msgstr "Fecha de caducidad: "
+msgstr "Fecha de caducidad:"
 
-#: admin/modules/gift_card/gift_card.php:642
+#: admin/modules/gift_card/gift_card.php:657
 msgid "Edit gift card product"
 msgstr "Editar producto de tarjeta de regalo"
 
-#: admin/modules/gift_card/gift_card.php:645
+#: admin/modules/gift_card/gift_card.php:660
 msgid "View gift card products"
 msgstr "Ver productos de tarjetas de regalo"
 
-#: admin/modules/gift_card/gift_card.php:702
+#: admin/modules/gift_card/gift_card.php:717
 msgid "Product data"
 msgstr "Datos de producto"
 
-#: admin/modules/gift_card/gift_card.php:820
+#: admin/modules/gift_card/gift_card.php:800
+msgid "Gift Card Upsell Banner"
+msgstr "Banner de venta adicional de tarjetas de regalo"
+
+#: admin/modules/gift_card/gift_card.php:873
 msgid "Please enter valid email address."
 msgstr "Por favor ingresa una dirección de correo electrónico válida."
 
-#: admin/modules/gift_card/gift_card.php:827
+#: admin/modules/gift_card/gift_card.php:880
 msgid "Please enter valid amount."
 msgstr "Introduzca un importe válido."
 
 #. translators: %s: Coupon count.
-#: admin/modules/gift_card/gift_card.php:901
+#: admin/modules/gift_card/gift_card.php:954
+#, php-format
 msgid "Success. Total %s coupon(s) created and mailed."
-msgstr "Éxito. Se crearon y enviaron %s cupones en total."
+msgstr "Éxito. Se crearon y enviaron %s cupones."
 
-#: admin/modules/gift_card/gift_card.php:972
+#: admin/modules/gift_card/gift_card.php:1025
 msgid "Coupon"
 msgstr "Cupón"
 
-#: admin/modules/gift_card/gift_card.php:973
+#: admin/modules/gift_card/gift_card.php:1026
 msgid "Coupon amount"
 msgstr "Importe del cupón"
 
-#: admin/modules/gift_card/gift_card.php:982
+#: admin/modules/gift_card/gift_card.php:1035
 #: common/modules/gift_card/gift_card.php:162
 msgid "Recipient email"
 msgstr "Correo electrónico del destinatario"
 
-#: admin/modules/gift_card/gift_card.php:1048
+#: admin/modules/gift_card/gift_card.php:1101
 msgid "Gift cards purchased"
 msgstr "Tarjetas de regalo compradas"
 
-#: admin/modules/gift_card/gift_card.php:1108
+#: admin/modules/gift_card/gift_card.php:1161
 msgid "Something went wrong"
 msgstr "Algo salió mal"
 
-#: admin/modules/gift_card/gift_card.php:1118
+#: admin/modules/gift_card/gift_card.php:1171
 msgid "Success"
 msgstr "Éxito"
 
-#: admin/modules/gift_card/gift_card.php:1133
+#: admin/modules/gift_card/gift_card.php:1186
 msgid "You do not have sufficient permission to perform this operation"
 msgstr "No tienes suficientes permisos para realizar esta operación"
 
-#: admin/modules/gift_card/gift_card.php:1176
+#: admin/modules/gift_card/gift_card.php:1229
 #: admin/modules/gift_card/views/gift-card-product.php:133
 msgid "Edit"
 msgstr "Editar"
 
-#: admin/modules/gift_card/gift_card.php:1194
+#: admin/modules/gift_card/gift_card.php:1247
 msgid "Gift card product"
-msgstr ""
-"El texto servirá como título de la página del producto de la tarjeta de "
-"regalo"
+msgstr "Producto de tarjeta de regalo"
 
-#: admin/modules/gift_card/gift_card.php:1249
+#: admin/modules/gift_card/gift_card.php:1302
 #: common/modules/gift_card/data/data.template.php:42
 msgid "Gift card"
 msgstr "Tarjeta regalo"
 
-#: admin/modules/gift_card/gift_card.php:1303
+#: admin/modules/gift_card/gift_card.php:1356
 msgid "Gift Card"
 msgstr "Tarjeta regalo"
 
-#: admin/modules/gift_card/gift_card.php:1305
+#: admin/modules/gift_card/gift_card.php:1358
 msgid "This is an automatically created product for Gift card."
 msgstr "Este es un producto creado automáticamente para tarjetas de regalo."
 
@@ -520,60 +553,70 @@ msgstr "Este es un producto creado automáticamente para tarjetas de regalo."
 msgid "View larger"
 msgstr "Ver más grande"
 
-#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:16
+#. translators: 1: Opening link tag, 2: Closing link tag, 3: Opening link tag, 4: Closing link tag
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:17
+#, php-format
 msgid ""
-"Requires mPDF library to add PDF support. %s Click here %s to install the %s "
-"mPDF add-on by WebToffee %s (free)."
+"Requires mPDF library to add PDF support. %1$s Click here %2$s to install "
+"the %3$s mPDF add-on by WebToffee %4$s (free)."
 msgstr ""
-"Requiere la biblioteca mPDF para agregar compatibilidad con PDF. %s Haga "
-"clic aquí %s para instalar el %s complemento mPDF de WebToffee %s (gratis)."
-
-#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:21
-msgid ""
-"Requires mPDF version %s or greater to add PDF support. %s Click here %s to "
-"update the %s mPDF add-on by WebToffee %s (free)."
-msgstr ""
-"Requiere la versión mPDF %s o superior para agregar compatibilidad con PDF. "
-"%s Haga clic aquí %s para actualizar el complemento mPDF %s de WebToffee %s "
+"Requiere la biblioteca mPDF para agregar compatibilidad con PDF. %1$s Haga "
+"clic aquí %2$s para instalar el %3$s complemento mPDF de WebToffee %4$s "
 "(gratis)."
 
-#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:27
+#. translators: 1: mPDF version, 2: Opening link tag, 3: Closing link tag, 4: Opening link tag, 5: Closing link tag
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:23
+#, php-format
 msgid ""
-"Requires mPDF library to add PDF support. %s Click here %s to activate the "
-"%s mPDF add-on by WebToffee %s(free)."
+"Requires mPDF version %1$s or greater to add PDF support. %2$s Click here "
+"%3$s to update the %4$s mPDF add-on by WebToffee %5$s (free)."
 msgstr ""
-"Requiere la biblioteca mPDF para agregar compatibilidad con PDF. %s Haga "
-"clic aquí %s para activar el %s complemento mPDF de WebToffee %s (gratis)."
+"Requiere la versión mPDF %1$s o superior para agregar compatibilidad con "
+"PDF. %2$s Haga clic aquí %3$s para actualizar el complemento mPDF %4$s de "
+"WebToffee %5$s (gratis)."
 
-#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:36
+#. translators: 1: Opening link tag, 2: Closing link tag, 3: Opening link tag, 4: Closing link tag
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:30
+#, php-format
 msgid ""
-"Requires mPDF library to add PDF support. Please install the %s mPDF add-on "
-"by WebToffee %s(free)."
+"Requires mPDF library to add PDF support. %1$s Click here %2$s to activate "
+"the %3$s mPDF add-on by WebToffee %4$s(free)."
 msgstr ""
-"Requiere la biblioteca mPDF para agregar compatibilidad con PDF. Instale el "
-"complemento mPDF %s de WebToffee %s (gratis)."
+"Requiere la biblioteca mPDF para agregar compatibilidad con PDF. %1$s Haga "
+"clic aquí %2$s para activar el %3$s complemento mPDF de WebToffee %4$s "
+"(gratis)."
 
-#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:49
-#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:54
+#. translators: 1: Opening link tag, 2: Closing link tag
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:40
+#, php-format
+msgid ""
+"Requires mPDF library to add PDF support. Please install the %1$s mPDF add-"
+"on by WebToffee %2$s(free)."
+msgstr ""
+"Requiere la biblioteca mPDF para añadir compatibilidad con PDF. Instale el "
+"complemento mPDF %1$s de WebToffee %2$s (gratis)."
+
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:53
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:58
 #: admin/modules/gift_card/views/email-gift-card.php:67
 msgid "Configure gift card email"
 msgstr "Configurar el correo electrónico de la tarjeta de regalo"
 
-#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:58
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:62
 #: admin/modules/gift_card/views/email-gift-card.php:71
 msgid "Configure email"
-msgstr "Configurar correo electrónico"
+msgstr "Configurar el correo electrónico"
 
-#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:59
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:63
 msgid ""
 "Redirects to WooCommerce > Settings > Emails. Can configure the gift cards "
 "related email from there"
 msgstr ""
 "Redirecciona a WooCommerce > Configuración > Correos electrónicos. Desde "
-"allí se puede configurar el correo electrónico relacionado con las tarjetas "
-"de regalo"
+"allí, puedes configurar el correo electrónico relacionado con las tarjetas "
+"de regalo."
 
-#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:63
+#: admin/modules/gift_card/views/--email-configuration-settings-tab.php:67
 msgid "Attach Gift Card as PDF"
 msgstr "Adjuntar tarjeta de regalo como PDF"
 
@@ -602,7 +645,7 @@ msgstr "Nombre del producto de la tarjeta de regalo"
 
 #: admin/modules/gift_card/views/--title-customization-settings-tab.php:29
 msgid "Template selection"
-msgstr "Selección de plantilla"
+msgstr "Selección de plantillas"
 
 #: admin/modules/gift_card/views/-gift-cards-metabox-html.php:32
 #: admin/modules/gift_card/views/-gift-cards-metabox-html.php:48
@@ -620,7 +663,7 @@ msgstr "Reenviar"
 
 #: admin/modules/gift_card/views/-gift-cards-metabox-html.php:43
 msgid "Not activated, awaiting order status update"
-msgstr "No activada, en espera del estado del pedido"
+msgstr "No activado, esperando actualización del estado del pedido"
 
 #: admin/modules/gift_card/views/-gift-cards-metabox-html.php:44
 msgid "Force send and activate"
@@ -632,7 +675,7 @@ msgstr "Enviar"
 
 #: admin/modules/gift_card/views/-gift-cards-metabox-html.php:67
 msgid "Coupon amount: "
-msgstr "Monto del cupón: "
+msgstr "Monto del cupón:"
 
 #: admin/modules/gift_card/views/-gift-cards-metabox-html.php:77
 msgid "Coupon code: "
@@ -640,7 +683,7 @@ msgstr "Código del cupón: "
 
 #: admin/modules/gift_card/views/-gift-cards-metabox-html.php:98
 msgid "Expiry: "
-msgstr "Fecha de expiración del cupón: "
+msgstr "Fecha de expiración del cupón"
 
 #: admin/modules/gift_card/views/-gift-cards-metabox-html.php:102
 msgid "Status: "
@@ -648,7 +691,7 @@ msgstr "Estado: "
 
 #: admin/modules/gift_card/views/-gift-cards-metabox-html.php:113
 msgid "Last sent: "
-msgstr "Último enviado el: "
+msgstr "Último envío:"
 
 #: admin/modules/gift_card/views/-product-data-meta-box.php:21
 msgid "Set predefined amounts"
@@ -672,7 +715,7 @@ msgstr "Crédito restante"
 
 #: admin/modules/gift_card/views/email-gift-card.php:50
 msgid "Recipient email(s)"
-msgstr "Correo electrónico del destinatario"
+msgstr "Correo electrónico(s) electrónico(s) del destinatario"
 
 #: admin/modules/gift_card/views/email-gift-card.php:53
 msgid "Multiple emails can be inputted by separating with commas."
@@ -736,6 +779,12 @@ msgstr "Shortcode"
 msgid "(no title)"
 msgstr "(sin título)"
 
+#. translators: %d: Product ID.
+#: admin/modules/gift_card/views/gift-card-product.php:127
+#, php-format
+msgid "ID: %d"
+msgstr "ID: %d"
+
 #: admin/modules/gift_card/views/gift-card-product.php:150
 msgid "Restore"
 msgstr "Restaurar"
@@ -780,8 +829,8 @@ msgstr "Depurar"
 #: admin/views/settings-page.php:98
 msgid "Boost Your Sales and Customer Loyalty With Premium Gift Card Features!"
 msgstr ""
-"¡Aumente sus ventas y la lealtad de sus clientes con funciones de tarjetas "
-"de regalo premium!"
+"¡Aumente sus ventas y la fidelización de sus clientes con funciones de "
+"tarjetas de regalo premium!"
 
 #: admin/views/settings-page.php:102
 msgid "Create an unlimited number of gift cards"
@@ -815,58 +864,116 @@ msgstr "Recomendar productos en certificados de regalo"
 
 #: admin/views/settings-page.php:109
 msgid "Accept gift cards as payment method"
-msgstr "Acepta tarjetas de regalo como método de pago"
+msgstr "Aceptar tarjetas de regalo como método de pago"
 
 #: admin/views/settings-page.php:110
 msgid "Apply store credit on shipping, tax, and other fees"
-msgstr "Aplicar crédito de la tienda en envíos, impuestos y otras tarifas"
+msgstr "Aplicar crédito de la tienda en envíos, impuestos y otras tarifas."
 
 #: admin/views/settings-page.php:115
 msgid "Try with confidence"
 msgstr "Inténtalo con confianza"
 
+#: admin/views/settings-page.php:118
+msgid "100% No Risk Money Back Guarantee"
+msgstr "Garantía de devolución de dinero del 100% sin riesgo"
+
+#: admin/views/settings-page.php:122
+msgid "Excellent Support with 99% Satisfaction Rating"
+msgstr "Excelente soporte con un índice de satisfacción del 99%"
+
 #: admin/views/settings-page.php:126
 msgid "Check Out Premium"
 msgstr "Echa un vistazo a Premium"
 
-#: common/class-wbte-woocommerce-gift-cards-free-common.php:388
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:401
 #: common/classes/class-wbte-gc-store-credit-apply-free.php:362
 msgid "Store credit"
 msgstr "Crédito en Tienda"
 
-#: common/class-wbte-woocommerce-gift-cards-free-common.php:591
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:604
 msgid "Processing"
 msgstr "Procesando"
 
-#: common/class-wbte-woocommerce-gift-cards-free-common.php:592
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:605
 msgid "Completed"
 msgstr "Completado"
 
-#: common/class-wbte-woocommerce-gift-cards-free-common.php:612
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:625
 msgid "Refunded"
 msgstr "Reembolsado"
 
-#: common/class-wbte-woocommerce-gift-cards-free-common.php:613
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:626
 msgid "Cancelled"
 msgstr "Cancelado"
 
-#: common/class-wbte-woocommerce-gift-cards-free-common.php:614
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:627
 msgid "Failed"
 msgstr "Fallido"
 
-#: common/class-wbte-woocommerce-gift-cards-free-common.php:723
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:736
 msgid "Reimburse credit value"
 msgstr "Reembolsar el valor del crédito"
+
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:1070
+msgid "Enter your email"
+msgstr "Ingrese su email"
+
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:1072
+msgid "CHECK YOUR BALANCE"
+msgstr "CONSULTA TU SALDO"
+
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:1073
+msgid "Enter Gift Card code"
+msgstr "Introduzca el código de la tarjeta de regalo"
+
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:1093
+msgid "Submit"
+msgstr "Enviar"
+
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:1122
+msgid "Security check failed."
+msgstr "La comprobación de seguridad ha fallado."
+
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:1136
+msgid ""
+"We couldn't find a gift card associated with that code. Please verify the "
+"code and try again."
+msgstr ""
+"No pudimos encontrar una tarjeta de regalo asociada a ese código. Verifícalo "
+"y vuelve a intentarlo."
+
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:1147
+msgid ""
+"This gift card is linked to an email address. Please enter the email address "
+"associated with it!"
+msgstr ""
+"Esta tarjeta de regalo está vinculada a una dirección de correo electrónico. "
+"¡Introduce la dirección de correo electrónico asociada!"
+
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:1156
+msgid ""
+"The email address you entered is not associated with the gift card. Please "
+"check the email address and try again."
+msgstr ""
+"La dirección de correo electrónico que ingresaste no está asociada a la "
+"tarjeta de regalo. Verifícala y vuelve a intentarlo."
+
+#. translators: 1: Gift card balance
+#: common/class-wbte-woocommerce-gift-cards-free-common.php:1169
+#, php-format
+msgid "Your gift card balance is&nbsp;%s"
+msgstr "El saldo de su tarjeta de regalo es %s"
 
 #: common/classes/class-wbte-gc-store-credit-apply-free.php:166
 msgid "Sorry, you cannot purchase store credit with this coupon."
 msgstr "Lo sentimos, no puedes comprar crédito de la tienda con este cupón."
 
-#: common/classes/class-wbte-gc-store-credit-apply-free.php:437
+#: common/classes/class-wbte-gc-store-credit-apply-free.php:466
 msgid "Store credit used:"
 msgstr "Crédito de la tienda utilizado:"
 
-#: common/classes/class-wbte-gc-store-credit-apply-free.php:595
+#: common/classes/class-wbte-gc-store-credit-apply-free.php:624
 msgid "-"
 msgstr "-"
 
@@ -889,37 +996,39 @@ msgid "You've got a gift!"
 msgstr "¡Tienes un don!"
 
 #: common/modules/gift_card/data/data.template.php:79
-#: common/modules/gift_card/email/gift-card-email.php:87
+#: common/modules/gift_card/email/gift-card-email.php:86
 msgid "Gift card code:"
 msgstr "Código de tarjeta de regalo:"
 
 #: common/modules/gift_card/data/data.template.php:83
-#: common/modules/gift_card/email/gift-card-email.php:92
+#: common/modules/gift_card/email/gift-card-email.php:91
 #: common/modules/gift_card/email/plain/coupon-email.php:59
 msgid "Amount:"
 msgstr "Cantidad:"
 
+#. translators: 1: Expiry date
 #. translators: %s Expiry date
-#: common/modules/gift_card/data/data.template.php:94
-#: common/modules/gift_card/email/coupon-email.php:92
-#: common/modules/gift_card/email/gift-card-email.php:105
+#: common/modules/gift_card/data/data.template.php:96
+#: common/modules/gift_card/email/coupon-email.php:90
+#: common/modules/gift_card/email/gift-card-email.php:104
 #: common/modules/gift_card/email/plain/coupon-email.php:62
+#, php-format
 msgid "Expiry date: %s"
 msgstr "Fecha de caducidad: %s"
 
-#: common/modules/gift_card/data/data.template.php:107
+#: common/modules/gift_card/data/data.template.php:110
 msgid "From:"
 msgstr "De:"
 
-#: common/modules/gift_card/data/data.template.php:117
+#: common/modules/gift_card/data/data.template.php:120
 msgid "To:"
 msgstr "Para:"
 
-#: common/modules/gift_card/data/data.template.php:127
+#: common/modules/gift_card/data/data.template.php:130
 msgid "Message:"
 msgstr "Mensaje:"
 
-#: common/modules/gift_card/data/data.template.php:139
+#: common/modules/gift_card/data/data.template.php:143
 msgid ""
 "To redeem this gift card, you can enter the gift card code in the dedicated "
 "field during checkout."
@@ -932,37 +1041,38 @@ msgstr ""
 #: common/modules/gift_card/email/coupon-email.php:41
 #: common/modules/gift_card/email/gift-card-email.php:45
 #: common/modules/gift_card/email/plain/coupon-email.php:35
+#, php-format
 msgid "Hi %s,"
 msgstr "Hola %s,"
 
-#. translators: 1.HTML `span` tag open, 2. HTML `span` tag closing
-#. translators: 1. HTML span tag open, 2. HTML span tag close
-#: common/modules/gift_card/email/coupon-email.php:44
-#: common/modules/gift_card/email/gift-card-email.php:48
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:260
-msgid "Hi %1$sthere%2$s,"
-msgstr "Hola, %1$salguien%2$s,"
+#: common/modules/gift_card/email/coupon-email.php:43
+#: common/modules/gift_card/email/gift-card-email.php:47
+#: common/modules/gift_card/email/plain/coupon-email.php:37
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:254
+msgid "Hi there,"
+msgstr "Hola,"
 
 #. translators: 1.HTML tag open, 2. HTML tag closing
-#: common/modules/gift_card/email/coupon-email.php:56
+#: common/modules/gift_card/email/coupon-email.php:55
+#, php-format
 msgid "Congratulations! You have received a store credit %1$sfrom %2$s."
 msgstr "¡Felicitaciones! Has recibido un crédito de tienda %1$s de %2$s."
 
-#. translators: HTML code
-#: common/modules/gift_card/email/coupon-email.php:59
-msgid "Congratulations! You have received a store credit %s."
-msgstr "¡Felicitaciones! Has recibido un crédito de tienda %s."
+#: common/modules/gift_card/email/coupon-email.php:57
+#: common/modules/gift_card/email/plain/coupon-email.php:47
+msgid "Congratulations! You have received a store credit."
+msgstr "¡Felicitaciones! Has recibido un crédito de la tienda."
 
-#: common/modules/gift_card/email/coupon-email.php:74
+#: common/modules/gift_card/email/coupon-email.php:72
 #: common/modules/gift_card/email/plain/coupon-email.php:56
 msgid "Coupon code:"
 msgstr "CÓDIGO PROMOCIONAL:"
 
-#: common/modules/gift_card/email/coupon-email.php:79
+#: common/modules/gift_card/email/coupon-email.php:77
 msgid "Amount is here!:"
-msgstr "¡La cantidad está aquí!:"
+msgstr "¡El monto está aquí!:"
 
-#: common/modules/gift_card/email/coupon-email.php:104
+#: common/modules/gift_card/email/coupon-email.php:102
 #: common/modules/gift_card/email/plain/coupon-email.php:65
 msgid ""
 "To redeem this store credit, you can enter the coupon code in the dedicated "
@@ -972,16 +1082,17 @@ msgstr ""
 "el campo dedicado durante el pago."
 
 #. translators: 1.HTML tag open, 2. HTML tag closing
-#: common/modules/gift_card/email/gift-card-email.php:60
+#: common/modules/gift_card/email/gift-card-email.php:59
+#, php-format
 msgid "Congratulations! You have received a gift card %1$sfrom %2$s."
 msgstr "¡Felicitaciones! Has recibido una tarjeta de regalo %1$s de %2$s."
 
 #. translators: HTML code
-#: common/modules/gift_card/email/gift-card-email.php:63
-msgid "Congratulations! You have received a gift card %s."
-msgstr "¡Felicitaciones! Has recibido una tarjeta de regalo %s."
+#: common/modules/gift_card/email/gift-card-email.php:62
+msgid "Congratulations! You have received a gift card."
+msgstr "¡Felicitaciones! Has recibido una tarjeta de regalo."
 
-#: common/modules/gift_card/email/gift-card-email.php:118
+#: common/modules/gift_card/email/gift-card-email.php:117
 msgid ""
 "To redeem this gift card, you can enter the gift card code in the dedicated "
 "field during the checkout."
@@ -989,22 +1100,15 @@ msgstr ""
 "Para canjear esta tarjeta de regalo, puede ingresar el código de la tarjeta "
 "de regalo en el campo dedicado durante el pago."
 
-#: common/modules/gift_card/email/plain/coupon-email.php:37
-msgid "Hi there,"
-msgstr "Hola,"
-
 #. translators: from name
 #: common/modules/gift_card/email/plain/coupon-email.php:45
+#, php-format
 msgid "Congratulations! You have received a store credit from %s."
-msgstr "¡Felicitaciones! Has recibido un crédito de tienda de %s."
-
-#: common/modules/gift_card/email/plain/coupon-email.php:47
-msgid "Congratulations! You have received a store credit."
-msgstr "¡Felicitaciones! Has recibido un crédito en la tienda."
+msgstr "¡Felicitaciones! Has recibido un crédito de la tienda de %s."
 
 #: common/modules/gift_card/gift_card.php:96
 msgid "Customise your gift card"
-msgstr "Personaliza tu tarjeta regalo"
+msgstr "Personaliza tu tarjeta de regalo"
 
 #: common/modules/gift_card/gift_card.php:97
 msgid "Select template"
@@ -1012,7 +1116,7 @@ msgstr "Selecciona plantilla"
 
 #: common/modules/gift_card/gift_card.php:98
 msgid "How do you want to send it"
-msgstr "Cómo quieres enviarlo"
+msgstr "¿Cómo quieres enviarlo?"
 
 #: common/modules/gift_card/gift_card.php:163
 msgid "Recipient name"
@@ -1036,6 +1140,7 @@ msgstr "Correo electrónico al destinatario"
 
 #. translators: %s coupon code.
 #: common/modules/gift_card/gift_card.php:884
+#, php-format
 msgid "Gift card %s resent to recipient using the Resend button."
 msgstr ""
 "La tarjeta de regalo %s se reenvía al destinatario mediante el botón "
@@ -1043,15 +1148,43 @@ msgstr ""
 
 #. translators: %s coupon code.
 #: common/modules/gift_card/gift_card.php:889
+#, php-format
 msgid "Gift card %s emailed to recipient manually using the force sent button."
 msgstr ""
-"La tarjeta de regalo %s se envió por correo electrónico al destinatario "
+"Tarjeta de regalo %s enviada por correo electrónico al destinatario "
 "manualmente mediante el botón de envío forzado."
 
 #. translators: %s coupon code.
 #: common/modules/gift_card/gift_card.php:894
+#, php-format
 msgid "Gift card %s emailed to recipient."
 msgstr "Tarjeta de regalo %s enviada por correo electrónico al destinatario."
+
+#: includes/class-wbte-black-friday-cyber-monday-twenty-twenty-four.php:68
+msgid "Black Friday Cyber Monday 2024"
+msgstr "Viernes Negro y Ciberlunes 2024"
+
+#: includes/class-wbte-black-friday-cyber-monday-twenty-twenty-four.php:72
+msgid "Never Miss This Deal"
+msgstr "No te pierdas esta oferta"
+
+#. translators: %1$s: Discount text with span wrapper, e.g. <span>30% OFF</span>.
+#: includes/class-wbte-black-friday-cyber-monday-twenty-twenty-four.php:78
+#, php-format
+msgid ""
+"Your Last Chance to Avail %1$s on WebToffee Plugins. Grab the deal before "
+"it`s gone!"
+msgstr ""
+"¡Última oportunidad para aprovechar %1$s en plugins de WebToffee! ¡Aprovecha "
+"la oferta antes de que se agote!"
+
+#: includes/class-wbte-black-friday-cyber-monday-twenty-twenty-four.php:79
+msgid "30% OFF"
+msgstr "30% de descuento"
+
+#: includes/class-wbte-black-friday-cyber-monday-twenty-twenty-four.php:84
+msgid "View plugins"
+msgstr "Ver plugins"
 
 #: includes/class-wbte-uninstall-feedback.php:24
 msgid "Used it successfully. Don't need anymore."
@@ -1124,8 +1257,8 @@ msgid ""
 "We do not collect any personal data when you submit this form. It's your "
 "feedback that we value."
 msgstr ""
-"No recopilamos ningún dato personal cuando envías este formulario. Tu "
-"opinión es lo que valoramos."
+"No recopilamos ningún dato personal al enviar este formulario. Valoramos "
+"mucho tus comentarios."
 
 #: includes/class-wbte-uninstall-feedback.php:98
 msgid "Privacy Policy"
@@ -1147,81 +1280,105 @@ msgstr "Enviar y desactivar"
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: includes/class-wbte-uninstall-feedback.php:204
+#: includes/class-wbte-uninstall-feedback.php:205
 msgid "Deactivate and leave a review"
 msgstr "Desactivar y dejar una revisión"
 
-#: includes/class-wbte-uninstall-feedback.php:206
+#: includes/class-wbte-uninstall-feedback.php:207
 msgid "Let our support team help you"
 msgstr "Deje que nuestro equipo de soporte le ayude"
 
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:100
+#: public/class-wbte-woocommerce-gift-cards-free-public.php:94
+msgid "An error occurred, please try again."
+msgstr "Ha ocurrido un error, por favor inténtelo de nuevo."
+
+#: public/class-wbte-woocommerce-gift-cards-free-public.php:140
+#: public/class-wbte-woocommerce-gift-cards-free-public.php:142
+msgid "Coupon code or gift card"
+msgstr "Código de cupón o tarjeta de regalo"
+
+#: public/class-wbte-woocommerce-gift-cards-free-public.php:169
+msgid "Have a coupon or gift card?"
+msgstr "¿Tienes un cupón o tarjeta de regalo?"
+
+#: public/class-wbte-woocommerce-gift-cards-free-public.php:169
+msgid "Click here to enter your code"
+msgstr "Haga clic aquí para ingresar su código"
+
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:105
 msgid ""
 "There seems to be a theme compatibility issue. Please reach out to our <a "
 "href=\"https://www.webtoffee.com/contact/\" target=\"_blank\"  style=\" "
 "color: #0202e5; text-decoration: underline;\">support team</a> to resolve "
 "this issue."
 msgstr ""
-"Parece haber un problema de compatibilidad. Contacte a nuestro <a "
-"href=“https://www.webtoffee.com/contact/“ target=“_blank” style=“color: "
-"#0202e5; text-decoration: underline;”>equipo de soporte</a>."
+"Parece haber un problema de compatibilidad con el tema. Contacta con nuestro "
+"<a href=\"https://www.webtoffee.com/contact/\" target=\"_blank\"  style=\" "
+"color: #0202e5; text-decoration: underline;\">equipo de soporte</a> para "
+"resolverlo."
 
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:103
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:108
 msgid "Please select a template"
 msgstr "Por favor seleccione una plantilla"
 
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:111
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:116
 msgid "Amount is required!"
 msgstr "¡Se requiere cantidad!"
 
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:121
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:126
 msgid "Please enter valid email address "
-msgstr "Por favor ingrese una dirección de correo electrónico válida "
+msgstr "Por favor, introduzca una dirección de correo electrónico válida"
 
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:127
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:132
 msgid "Recipient email is required "
-msgstr "Se requiere el correo electrónico del destinatario "
+msgstr "Se requiere el correo electrónico del destinatario"
 
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:393
+#. translators: 1: Gift card code, 2: Order status
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:422
+#, php-format
 msgid ""
-"Gift card <strong>%s</strong> generated. Awaiting %s order status for "
+"Gift card <strong>%1$s</strong> generated. Awaiting %2$s order status for "
 "activation."
 msgstr ""
-"Tarjeta <strong>%s</strong> generada. En espera del estado %s para "
-"activación."
+"Tarjeta de regalo <strong>%1$s</strong> generada. Esperando el estado del "
+"pedido %2$s para su activación."
 
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:179
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:474
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:721
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-process-cart.php:424
+msgid "Gift card generated. Not activated."
+msgstr "Tarjeta de regalo generada. No activada."
+
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:174
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:449
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:696
 msgid "Error. No user actions enabled."
 msgstr "Error. No hay acciones de usuario habilitadas."
 
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:307
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:301
 msgid "Gift card product is not enabled."
 msgstr "El producto de tarjeta de regalo no está habilitado."
 
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:625
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:638
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:600
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:613
 msgid "Select options"
 msgstr "Seleccionar opciones"
 
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:709
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:684
 msgid "Invalid gift card product."
 msgstr "Producto de tarjeta de regalo no válido."
 
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:730
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:705
 msgid "Error. Select templates to display Gift card."
 msgstr "Error. Seleccione plantillas para mostrar la tarjeta de regalo."
 
-#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:759
+#: public/modules/gift_card/classes/class-wbte-gc-gift-card-free-purchase-setup-product-page.php:734
 msgid "Please update your template"
 msgstr "Por favor actualice su plantilla"
 
-#: public/modules/gift_card/gift_card.php:167
+#: public/modules/gift_card/gift_card.php:88
 msgid "Error. There is no template(s) selected for this product."
 msgstr "Error. No hay plantillas seleccionadas para este producto."
 
-#: public/modules/gift_card/gift_card.php:173
+#: public/modules/gift_card/gift_card.php:94
 msgid "Your name"
 msgstr "Tu nombre"
 
@@ -1238,5 +1395,26 @@ msgid ""
 "Oops! Woocommerce not activated, It should required for `Gift cards for "
 "woocommerce`."
 msgstr ""
-"¡Ups! WooCommerce no está activado. Debería ser necesario para \"Tarjetas de "
+"¡Uy! WooCommerce no está activado. Debería ser necesario para \"Tarjetas de "
 "regalo para WooCommerce\"."
+
+#. Plugin Name of the plugin/theme
+msgid "WebToffee Gift Cards for WooCommerce"
+msgstr "Tarjetas de regalo WebToffee para WooCommerce"
+
+#. Plugin URI of the plugin/theme
+msgid "https://wordpress.org/plugins/wt-gift-cards-woocommerce/"
+msgstr "https://wordpress.org/plugins/wt-tarjetas-de-regalo-woocommerce/"
+
+#. Description of the plugin/theme
+msgid "Create and manage beautiful gift cards for your WooCommerce store."
+msgstr ""
+"Crea y administra hermosas tarjetas de regalo para tu tienda WooCommerce."
+
+#. Author of the plugin/theme
+msgid "WebToffee"
+msgstr "WebToffee"
+
+#. Author URI of the plugin/theme
+msgid "https://www.webtoffee.com/"
+msgstr "https://www.webtoffee.com/"

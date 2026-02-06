@@ -150,3 +150,19 @@
 .wt_gc_extras_content h3{  line-height: 22px; margin-left: 25px; font-size: 14px;}
 
 .wt-gc-tab-right-container .wt_gc_bfcm_offer { background: #FFFBD5; margin: 10px 10px 1px 10px;}
+
+/* BFCM CTA in coupon listing page  */
+.wbte_gc_promotion_banner_div{ position: relative; padding: 20px 10px; background: #E3E3FF; border-left: solid 3px #5454A5; margin: 10px 0px; }
+.wbte_gc_promotion_banner_title{ color: #5454A5; font-size: 16px; font-weight: 500; }
+.wbte_gc_promotion_banner_close_btn{ position: absolute; right: 8px; top: 8px; color: #505050; cursor: pointer; }
+
+/* Hide CTA banners on coupon edit page if coupons are not created yet */
+.wrap:has(.woocommerce-BlankState) .wbte_gc_promotion_banner_div, .wrap:has(.woocommerce-BlankState) #wbte_gc_gc_promo_banner, .wrap:has(.woocommerce-BlankState) .wt-gdpr-promotion-banner { display: none !important; }
+.wbte_gc_promotion_banner_content{ display: flex; align-items: center; justify-content: space-between; margin-top: 10px; }
+.wbte_gc_promotion_banner_later{ height: 30px; background: #E3E3FF !important; color: #5454A5 !important; border: 1px solid #5454A5 !important; }
+.wbte_gc_promotion_banner_link_btn{ height: 30px; background: #5454A5 !important; color: #fff !important; border: none !important; display: flex !important; align-items: center; justify-content: space-between; }
+.wbte_gc_promotion_banner_actions{ display: flex; align-items: center; margin-left: 10px; }
+@media (max-width: 650px) {
+  .wbte_gc_promotion_banner_content{ flex-direction: column; align-items: flex-start; }
+  .wbte_gc_promotion_banner_actions{ width: 100%; margin-top: 10px; margin-left: 0px; }
+}

@@ -84,7 +84,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="wt-gc-tab-right-container">
 		<div class="wt_gc_upgrade_pro">
 			<?php 
-			if( class_exists( 'Wbte_Bfcm_Twenty_Twenty_Four' ) && method_exists( 'Wbte_Bfcm_Twenty_Twenty_Four', 'is_bfcm_season' ) && Wbte_Bfcm_Twenty_Twenty_Four::is_bfcm_season() ) {
+			if(  method_exists( 'Wbte_Woocommerce_Gift_Cards_Free_Admin', 'is_bfcm_season' ) && Wbte_Woocommerce_Gift_Cards_Free_Admin::is_bfcm_season() ) {
 			?>
 				<div class="wt_gc_bfcm_offer">
 					<span style="margin: 0px 13px;"><img src="<?php echo esc_url( WBTE_GC_FREE_URL . 'admin/images/bfcm-doc-settings-coupon.svg' ); ?>" style="width: 280px;"></span>

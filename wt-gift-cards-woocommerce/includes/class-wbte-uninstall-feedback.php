@@ -260,12 +260,8 @@ if (!class_exists('WT_GiftCards_Uninstall_Feedback')) :
             }
 
             // Verify nonce
-            if ( ! isset( $_POST['nonce'] ) ) {
-                wp_send_json_error( array( 'message' => 'Bad request' ), 400 );
-            }
-            $nonce = sanitize_text_field( wp_unslash( $_POST['nonce'] ) );
-            if ( ! wp_verify_nonce( $nonce, 'wbtegiftcards_uninstall_nonce' ) ) {
-                wp_send_json_error( array( 'message' => 'Invalid nonce' ), 403 );
+            if ( ! check_ajax_referer( 'wbtegiftcards_uninstall_nonce', 'nonce', false ) || ! current_user_can( 'manage_options' ) ) {
+                wp_send_json_error( array( 'message' => 'Unauthorized request' ), 403 );
             }
 
             $data = array(

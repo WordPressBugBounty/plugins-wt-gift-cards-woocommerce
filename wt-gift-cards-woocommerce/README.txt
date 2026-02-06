@@ -1,12 +1,12 @@
 === WebToffee Gift Cards for WooCommerce ===
 Contributors: WebToffee
-Version: 1.2.5
+Version: 1.2.8
 Donate link:https://www.webtoffee.com/product/woocommerce-gift-cards/
 Tags: gift cards, woocommerce gift cards,  gift certificates, gift voucher, advanced gift cards
 Requires at least: 3.5
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 5.6
-Stable tag: 1.2.5
+Stable tag: 1.2.8
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -196,10 +196,15 @@ The gift card code will be sent along with the gift card email. Customers can fi
 
 == Changelog ==
 
+= 1.2.8 2025-12-19 =
+*[Compatibility] - Tested OK with WooCommerce 10.4
+*[Compatibility] - Tested OK with WordPress 6.9
+
 [See changelog for all versions](https://plugins.svn.wordpress.org/wt-gift-cards-woocommerce/trunk/changelog.txt)
 
 
 == Upgrade Notice ==
 
-= 1.2.5 =
-*[Tweak] - Performance optimization and bug fixes.
+= 1.2.8 2025-12-19 =
+*[Compatibility] - Tested OK with WooCommerce 10.4
+*[Compatibility] - Tested OK with WordPress 6.9

@@ -55,7 +55,7 @@ class Wbte_Gc_Upsell_Banner {
 
 		// Localize script with AJAX data
 		wp_localize_script('wt-gc-upsell-banner', 'wt_gc_upsell_banner_params', array(
-			'ajax_url' => admin_url('admin-ajax.php'),
+			'ajax_url' => esc_url(admin_url('admin-ajax.php')),
 			'nonce' => wp_create_nonce('wt_gc_dismiss_upsell_banner'),
 			'action' => 'wt_gc_dismiss_upsell_banner'
 		));
@@ -82,10 +82,29 @@ class Wbte_Gc_Upsell_Banner {
 	 *  Display the upsell banner
 	 *
 	 *  @since 1.2.5
+	 *  @since 1.2.7 Updated new banner content for Send admin email settings page.
+	 * 
+	 *  @param string $page Page where the banner is shown. 'default' : template settings and GC product table.
 	 */
-	public function pro_banner_content() {
+	public function pro_banner_content( $page = 'default') {
 		if ( $this->is_banner_dismissed() ) {
 			return;
+		}
+		
+		switch ( $page ) {
+			case 'email_page':
+				$banner_description = __( 'You can create multiple gift cards, choose from 20+ beautiful templates, and set advanced usage restrictions with the premium version of WebToffee WooCommerce Gift Cards.', 'wt-gift-cards-woocommerce' );
+				$cta_link           = 'https://www.webtoffee.com/product/woocommerce-gift-cards/?utm_source=free_plugin_send_gift_card&utm_medium=Gift_card_basic&utm_campaign=WooCommerce_Gift_Cards';
+				$upsell_action_class= 'wt_gc_gift_card_upsell_actions_email_page';
+				$cta_text           = __( 'Get Plugin Now →', 'wt-gift-cards-woocommerce' );
+				break;
+
+			default:
+				$banner_description = __( 'With the premium version, you’ll get access to 20+ templates for creating gift cards. You can also upload custom images as gift card images.', 'wt-gift-cards-woocommerce' );
+				$cta_link           = 'https://www.webtoffee.com/product/woocommerce-gift-cards/?utm_source=free_plugin_templates&utm_medium=Gift_card_basic&utm_campaign=WooCommerce_Gift_Cards';
+				$upsell_action_class= 'wt_gc_gift_card_upsell_actions';
+				$cta_text           = __( 'Check out plugin →', 'wt-gift-cards-woocommerce' );
+				break;
 		}
 		?>
 
@@ -95,10 +114,10 @@ class Wbte_Gc_Upsell_Banner {
 						<div class="wt_gc_gift_card_upsell_text">
 							<img src="<?php echo esc_url( WBTE_GC_FREE_URL . 'admin/modules/gc_pro_banner/assets/images/bulb.svg' ); ?>" style="">
 							<span class="wt_gc_gift_card_upsell_title"><?php esc_html_e( 'Did you know?', 'wt-gift-cards-woocommerce' ); ?></span>
-							<?php esc_html_e( 'With the premium version, you’ll get access to 20+ templates for creating gift cards. You can also upload custom images as gift card images.', 'wt-gift-cards-woocommerce' ); ?>
+							<?php echo esc_html($banner_description); ?>
 						</div>
-						<div class="wt_gc_gift_card_upsell_actions">
-							<a href="<?php echo esc_url( 'https://www.webtoffee.com/product/woocommerce-gift-cards/?utm_source=free_plugin_templates&utm_medium=Gift_card_basic&utm_campaign=WooCommerce_Gift_Cards' ); ?>" class="btn-primary" target="_blank"><?php esc_html_e( 'Check out plugin →', 'wt-gift-cards-woocommerce' ); ?></a>
+						<div class="<?php echo esc_html($upsell_action_class); ?>">
+							<a href="<?php echo esc_url( $cta_link ); ?>" class="btn-primary" target="_blank"><?php echo esc_html( $cta_text ); ?></a>
 							<a href="<?php echo esc_url( '#' ); ?>" class="btn-secondary wt_gc_gift_card_upsell_dismiss" ><?php esc_html_e( 'Dismiss', 'wt-gift-cards-woocommerce' ); ?></a>
 							<button type="button" class="popup-close wt_gc_gift_card_upsell_closed">
 								<svg class="wt_pklist_banner_dismiss" width="11" height="11" fill="none" xmlns="http://www.w3.org/2000/svg">

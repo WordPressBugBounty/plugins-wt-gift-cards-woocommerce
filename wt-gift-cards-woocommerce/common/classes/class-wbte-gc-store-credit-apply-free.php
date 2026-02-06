@@ -551,20 +551,29 @@ class Wbte_Gc_Store_Credit_Apply_Free extends Wbte_Woocommerce_Gift_Cards_Free_C
 			$action = ''; // For balance updation filter
 
 			// update newly added coupon amount
-			if ( $this->is_order_new_coupon( $post_action, $post_coupon ) && ! in_array( $post_coupon, $this->newly_added_storecredits ) ) {
-				if ( self::is_store_credit_coupon( $new_coupon ) ) {
-					$coupon_amount           = $new_coupon->get_amount();
-					$coupon_discount         = $store_credit_used[ $post_coupon ];
-					$remaining_coupon_amount = max( 0, ( $coupon_amount - $coupon_discount ) );
-					$new_coupon->set_amount( wc_format_decimal( $remaining_coupon_amount, 2 ) );
-					$new_coupon->save();
+			if ( 
+				$this->is_order_new_coupon( $post_action, $post_coupon ) 
+				&& ! in_array( $post_coupon, $this->newly_added_storecredits ) 
+				&& isset( $store_credit_used[ $post_coupon ] ) 
+				&& self::is_store_credit_coupon( $new_coupon )
+            ) {
+					
+				$coupon_amount           = $new_coupon->get_amount();
+				$coupon_discount         = $store_credit_used[ $post_coupon ];
+				$remaining_coupon_amount = max( 0, ( $coupon_amount - $coupon_discount ) );
+				$new_coupon->set_amount( wc_format_decimal( $remaining_coupon_amount, 2 ) );
+				$new_coupon->save();
 
-					$this->newly_added_storecredits[] = $post_coupon; // to prevent deducting the amount multiple times
-					$action                           = 'order_new_coupon_before_tax';
-				}
+				$this->newly_added_storecredits[] = $post_coupon; // to prevent deducting the amount multiple times
+				$action                           = 'order_new_coupon_before_tax';
 			}
 
-			if ( $this->is_order_remove_coupon( $post_action, $post_coupon ) && isset( $store_credit_used[ $post_coupon ] ) ) {
+			if ( 
+                $this->is_order_remove_coupon( $post_action, $post_coupon ) 
+                && isset( $store_credit_used[ $post_coupon ] ) 
+                && self::is_store_credit_coupon( $new_coupon )
+            ) {
+				$discount = floatval($store_credit_used[$post_coupon]);
 				self::reimburse_coupon( $new_coupon, $discount, $order );
 
 				unset( $store_credit_used[ $post_coupon ] );

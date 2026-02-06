@@ -183,7 +183,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 		// phpcs:disable WordPress.Security.NonceVerification.Recommended
 		$gc_page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
 
-		if ( WBTE_GC_FREE_PLUGIN_NAME === $gc_page || apply_filters( 'wt_gc_include_admin_css_file', false ) ) {
+		if ( (isset( $_GET['post_type'] ) && 'shop_coupon' === $_GET['post_type'] ) || WBTE_GC_FREE_PLUGIN_NAME === $gc_page || apply_filters( 'wt_gc_include_admin_css_file', false ) ) {
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wt-woocommerce-gift-cards-free-admin.css', array( 'wc-admin-layout' ), $this->version, 'all' );
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_style( 'woocommerce_admin_styles', WC()->plugin_url() . '/assets/css/admin.css', array(), $this->version );
@@ -194,15 +194,16 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 	 * Register the JavaScript for the admin area.
 	 *
 	 * @since    1.0.0
+	 * @since    1.2.7 wc-jquery-tiptip updated
 	 */
 	public function enqueue_scripts() {
 		$gc_page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
 
-		if ( WBTE_GC_FREE_PLUGIN_NAME === $gc_page || apply_filters( 'wt_gc_include_admin_js_file', false ) ) {
+		if ( ( isset($_GET['post_type']) && 'shop_coupon' === $_GET['post_type'] ) || WBTE_GC_FREE_PLUGIN_NAME === $gc_page || apply_filters( 'wt_gc_include_admin_js_file', false ) ) {
 
 			$params = array(
 				'no_image' => Wbte_Woocommerce_Gift_Cards_Free_Common::$no_image,
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
+				'ajax_url' => esc_url(admin_url( 'admin-ajax.php' )),
 				'nonce'    => wp_create_nonce( 'wt_gc_admin_nonce' ),
 				'msgs'     => array(
 					/* translators: 1: line break, 2: html anchor link open tag, 3: html anchor link close tag */
@@ -219,7 +220,8 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 			);
 
 			wp_enqueue_media();
-			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wt-woocommerce-gift-cards-free-admin.js', array( 'jquery', 'wp-color-picker', 'jquery-tiptip', 'wc-enhanced-select' ), $this->version, false );
+			$tiptip_handle = version_compare( WC()->version, '10.3.0', '>=' ) ? 'wc-jquery-tiptip' : 'jquery-tiptip';
+			wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wt-woocommerce-gift-cards-free-admin.js', array( 'jquery', 'wp-color-picker', $tiptip_handle, 'wc-enhanced-select' ), $this->version, false );
 			wp_localize_script( $this->plugin_name, 'wt_gc_params', $params );
 		}
 	}
@@ -568,4 +570,110 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 			echo esc_html( is_array( $restrictions ) ? implode( ', ', $restrictions ) : '' );
 		}
 	}
+
+	/**
+	 * Smart coupon banner for BFCM on coupons page
+	 * 
+	 *  @since 1.2.6
+	 */
+	public function bfcm_banner_coupon_page_settings_button()
+	{
+		global $current_screen;
+		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+		if( 'shop_coupon' !== $current_screen->post_type )
+		{
+			return;
+		}
+		?>
+		<script type="text/javascript">
+			jQuery(document).ready(function($){				
+				<?php  
+				$hidden_banners = get_option( 'wbte_sc_hidden_promotion_banners', array() );
+		
+				if( !defined('WBTE_BFCM_SC_COUPONS_PAGE') && ! in_array( 'sc_cpns_page', $hidden_banners ) )
+				{
+					define('WBTE_BFCM_SC_COUPONS_PAGE', true);
+					$campaign_url = 'https://www.webtoffee.com/product/smart-coupons-for-woocommerce/?utm_source=free_plugin_add_coupon_menu&utm_medium=gift_card_free&utm_campaign=smart_coupons';
+
+					$bulk_plugin_text = sprintf( 
+						'<div data-wbte-gc-promotion-banner-id="sc_cpns_page" class="wbte_gc_promotion_banner_div"><span><img src="%s" style="width: 16px;" /></span>&nbsp;<span class="wbte_gc_promotion_banner_title">%s</span><div class="wbte_gc_promotion_banner_content"><p style="margin: 0; font-size: 14px;"> %s </p><div class="wbte_gc_promotion_banner_actions"> <a class="button button-secondary wbte_gc_promotion_banner_link_btn" href="%s" target="_blank"> %s <span class="dashicons dashicons-arrow-right-alt" style="font-size: 14px; line-height: 1.5;"></span> </a>&ensp;<button type="button" class="button button-secondary wbte_gc_promotion_banner_close wbte_gc_promotion_banner_later"> %s </button></div></div><span class="dashicons dashicons-no-alt wbte_gc_promotion_banner_close wbte_gc_promotion_banner_close_btn"></span></div>',
+						esc_url( WBTE_GC_FREE_URL . 'admin/images/idea_bulb_purple.svg' ),
+						esc_html__( 'Did you know?', 'wt-gift-cards-woocommerce' ),
+						sprintf(
+							// Translators: 1. Opening <a> tag with link to Smart Coupons campaign page. 2. Closing </a> tag.
+							esc_html__(
+								'With the %1$s Smart Coupons %2$s plugin, you can create Buy One Get One offers and advanced coupons that boost sales during BFCM.',
+								'wt-gift-cards-woocommerce'
+							),
+							'<a href="' . esc_url( $campaign_url ) . '" target="_blank"><b>',
+							'</b></a>'
+						),
+						esc_url( $campaign_url ),
+						esc_html__( "Get Plugin Now", "wt-gift-cards-woocommerce" ),
+						esc_html__( "Maybe later", "wt-gift-cards-woocommerce" )
+					);
+				?>
+					jQuery( '.page-title-action' ).after( '<?php echo wp_kses_post( $bulk_plugin_text ); ?>' );
+				<?php  
+				}
+				?>
+			});
+		</script>
+		<?php
+	}
+	
+	 /**
+	 *  Hide promotion banner
+	 *
+	 *  @since 1.2.6
+	 */
+	public static function hide_bfcm_promotion_banner(){
+
+		check_ajax_referer( 'wt_gc_admin_nonce', '_wpnonce' );
+
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			wp_send_json_error( esc_html__( 'Access denied', 'wt-gift-cards-woocommerce' ) );
+		}
+
+		$hided_banners = get_option( 'wbte_sc_hidden_promotion_banners', array() );		
+		$banner_id = isset( $_POST['banner_id'] ) ? sanitize_text_field( wp_unslash( $_POST['banner_id'] ) ) : '';
+		if ( ! empty( $banner_id ) && ! in_array( $banner_id, $hided_banners ) ) {
+			$hided_banners[] = $banner_id;
+			update_option( 'wbte_sc_hidden_promotion_banners', $hided_banners );
+		}
+		update_option( 'wbte_sc_hidden_promotion_banners', $hided_banners );
+		wp_send_json_success();
+	}
+
+	/**
+	 * To Check if the current date is on or between the start and end date of black friday and cyber monday banner for 2024.
+	 *
+	 * @since 1.2.7
+	 */
+	public static function is_bfcm_season() {
+
+		$start_date   = new DateTime( '17-NOV-2025, 12:00 AM', new DateTimeZone( 'Asia/Kolkata' ) ); // Start date.
+		$current_date = new DateTime( 'now', new DateTimeZone( 'Asia/Kolkata' ) ); // Current date.
+		$end_date     = new DateTime( '04-DEC-2025, 11:59 PM', new DateTimeZone( 'Asia/Kolkata' ) ); // End date.
+
+		// Check if the date is on or between the start and end date of black friday and cyber monday banner for 2025.
+		if ( $current_date < $start_date || $current_date > $end_date ) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 *  Screens to show Black Friday and Cyber Monday Banner.
+	 *
+	 *  @since 1.2.7
+	 *  @param array $screen_ids Array of screen ids.
+	 *  @return array            Array of screen ids.
+	 */
+	public function wt_bfcm_banner_screens( $screen_ids ) {
+		$screen_ids[] = 'toplevel_page_wt-woocommerce-gift-cards';
+		return $screen_ids;
+	}
+
 }

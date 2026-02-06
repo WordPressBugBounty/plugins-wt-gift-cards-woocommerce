@@ -16,6 +16,48 @@
 		}
 	);
 
+	/**
+	 * @since 1.2.6 To hide BFCM banner in coupon page
+	 */
+	$( document ).ready(function(){
+		$( document ).on('click', '.wbte_gc_promotion_banner_close', function( e ){
+			e.preventDefault();
+			const banner_div = $(this).closest('.wbte_gc_promotion_banner_div');
+			const banner_id = banner_div.attr('data-wbte-gc-promotion-banner-id');
+
+			$('.wbte_gc_promotion_banner_div').block({
+				message: null,
+				overlayCSS: {
+					background: '#000',
+					opacity: 0.6
+				}
+			}); 
+			if( banner_id ) {
+				$.ajax({
+					url: wt_gc_params.ajax_url,
+					type: 'POST',
+					dataType:'json',
+					data:'banner_id=' + banner_id + '&action=wbte_gc_hide_promotion_banner&_wpnonce=' + wt_gc_params.nonce,
+					success: function(response) {
+						if ( response.success ) {
+							$('.wbte_gc_promotion_banner_div').unblock();
+							banner_div.hide();
+						} else {
+							wt_gc_notify_msg.error( response.data );
+						}
+					},
+					error: function() {
+						$('.wbte_gc_promotion_banner_div').unblock();
+						banner_div.hide();
+					}
+				});
+			} else {
+				$('.wbte_gc_promotion_banner_div').unblock();
+				banner_div.hide();
+			} 
+		});
+	});
+
 })( jQuery );
 
 /**
