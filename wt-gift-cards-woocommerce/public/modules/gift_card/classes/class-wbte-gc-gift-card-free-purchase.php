@@ -77,6 +77,7 @@ class Wbte_Gc_Gift_Card_Free_Purchase extends Wbte_Gc_Gift_Card_Free_Public {
 	 */
 	protected function process_denomination_list( $denominations ) {
 		$denominations = array_map( 'floatval', explode( ',', $denominations ) );
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		return apply_filters( 'wt_gc_alter_giftcard_predifined_amounts', array_unique( array_filter( $denominations ) ) );
 	}
 
@@ -101,6 +102,7 @@ class Wbte_Gc_Gift_Card_Free_Purchase extends Wbte_Gc_Gift_Card_Free_Public {
 			 *  @since  1.0.0
 			 *  @param  string[]   Payment gateways name
 			 */
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 			$payment_gateway_to_disable = (array) apply_filters( 'wt_gc_payment_gateways_to_disable_on_giftcard_purchase', array( 'cod' ) );
 
 			if ( ! empty( $payment_gateway_to_disable ) ) {

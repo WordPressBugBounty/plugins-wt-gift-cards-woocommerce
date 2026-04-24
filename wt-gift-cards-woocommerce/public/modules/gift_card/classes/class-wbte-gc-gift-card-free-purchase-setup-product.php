@@ -87,6 +87,7 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Setup_Product extends Wbte_Gc_Gift_Card_Fr
 			return $is_virtual;
 		}
 
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		return apply_filters( 'wt_gc_gift_card_product_is_virtual', true );
 	}
 }

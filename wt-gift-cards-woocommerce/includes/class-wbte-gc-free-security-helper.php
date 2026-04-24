@@ -165,7 +165,8 @@ if ( ! class_exists( 'Wbte_Gc_Free_Security_Helper' ) ) {
 		 */
 		public static function check_role_access( $plugin_id ) {
 			$roles      = array( 'manage_woocommerce' );
-			$roles      = apply_filters( 'wt_' . $plugin_id . '_alter_role_access', $roles ); // dynamic filter based on plugin id to alter roles
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Dynamic wt_ hook per plugin_id.
+			$roles      = apply_filters( 'wt_' . $plugin_id . '_alter_role_access', $roles ); // Dynamic filter based on plugin id to alter roles.
 			$roles      = ( ! is_array( $roles ) ? array() : $roles );
 			$is_allowed = false;
 

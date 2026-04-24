@@ -38,6 +38,7 @@ if ( ! class_exists( 'Wbte_Ema_Banner' ) ) {
             $this->module_id        = $this->module_base;
             self::$module_id_static = $this->module_id;
 
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WordPress core filter.
             if ( ! in_array( 'decorator-woocommerce-email-customizer/decorator.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
                 add_action('admin_enqueue_scripts', array($this, 'enqueue_styles'));
                 add_action('admin_footer', array($this, 'ema_inject_analytics_script'));

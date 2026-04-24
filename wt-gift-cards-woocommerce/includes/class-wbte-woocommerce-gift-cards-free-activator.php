@@ -39,5 +39,21 @@ class Wbte_Woocommerce_Gift_Cards_Free_Activator {
 			$wt_gc_giftcard_admin = Wbte_Gc_Gift_Card_Free_Admin::get_instance();
 			$wt_gc_giftcard_admin->create_dummy_product();
 		}
+
+		self::update_cross_promo_banner_version();
+	}
+
+	/**
+	 *  Check and update the cross promotion banner version.
+	 * @since 1.2.9
+	 */
+	private static function update_cross_promo_banner_version() {
+		$current_latest = get_option( 'wbfte_promotion_banner_version' );
+
+		if ( false === $current_latest || // User is installing the plugin first time.
+			version_compare( $current_latest, WBTE_GC_FREE_CROSS_PROMO_BANNER_VERSION, '<' ) // $current_latest is lesser than the installed version in this plugin.
+		) {
+			update_option( 'wbfte_promotion_banner_version', WBTE_GC_FREE_CROSS_PROMO_BANNER_VERSION );
+		}
 	}
 }

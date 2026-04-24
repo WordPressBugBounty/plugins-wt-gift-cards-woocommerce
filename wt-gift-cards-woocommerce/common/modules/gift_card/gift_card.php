@@ -241,6 +241,7 @@ class Wbte_Gc_Gift_Card_Free_Common {
 			),
 		);
 
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		return apply_filters( 'wt_gc_gift_card_template_images', $design_images );
 	}
 
@@ -274,6 +275,7 @@ class Wbte_Gc_Gift_Card_Free_Common {
 			}
 		}
 
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		$design_images = apply_filters( 'wt_gc_gift_card_templates', $design_images );
 
 		if ( $visible_only ) {
@@ -333,6 +335,7 @@ class Wbte_Gc_Gift_Card_Free_Common {
 	 *  @return      string     Gift card message. Default: Empty string
 	 */
 	public static function get_gift_card_message( $template ) {
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		return apply_filters( 'wt_gc_gift_card_message', '', $template );
 	}
 
@@ -414,6 +417,7 @@ class Wbte_Gc_Gift_Card_Free_Common {
 		$current_email->trigger( $credit_email_args );
 
 		$content = $current_email->get_content_html();
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WooCommerce core filter.
 		return apply_filters( 'woocommerce_mail_content', $current_email->style_inline( $content ) );
 	}
 
@@ -432,7 +436,7 @@ class Wbte_Gc_Gift_Card_Free_Common {
 	 */
 	public static function get_product_meta_list() {
 		return apply_filters(
-			'wt_gc_alter_gift_card_product_meta_list',
+			'wt_gc_alter_gift_card_product_meta_list', // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 			array(
 				'_wt_gc_purchase_options' => array(
 					'default' => array( 'predefined' ), /* default value */
@@ -581,6 +585,7 @@ class Wbte_Gc_Gift_Card_Free_Common {
 		$status     = Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( 'order_status_to_generate', self::$module_id_static );
 		$status_arr = is_array( $status ) ? $status : array( $status );
 
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		return apply_filters( 'wt_gc_alter_purchased_credit_sending_status', $status_arr, $order );
 	}
 
@@ -607,7 +612,7 @@ class Wbte_Gc_Gift_Card_Free_Common {
 	 */
 	public static function get_gift_card_user_option_labels() {
 		return apply_filters(
-			'wt_gc_alter_gift_card_user_option_labels',
+			'wt_gc_alter_gift_card_user_option_labels', // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 			array(
 				'email' => __( 'Email to recipient', 'wt-gift-cards-woocommerce' ),
 			)
@@ -841,6 +846,7 @@ class Wbte_Gc_Gift_Card_Free_Common {
 					$extended = true;
 				}
 
+				// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 				$send_now = apply_filters( 'wt_send_credit_coupon_on_order_success_status', true, $order_id, $coupon_template_data );
 
 				if ( $send_now && ! empty( $coupon_id ) ) {
@@ -856,6 +862,7 @@ class Wbte_Gc_Gift_Card_Free_Common {
 					);
 
 					WC()->mailer();
+					// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 					do_action( 'wt_gc_send_gift_card_coupon_to_customer', $credit_email_args );
 
 					$email_send = true;
@@ -905,6 +912,7 @@ class Wbte_Gc_Gift_Card_Free_Common {
 		 *  Check and change order status to completed when all coupons are mailed.
 		 */
 		if ( 'completed' !== $order->get_status() // Current order status is not `completed`
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 			&& apply_filters( 'wt_gc_change_order_status_to_completed_on_giftcard_email', true ) // An extra filter hook to control the automatic completion
 		) {
 
@@ -1075,7 +1083,7 @@ class Wbte_Gc_Gift_Card_Free_Common {
 		 *  @param array    Template data
 		 */
 		return (array) apply_filters(
-			'wt_gc_alter_dummy_template',
+			'wt_gc_alter_dummy_template', // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 			array(
 				'image_url'       => esc_url( self::get_template_location() . 'no-image.png' ),
 				'top_bg_color'    => '#fff',
@@ -1103,6 +1111,7 @@ class Wbte_Gc_Gift_Card_Free_Common {
 			}
 		}
 
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		return apply_filters( 'wt_gc_alter_gift_card_product_visible_templates', $templates, $product_id );
 	}
 
@@ -1315,6 +1324,7 @@ class Wbte_Gc_Gift_Card_Free_Common {
             $coupon_obj = new WC_Coupon(is_array($coupon_id) ? $coupon_id[0] : $coupon_id);
             $coupon_code = $coupon_obj->get_code();
             
+            // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Third-party integration hook.
             $mpdf_info = apply_filters('wt_pklist_mpdf_get_lib_info', array()); //get mPDF library info
 
             if($coupon_code && is_array($mpdf_info) && isset($mpdf_info['file']) && file_exists($mpdf_info['file'])) //coupon exists, mPDF class file exists
@@ -1335,6 +1345,7 @@ class Wbte_Gc_Gift_Card_Free_Common {
                      *  @param WC_Coupon    $coupon_obj     Coupon object
                      *  @param array        $args           Array of arguments. Including coupon id, reciever email id etc
                      */
+                    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
                     $html = apply_filters('wt_gc_alter_giftcard_pdf_html', $html, $coupon_obj, $args);
 
                     $class_name = $mpdf_info['class'];

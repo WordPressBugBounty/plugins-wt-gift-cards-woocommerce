@@ -1,6 +1,6 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
 	exit;}
-$arr = array(
+$wbte_arr = array(
 	'enable_gift_card_product'                        => __( 'Enable to add gift card products and purchase functionality to the store. When disabled hides all gift cards and disables purchasing option', 'wt-gift-cards-woocommerce' ),
 	'order_status_to_generate'                        => __( 'Set to generate Gift cards when the order reaches the selected order status', 'wt-gift-cards-woocommerce' ),
 	'wt_gc_choose_gift_card_template'                 => __( 'Image to be used in the gift card template', 'wt-gift-cards-woocommerce' ),

@@ -4,32 +4,32 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 if ( is_array( $args ) ) {
-	$allowed_html = Wbte_Woocommerce_Gift_Cards_Free_Common::get_allowed_html();
+	$wbte_allowed_html = Wbte_Woocommerce_Gift_Cards_Free_Common::get_allowed_html();
 
-	foreach ( $args as $key => $value ) {
-		$tr_id    = ( isset( $value['tr_id'] ) ? ' id="' . esc_attr( $value['tr_id'] ) . '" ' : '' );
-		$tr_class = ( isset( $value['tr_class'] ) ? $value['tr_class'] : '' );
+	foreach ( $args as $wbte_value ) {
+		$wbte_tr_id    = ( isset( $wbte_value['tr_id'] ) ? ' id="' . esc_attr( $wbte_value['tr_id'] ) . '" ' : '' );
+		$wbte_tr_class = ( isset( $wbte_value['tr_class'] ) ? $wbte_value['tr_class'] : '' );
 
-		$type             = ( isset( $value['type'] ) ? $value['type'] : 'text' );
-		$field_group_attr = ( isset( $value['field_group'] ) ? ' data-field-group="' . esc_attr( $value['field_group'] ) . '" ' : '' );
-		$tr_class        .= ( isset( $value['field_group'] ) ? ' wt_gc_field_group_children ' : '' ); // add an extra class to tr when field grouping enabled
+		$type             = ( isset( $wbte_value['type'] ) ? $wbte_value['type'] : 'text' );
+		$wbte_field_group_attr = ( isset( $wbte_value['field_group'] ) ? ' data-field-group="' . esc_attr( $wbte_value['field_group'] ) . '" ' : '' );
+		$wbte_tr_class        .= ( isset( $wbte_value['field_group'] ) ? ' wt_gc_field_group_children ' : '' ); // add an extra class to tr when field grouping enabled
 
-		$after_form_field_html = ( isset( $value['after_form_field_html'] ) ? $value['after_form_field_html'] : '' ); /* after form field `td` */
-		$after_form_field      = ( isset( $value['after_form_field'] ) ? $value['after_form_field'] : '' ); /* after form field */
-		$before_form_field     = ( isset( $value['before_form_field'] ) ? $value['before_form_field'] : '' );
+		$wbte_after_form_field_html = ( isset( $wbte_value['after_form_field_html'] ) ? $wbte_value['after_form_field_html'] : '' ); /* after form field `td` */
+		$wbte_after_form_field      = ( isset( $wbte_value['after_form_field'] ) ? $wbte_value['after_form_field'] : '' ); /* after form field */
+		$wbte_before_form_field     = ( isset( $wbte_value['before_form_field'] ) ? $wbte_value['before_form_field'] : '' );
 
 
 		if ( 'field_group_head' === $type ) {
-			$visibility = ( isset( $value['show_on_default'] ) ? $value['show_on_default'] : 0 );
+			$wbte_visibility = ( isset( $wbte_value['show_on_default'] ) ? $wbte_value['show_on_default'] : 0 );
 			?>
-			<tr <?php echo wp_kses_post( $tr_id . $field_group_attr ); ?> class="<?php echo esc_attr( $tr_class ); ?>">
+			<tr <?php echo wp_kses_post( $wbte_tr_id . $wbte_field_group_attr ); ?> class="<?php echo esc_attr( $wbte_tr_class ); ?>">
 				<td colspan="3" class="wt_gc_field_group">
 					<div class="wt_gc_field_group_hd">
-						<?php echo wp_kses_post( isset( $value['head'] ) ? ( $value['head'] ) : '' ); ?>
-						<div class="wt_gc_field_group_toggle_btn" data-id="<?php echo esc_attr( isset( $value['group_id'] ) ? $value['group_id'] : '' ); ?>" data-visibility="<?php echo esc_attr( $visibility ); ?>"><span class="dashicons dashicons-arrow-<?php echo esc_attr( 1 === absint( $visibility ) ? 'down' : 'right' ); ?>"></span></div>
+						<?php echo wp_kses_post( isset( $wbte_value['head'] ) ? ( $wbte_value['head'] ) : '' ); ?>
+						<div class="wt_gc_field_group_toggle_btn" data-id="<?php echo esc_attr( isset( $wbte_value['group_id'] ) ? $wbte_value['group_id'] : '' ); ?>" data-visibility="<?php echo esc_attr( $wbte_visibility ); ?>"><span class="dashicons dashicons-arrow-<?php echo esc_attr( 1 === absint( $wbte_visibility ) ? 'down' : 'right' ); ?>"></span></div>
 					</div>
 					<div class="wt_gc_field_group_content">
-						<p class="wt_gc_field_group_description"><?php echo wp_kses_post( isset( $value['description'] ) ? ( $value['description'] ) : '' ); ?></p>
+						<p class="wt_gc_field_group_description"><?php echo wp_kses_post( isset( $wbte_value['description'] ) ? ( $wbte_value['description'] ) : '' ); ?></p>
 						<table><!-- Content will be added by JS --></table>
 					</div>
 				</td>
@@ -37,127 +37,127 @@ if ( is_array( $args ) ) {
 			<?php
 		} else {
 
-			if ( isset( $value['field_name'] ) ) {
-				$field_name = $value['field_name'];
-			} elseif ( isset( $value['parent_option'] ) ) {
-				$field_name = $value['parent_option'] . '[' . $value['option_name'] . ']';
+			if ( isset( $wbte_value['field_name'] ) ) {
+				$wbte_field_name = $wbte_value['field_name'];
+			} elseif ( isset( $wbte_value['parent_option'] ) ) {
+				$wbte_field_name = $wbte_value['parent_option'] . '[' . $wbte_value['option_name'] . ']';
 			} else {
-				$field_name = $value['option_name'];
+				$wbte_field_name = $wbte_value['option_name'];
 			}
 
-			$field_id = isset( $value['field_id'] ) ? $value['field_id'] : $field_name;
+			$wbte_field_id = isset( $wbte_value['field_id'] ) ? $wbte_value['field_id'] : $wbte_field_name;
 
-			$fld_attr   = ( isset( $value['attr'] ) ? $value['attr'] : '' );
-			$css_class  = ( isset( $value['css_class'] ) ? esc_attr( $value['css_class'] ) : '' );
-			$field_only = ( isset( $value['field_only'] ) ? $value['field_only'] : false );
-			$non_field  = ( isset( $value['non_field'] ) ? $value['non_field'] : false );
-			$mandatory  = (bool) ( isset( $value['mandatory'] ) ? $value['mandatory'] : false );
+			$wbte_fld_attr   = ( isset( $wbte_value['attr'] ) ? $wbte_value['attr'] : '' );
+			$wbte_css_class  = ( isset( $wbte_value['css_class'] ) ? esc_attr( $wbte_value['css_class'] ) : '' );
+			$wbte_field_only = ( isset( $wbte_value['field_only'] ) ? $wbte_value['field_only'] : false );
+			$wbte_non_field  = ( isset( $wbte_value['non_field'] ) ? $wbte_value['non_field'] : false );
+			$wbte_mandatory  = (bool) ( isset( $wbte_value['mandatory'] ) ? $wbte_value['mandatory'] : false );
 
-			if ( $mandatory ) {
-				$fld_attr    .= ' required="required"';
-				$required_msg = ( isset( $value['required_msg'] ) ? $value['required_msg'] : '' );
-				if ( '' !== $required_msg ) {
-					$fld_attr .= ' data-required-msg="' . esc_attr( $required_msg ) . '"';
+			if ( $wbte_mandatory ) {
+				$wbte_fld_attr    .= ' required="required"';
+				$wbte_required_msg = ( isset( $wbte_value['required_msg'] ) ? $wbte_value['required_msg'] : '' );
+				if ( '' !== $wbte_required_msg ) {
+					$wbte_fld_attr .= ' data-required-msg="' . esc_attr( $wbte_required_msg ) . '"';
 				}
 			}
 
-			$field_name = esc_attr( $field_name );
-			$field_id   = esc_attr( $field_id );
+			$wbte_field_name = esc_attr( $wbte_field_name );
+			$wbte_field_id   = esc_attr( $wbte_field_id );
 
-			if ( false === $field_only ) {
-				$tooltip_html = self::set_tooltip( $field_name, $base );
+			if ( false === $wbte_field_only ) {
+				$wbte_tooltip_html = self::set_tooltip( $wbte_field_name, $base );
 				?>
-				<tr valign="top" <?php echo wp_kses_post( $tr_id . $field_group_attr ); ?> class="<?php echo esc_attr( $tr_class ); ?>">
+				<tr valign="top" <?php echo wp_kses_post( $wbte_tr_id . $wbte_field_group_attr ); ?> class="<?php echo esc_attr( $wbte_tr_class ); ?>">
 					<th scope="row">
 						<label style="margin-left:10px;">
-							<?php echo wp_kses_post( isset( $value['label'] ) ? ( $value['label'] ) : '' ); ?><?php echo wp_kses_post( $mandatory ? '<span class="wt_gc_required_field">*</span>' : '' ); ?> <?php echo wp_kses_post( $tooltip_html ); ?>	
+							<?php echo wp_kses_post( isset( $wbte_value['label'] ) ? ( $wbte_value['label'] ) : '' ); ?><?php echo wp_kses_post( $wbte_mandatory ? '<span class="wt_gc_required_field">*</span>' : '' ); ?> <?php echo wp_kses_post( $wbte_tooltip_html ); ?>	
 						</label>
 					</th>
 					<td>
 				<?php
 			}
-			if ( true === $non_field ) {
+			if ( true === $wbte_non_field ) {
 				if ( 'plaintext' === $type ) {
-					echo wp_kses_post( isset( $value['text'] ) ? $value['text'] : '' );
+					echo wp_kses_post( isset( $wbte_value['text'] ) ? $wbte_value['text'] : '' );
 				}
 			} else {
-				echo wp_kses_post( $before_form_field );
+				echo wp_kses_post( $wbte_before_form_field );
 
-				$parent_option = ( isset( $value['parent_option'] ) ? $value['parent_option'] : '' );
+				$wbte_parent_option = ( isset( $wbte_value['parent_option'] ) ? $wbte_value['parent_option'] : '' );
 
-				if ( '' !== $parent_option ) {
-					$vl = Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( $parent_option, $base );
-					$vl = ( isset( $vl[ $value['option_name'] ] ) ? $vl[ $value['option_name'] ] : '' );
+				if ( '' !== $wbte_parent_option ) {
+					$wbte_vl = Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( $wbte_parent_option, $base );
+					$wbte_vl = ( isset( $wbte_vl[ $wbte_value['option_name'] ] ) ? $wbte_vl[ $wbte_value['option_name'] ] : '' );
 				} else {
-					$vl = Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( $value['option_name'], $base );
+					$wbte_vl = Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( $wbte_value['option_name'], $base );
 				}
 
-				$vl = is_string( $vl ) ? stripslashes( $vl ) : $vl;
+				$wbte_vl = is_string( $wbte_vl ) ? stripslashes( $wbte_vl ) : $wbte_vl;
 				if ( 'text' === $type || 'number' === $type || 'password' === $type ) {
 					?>
-					<input type="<?php echo esc_attr( $type ); ?>" <?php echo wp_kses_post( $fld_attr ); ?> class="<?php echo esc_attr( $css_class ); ?>" name="<?php echo esc_attr( $field_name ); ?>" value="<?php echo esc_attr( $vl ); ?>" />
+					<input type="<?php echo esc_attr( $type ); ?>" <?php echo wp_kses_post( $wbte_fld_attr ); ?> class="<?php echo esc_attr( $wbte_css_class ); ?>" name="<?php echo esc_attr( $wbte_field_name ); ?>" value="<?php echo esc_attr( $wbte_vl ); ?>" />
 					<?php
 
 				} elseif ( 'textarea' === $type ) {
 					?>
-						<textarea <?php echo wp_kses_post( $fld_attr ); ?> class="<?php echo esc_attr( $css_class ); ?>" name="<?php echo esc_attr( $field_name ); ?>"><?php echo esc_textarea( $vl ); ?></textarea>
+						<textarea <?php echo wp_kses_post( $wbte_fld_attr ); ?> class="<?php echo esc_attr( $wbte_css_class ); ?>" name="<?php echo esc_attr( $wbte_field_name ); ?>"><?php echo esc_textarea( $wbte_vl ); ?></textarea>
 					<?php
 
 				} elseif ( 'checkbox' === $type ) {
-					$field_vl       = isset( $value['field_vl'] ) ? $value['field_vl'] : '1';
-					$checkbox_label = isset( $value['checkbox_label'] ) ? $value['checkbox_label'] : '';
+					$wbte_field_vl       = isset( $wbte_value['field_vl'] ) ? $wbte_value['field_vl'] : '1';
+					$wbte_checkbox_label = isset( $wbte_value['checkbox_label'] ) ? $wbte_value['checkbox_label'] : '';
 					?>
-						<input class="<?php echo esc_attr( $css_class ); ?>" type="checkbox" value="<?php echo esc_attr( $field_vl ); ?>" id="<?php echo esc_attr( $field_id ); ?>" name="<?php echo esc_attr( $field_name ); ?>" <?php checked( $field_vl, $vl ); ?> <?php echo wp_kses_post( $fld_attr ); ?>>
+						<input class="<?php echo esc_attr( $wbte_css_class ); ?>" type="checkbox" value="<?php echo esc_attr( $wbte_field_vl ); ?>" id="<?php echo esc_attr( $wbte_field_id ); ?>" name="<?php echo esc_attr( $wbte_field_name ); ?>" <?php checked( $wbte_field_vl, $wbte_vl ); ?> <?php echo wp_kses_post( $wbte_fld_attr ); ?>>
 					<?php
-					if ( $checkbox_label ) {
+					if ( $wbte_checkbox_label ) {
 						?>
-						<label for="<?php echo esc_attr( $field_id ); ?>"><?php echo wp_kses_post( $checkbox_label ); ?></label>
+						<label for="<?php echo esc_attr( $wbte_field_id ); ?>"><?php echo wp_kses_post( $wbte_checkbox_label ); ?></label>
 						<?php
 					}
 				} elseif ( 'checkbox_list' === $type ) {
-					$checkbox_fields = isset( $value['checkbox_fields'] ) ? $value['checkbox_fields'] : array();
+					$wbte_checkbox_fields = isset( $wbte_value['checkbox_fields'] ) ? $wbte_value['checkbox_fields'] : array();
 
-					foreach ( $checkbox_fields as $checkbox_vl => $checkbox_label ) {
-						$vl = is_array( $vl ) ? $vl : ( ! empty( $vl ) ? array( $vl ) : array() );
+					foreach ( $wbte_checkbox_fields as $wbte_checkbox_vl => $wbte_checkbox_label ) {
+						$wbte_vl = is_array( $wbte_vl ) ? $wbte_vl : ( ! empty( $wbte_vl ) ? array( $wbte_vl ) : array() );
 						?>
-						<span class="wt_gc_checkbox_list_item"><input type="checkbox" id="<?php echo esc_attr( $field_id . '_' . $checkbox_vl ); ?>" name="<?php echo esc_attr( $field_name ); ?>[]" class="<?php echo esc_attr( $css_class ); ?>" value="<?php echo esc_attr( $checkbox_vl ); ?>" <?php echo wp_kses_post( in_array( $checkbox_vl, $vl, true ) ? ' checked="checked"' : '' ); ?> <?php echo wp_kses_post( $fld_attr ); ?> /> <label for="<?php echo esc_attr( $field_id . '_' . $checkbox_vl ); ?>"><?php echo esc_html( $checkbox_label ); ?></label> </span>
+						<span class="wt_gc_checkbox_list_item"><input type="checkbox" id="<?php echo esc_attr( $wbte_field_id . '_' . $wbte_checkbox_vl ); ?>" name="<?php echo esc_attr( $wbte_field_name ); ?>[]" class="<?php echo esc_attr( $wbte_css_class ); ?>" value="<?php echo esc_attr( $wbte_checkbox_vl ); ?>" <?php echo wp_kses_post( in_array( $wbte_checkbox_vl, $wbte_vl, true ) ? ' checked="checked"' : '' ); ?> <?php echo wp_kses_post( $wbte_fld_attr ); ?> /> <label for="<?php echo esc_attr( $wbte_field_id . '_' . $wbte_checkbox_vl ); ?>"><?php echo esc_html( $wbte_checkbox_label ); ?></label> </span>
 						&nbsp;&nbsp;
 						<?php
 					}
 				} elseif ( 'radio' === $type ) {
-					$radio_fields = isset( $value['radio_fields'] ) ? $value['radio_fields'] : array();
-					foreach ( $radio_fields as $rad_vl => $rad_label ) {
+					$wbte_radio_fields = isset( $wbte_value['radio_fields'] ) ? $wbte_value['radio_fields'] : array();
+					foreach ( $wbte_radio_fields as $wbte_rad_vl => $wbte_rad_label ) {
 						?>
-						<span class="wt_gc_radio_list_item"><input type="radio" id="<?php echo esc_attr( $field_id . '_' . $rad_vl ); ?>" name="<?php echo esc_attr( $field_name ); ?>" class="<?php echo esc_attr( $css_class ); ?>" value="<?php echo esc_attr( $rad_vl ); ?>" <?php checked( $vl, $rad_vl ); ?> <?php echo wp_kses_post( $fld_attr ); ?> /> <label for="<?php echo esc_attr( $field_id . '_' . $rad_vl ); ?>"><?php echo esc_html( $rad_label ); ?></label> </span>
+						<span class="wt_gc_radio_list_item"><input type="radio" id="<?php echo esc_attr( $wbte_field_id . '_' . $wbte_rad_vl ); ?>" name="<?php echo esc_attr( $wbte_field_name ); ?>" class="<?php echo esc_attr( $wbte_css_class ); ?>" value="<?php echo esc_attr( $wbte_rad_vl ); ?>" <?php checked( $wbte_vl, $wbte_rad_vl ); ?> <?php echo wp_kses_post( $wbte_fld_attr ); ?> /> <label for="<?php echo esc_attr( $wbte_field_id . '_' . $wbte_rad_vl ); ?>"><?php echo esc_html( $wbte_rad_label ); ?></label> </span>
 						&nbsp;&nbsp;
 						<?php
 					}
 				}
 
 				if ( 'checkbox' === $type || 'checkbox_list' === $type ) {
-					$hidden_filed_name = $field_name . '_hidden';
-					if ( isset( $value['parent_option'] ) ) {
-						$hidden_filed_name = $value['parent_option'] . '[' . $value['option_name'] . '_hidden]';
+					$wbte_hidden_filed_name = $wbte_field_name . '_hidden';
+					if ( isset( $wbte_value['parent_option'] ) ) {
+						$wbte_hidden_filed_name = $wbte_value['parent_option'] . '[' . $wbte_value['option_name'] . '_hidden]';
 					}
 					?>
-					<input type="hidden" name="<?php echo esc_attr( $hidden_filed_name ); ?>" value="1" />
+					<input type="hidden" name="<?php echo esc_attr( $wbte_hidden_filed_name ); ?>" value="1" />
 					<?php
 				}
 
-				echo wp_kses( $after_form_field, $allowed_html ); // phpcs:ignore
+				echo wp_kses( $wbte_after_form_field, $wbte_allowed_html ); // phpcs:ignore
 			}
 
-			if ( isset( $value['help_text'] ) ) {
+			if ( isset( $wbte_value['help_text'] ) ) {
 				?>
-				<span class="wt_gc_form_help"><?php echo wp_kses_post( $value['help_text'] ); ?></span>
+				<span class="wt_gc_form_help"><?php echo wp_kses_post( $wbte_value['help_text'] ); ?></span>
 				<?php
 			}
 
-			if ( false === $field_only ) {
+			if ( false === $wbte_field_only ) {
 				?>
 					</td>
 					<td>
-						<?php echo wp_kses_post( $after_form_field_html ); ?>
+						<?php echo wp_kses_post( $wbte_after_form_field_html ); ?>
 					</td>
 				</tr>
 				<?php

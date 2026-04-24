@@ -20,6 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		<?php
 		require WBTE_GC_FREE_MAIN_PATH . 'admin/views/--general-tab.php';
 
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		do_action( 'wt_gs_intl_general_settings_tab_content' );
 		?>
 	</div>

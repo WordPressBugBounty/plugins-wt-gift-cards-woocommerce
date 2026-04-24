@@ -126,6 +126,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 	 *  @since 1.0.0
 	 */
 	public function remove_smart_coupon_store_credit_functionality() {
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		if ( apply_filters( 'wt_gc_force_remove_smart_coupon_store_credit', true ) ) {
 			$options = array( 'wt_sc_common_modules', 'wt_sc_admin_modules', 'wt_sc_public_modules' );
 
@@ -211,6 +212,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 		);
 
 		if ( '' !== $base_id ) {
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 			$settings = apply_filters( 'wt_gc_module_default_settings', $settings, $base_id );
 		}
 		return $settings;
@@ -224,6 +226,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 	 *  @return    array    array of fields
 	 */
 	public static function settings_needed_default_val( $base_id = '' ) {
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		return apply_filters( 'wt_gc_intl_alter_fields_needed_default_val', array(), $base_id );
 	}
 
@@ -240,6 +243,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 	public static function settings_validation_rule( $base_id = '' ) {
 		$validation_rule = array(); // this is for plugin settings default. Modules can alter
 
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		return apply_filters( 'wt_gc_intl_alter_validation_rule', $validation_rule, $base_id );
 	}
 
@@ -271,6 +275,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 
 		// stripping escape slashes
 		$settings = self::arr_stripslashes( $settings );
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		$settings = apply_filters( 'wt_gc_alter_settings', $settings, $base_id );
 
 		return $settings;
@@ -326,6 +331,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 		}
 
 		$vl = isset( $the_options[ $option_name ] ) ? $the_options[ $option_name ] : false;
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		$vl = apply_filters( 'wt_gc_alter_option', $vl, $the_options, $option_name, $base );
 
 		return $vl;
@@ -495,6 +501,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 		 *  Filter to alter the date.
 		 *  Some plugins provide custom coupon expiry options
 		 */
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		return apply_filters( 'wt_gc_alter_store_credit_expiry', $coupon->get_date_expires(), $coupon );
 	}
 
@@ -508,6 +515,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 	 *  @return int   Priority number
 	 */
 	public static function get_calculate_totals_hook_priority( $priority, $hook ) {
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		return apply_filters( 'wt_gc_calculate_totals_hook_priority', $priority, $hook );
 	}
 
@@ -611,6 +619,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 		 *  @since 1.0.0
 		 *  @param array $order_statuses Order statuses
 		 */
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		return (array) apply_filters( 'wt_gc_coupon_success_order_statuses', $order_statuses );
 	}
 
@@ -634,6 +643,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 		 *  @since 1.0.0
 		 *  @param array $failed_status Order statuses
 		 */
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		return (array) apply_filters( 'wt_gc_coupon_failed_order_statuses', $failed_status );
 	}
 
@@ -657,10 +667,12 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 			 *  @param string   $old_status     Old status of order
 			 *  @param string   $new_status     New status of order
 			 */
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 			if ( apply_filters( 'wt_gc_remove_store_credit_from_order', true, $order, $old_status, $new_status ) ) {
 				$this->reimburse_credit_value( $order );
 			}
 
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 			do_action( 'wt_gc_on_order_reimburse', $order, $old_status, $new_status );
 		}
 	}
@@ -766,6 +778,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 		if ( ! $order_id ) {
 			return false; }
 
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		do_action( 'wt_gc_before_order_used_store_credit_updated', $credit_used, $order_id, $action );
 
 		if ( ! is_array( $credit_used ) || empty( $credit_used ) ) {
@@ -817,6 +830,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 	 *  @return int[] Product Ids
 	 */
 	public static function get_store_credit_disabled_products() {
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		return apply_filters( 'wt_sc_store_credit_disabled_products', array() );
 	}
 
@@ -829,6 +843,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 	 * @return int[]
 	 */
 	public static function get_product_cat_ids( $product_id ) {
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		if ( apply_filters( 'wt_gc_product_categories_with_ancestors', false, $product_id ) ) {
 			return wc_get_product_cat_ids( $product_id );
 		} else {

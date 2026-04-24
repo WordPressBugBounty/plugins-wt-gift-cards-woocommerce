@@ -56,6 +56,108 @@
 				banner_div.hide();
 			} 
 		});
+
+		/** Newsletter: show spinner on Subscribe submit, hide when Mailchimp responds or when validation fails; on success call our AJAX to hide banner. */
+		const newsletterBoxSelector = '.wt_gc_newsletter_subscription_box';
+		let newsletterHideRequestInProgress = false;
+		let newsletterLoaderTimeout = null;
+
+		function showNewsletterLoader( $box ) {
+			if ( $box.hasClass( 'wt_newsletter_loading' ) ) {
+				return;
+			}
+			$box.addClass( 'wt_newsletter_loading' ).append(
+				'<div class="wt_newsletter_loader"><span class="spinner"></span></div>'
+			);
+			$box.find( '.wt_newsletter_loader .spinner' ).css( 'visibility', 'visible' );
+
+			if ( newsletterLoaderTimeout ) {
+				clearTimeout( newsletterLoaderTimeout );
+			}
+			newsletterLoaderTimeout = setTimeout( function() {
+				removeNewsletterLoader( $box );
+			}, 15000 );
+		}
+
+		function removeNewsletterLoader( $box ) {
+			if ( newsletterLoaderTimeout ) {
+				clearTimeout( newsletterLoaderTimeout );
+				newsletterLoaderTimeout = null;
+			}
+			$box.removeClass( 'wt_newsletter_loading' ).find( '.wt_newsletter_loader' ).remove();
+		}
+
+		function hasNewsletterValidationError( $box ) {
+			return $box.find( 'label.mce_inline_error, .mce_inline_error' ).filter( ':visible' ).length > 0;
+		}
+
+		function checkForNewsletterSuccess() {
+			const $box = $( newsletterBoxSelector );
+			if ( ! $box.length ) {
+				return;
+			}
+			const successResponse   = $box.find( '#mce-success-response' );
+			const errorResponse     = $box.find( '#mce-error-response' );
+			const successHasContent = successResponse.length && successResponse.text().trim().length > 0;
+			const errorHasContent   = errorResponse.length && errorResponse.text().trim().length > 0;
+			const isSuccessVisible  = successHasContent && successResponse.is( ':visible' );
+			const isErrorVisible    = errorHasContent && errorResponse.is( ':visible' );
+
+			if ( $box.hasClass( 'wt_newsletter_loading' ) && ( isErrorVisible || hasNewsletterValidationError( $box ) ) ) {
+				removeNewsletterLoader( $box );
+			}
+
+			if ( newsletterHideRequestInProgress || ! isSuccessVisible || isErrorVisible ) {
+				return;
+			}
+			newsletterHideRequestInProgress = true;
+			$.ajax({
+				url: wt_gc_params.ajax_url,
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					action: 'wt_gc_hide_newsletter_banner',
+					_wpnonce: wt_gc_params.nonce
+				},
+				success: function( response ) {
+					if ( response && response.success ) {
+						setTimeout(() => {
+							$box.fadeOut( 500, function() {
+								$( this ).remove();
+							} );
+						}, 3000);
+					}
+				},
+				error: function() {
+					removeNewsletterLoader( $box );
+				}
+			});
+		}
+
+		if ( -1 !== window.location.href.indexOf( 'wt-woocommerce-gift-cards' ) && $( newsletterBoxSelector ).length ) {
+			const $box = $( newsletterBoxSelector );
+
+			$box.on( 'submit', '#mc-embedded-subscribe-form', function() {
+				const form = this;
+				if ( form.checkValidity && ! form.checkValidity() ) {
+					return;
+				}
+				setTimeout( function() {
+					if ( hasNewsletterValidationError( $box ) ) {
+						return;
+					}
+					showNewsletterLoader( $box );
+				}, 0 );
+			} );
+			checkForNewsletterSuccess();
+			const newsletterCheckInterval = setInterval( function() {
+				if ( ! $( newsletterBoxSelector ).length ) {
+					clearInterval( newsletterCheckInterval );
+					return;
+				}
+				checkForNewsletterSuccess();
+			}, 500 );
+		}
 	});
 
 })( jQuery );

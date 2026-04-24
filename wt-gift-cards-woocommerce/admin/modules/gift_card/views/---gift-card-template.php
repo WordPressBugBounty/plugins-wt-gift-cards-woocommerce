@@ -2,9 +2,9 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
-$cat_slug = sanitize_title_with_dashes( $template['category'] );
+$wbte_cat_slug = sanitize_title_with_dashes( $template['category'] );
 ?>
-<div class="wt_gc_giftcard_template_box" data-category="<?php echo esc_attr( $cat_slug ); ?>">
+<div class="wt_gc_giftcard_template_box" data-category="<?php echo esc_attr( $wbte_cat_slug ); ?>">
 		<label class="wt_gc_checkbox_container">
 			<?php
 			if ( 'product_page' === $section || 'manage' === $section ) {

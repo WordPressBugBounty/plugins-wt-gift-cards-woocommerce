@@ -60,6 +60,7 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Setup_Product_Page extends Wbte_Gc_Gift_Ca
 				function () use( $product_page_design_hook ) {
 
 					// In some block themes they keep legacy template sections.
+					// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WooCommerce core hook.
 					if ( apply_filters( 'woocommerce_disable_compatibility_layer', false ) ) {
 						add_action( $product_page_design_hook, array( $this, 'shop_single_page_design' ), 10, 0 );
 					}
@@ -215,7 +216,7 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Setup_Product_Page extends Wbte_Gc_Gift_Ca
 		}
 
 		// phpcs:disable WordPress.Security.NonceVerification.Recommended
-		$wt_credit_amount      = ( isset( $_REQUEST['wt_credit_amount'] ) ? floatval( wp_unslash( $_REQUEST['wt_credit_amount'] ) ) : 0 );
+		$wbte_wt_credit_amount = ( isset( $_REQUEST['wt_credit_amount'] ) ? floatval( wp_unslash( $_REQUEST['wt_credit_amount'] ) ) : 0 );
 		$form_submit_triggered = ( isset( $_REQUEST['wt_gift_card_form_submit_triggered'] ) ? 1 : 0 ); // phpcs:disable WordPress.Security.NonceVerification.Recommended
 
 		$settings             = self::get_product_metas( $product_id );
@@ -228,6 +229,7 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Setup_Product_Page extends Wbte_Gc_Gift_Ca
 		$user       = wp_get_current_user();
 		$user_email = ( $user ? $user->user_email : '' );
 
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy wt_gc hook for extenders.
 		$mandatory_fields = apply_filters( 'wt_gc_alter_gift_card_form_mandatory_fields', array( 'reciever_email' ) );
 
 		include_once $this->module_path . 'views/-store-credit-form.php';
@@ -316,21 +318,18 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Setup_Product_Page extends Wbte_Gc_Gift_Ca
 	 *  @return string[]        $product_sections   Empty array, if the current product is a gift card product. Otherwise return the same array in the argument.
 	 */
 	public function remove_extra_add_to_cart( $product_sections ) {
-		global $product, $post;
+		global $post;
 
-		if ( ! is_object( $product ) ) {
-			if ( is_product() ) {
-				$product = wc_get_product( $post->ID );
-			} else {
-				return $product_sections;
-			}
-		}
-
-		if ( ! method_exists( $product, 'get_id' ) ) {
+		if ( ! is_product() || ! $post || ! $post->ID ) {
 			return $product_sections;
 		}
 
-		$product_id = $product->get_id();
+		$wbte_product = wc_get_product( $post->ID );
+		if ( ! $wbte_product instanceof \WC_Product ) {
+			return $product_sections;
+		}
+
+		$product_id = $wbte_product->get_id();
 
 		if ( ! self::is_gift_card_product( $product_id ) || ! self::is_templates_enabled( $product_id ) ) {
 			return $product_sections;
@@ -380,6 +379,7 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Setup_Product_Page extends Wbte_Gc_Gift_Ca
 		 *  @since  1.0.0
 		 *  @param  string[]    $to_remove_blocks   Name of the blocks
 		 */
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy wt_gc hook for extenders.
 		return apply_filters( 'wt_gc_single_product_page_blocks_to_remove', $to_remove_blocks );
 	}
 
@@ -510,6 +510,7 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Setup_Product_Page extends Wbte_Gc_Gift_Ca
 		 *  @since  1.0.0
 		 *  @param  string  Hook name
 		 */
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy wt_gc hook for extenders.
 		return apply_filters( 'wt_gc_gift_product_page_design_hook', $hook );
 	}
 
@@ -532,6 +533,7 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Setup_Product_Page extends Wbte_Gc_Gift_Ca
 		 *  @since 1.0.0
 		 *  @param string[]  Theme names
 		 */
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy wt_gc hook for extenders.
 		$alignwide_required_themes = apply_filters( 'wt_gc_alignwide_css_required_themes', $alignwide_required_themes );
 
 		if ( in_array( $theme->name, $alignwide_required_themes, true ) || in_array( $theme->parent_theme, $alignwide_required_themes, true ) ) {
@@ -551,37 +553,42 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Setup_Product_Page extends Wbte_Gc_Gift_Ca
 	public function add_theme_specific_css_styles() {
 
 		if ( is_product() ) {
-			global $product, $post;
-			$product = ! is_object( $product ) ? wc_get_product( $post->ID ) : $product;
+			global $post;
 
-			if ( method_exists( $product, 'get_id' ) ) {
+			if ( ! $post || ! $post->ID ) {
+				return;
+			}
 
-				$product_id = $product->get_id();
+			$wbte_product = wc_get_product( $post->ID );
+			if ( ! $wbte_product instanceof \WC_Product || ! method_exists( $wbte_product, 'get_id' ) ) {
+				return;
+			}
 
-				if ( self::is_gift_card_product( $product_id ) || ! self::is_templates_enabled( $product_id ) ) {
+			$product_id = $wbte_product->get_id();
 
-					$styles = '';
-					$theme  = wp_get_theme();
+			if ( self::is_gift_card_product( $product_id ) || ! self::is_templates_enabled( $product_id ) ) {
 
-					if ( 'Blocksy' === $theme->name || 'Blocksy' === $theme->parent_theme ) {
-						$styles .= 'body.theme-blocksy .product-entry-wrapper{ display:block; }';
-					}
+				$styles = '';
+				$theme  = wp_get_theme();
 
-					/**
-					 *  Alter theme specific CSS styles for product page
-					 *
-					 *  @since  1.0.0
-					 *  @param  string  $styles     CSS styles
-					 */
-					$styles = (string) apply_filters( 'wbte_gc_alter_product_page_theme_specific_css_styles', $styles );
+				if ( 'Blocksy' === $theme->name || 'Blocksy' === $theme->parent_theme ) {
+					$styles .= 'body.theme-blocksy .product-entry-wrapper{ display:block; }';
+				}
 
-					if ( $styles ) {
-						?>
-						<style type="text/css">
-							<?php echo wp_kses_post( $styles ); ?>
-						</style>
-						<?php
-					}
+				/**
+				 *  Alter theme specific CSS styles for product page
+				 *
+				 *  @since  1.0.0
+				 *  @param  string  $styles     CSS styles
+				 */
+				$styles = (string) apply_filters( 'wbte_gc_alter_product_page_theme_specific_css_styles', $styles );
+
+				if ( $styles ) {
+					?>
+					<style type="text/css">
+						<?php echo wp_kses_post( $styles ); ?>
+					</style>
+					<?php
 				}
 			}
 		}

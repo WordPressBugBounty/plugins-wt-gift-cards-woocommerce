@@ -170,6 +170,7 @@ if ( ! class_exists( 'Wt_Bfcm_Twenty_Twenty_Five' ) ) {
 			 *  @since 1.1.0
 			 *  @param  string[]    Default screen ids
 			 */
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 			$screens_to_show = (array) apply_filters( 'wt_bfcm_banner_screens', array() );
 
 			self::$show_banner = in_array( $screen_id, $screens_to_show, true );

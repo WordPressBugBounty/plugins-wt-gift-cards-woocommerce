@@ -78,7 +78,7 @@ class Wbte_Woocommerce_Gift_Cards_Free {
 		if ( defined( 'WBTE_GC_FREE_VERSION' ) ) {
 			$this->version = WBTE_GC_FREE_VERSION;
 		} else {
-			$this->version = '1.2.8';
+			$this->version = '1.2.9';
 		}
 		$this->plugin_name = WBTE_GC_FREE_PLUGIN_NAME;
 
@@ -170,6 +170,19 @@ class Wbte_Woocommerce_Gift_Cards_Free {
 		 */
 		require_once plugin_dir_path( __DIR__ ) . 'admin/modules/gc_pro_banner/class-wt-bfcm-twenty-twenty-five.php';
 
+		/**
+		 * Includes cross promotion banner main class file.
+		 *
+		 * @since 1.2.9
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'admin/cross-promotion-banners/class-wbte-cross-promotion-banners.php';
+
+		/**
+		 * Includes cta banner.
+		 *
+		 * @since 1.2.9
+		 */
+		require_once plugin_dir_path( __DIR__ ) . 'admin/modules/gc_pro_banner/class-wbte-gc-cta-banner.php';
 
 		$this->loader = new Wbte_Woocommerce_Gift_Cards_Free_Loader();
 	}
@@ -299,18 +312,11 @@ class Wbte_Woocommerce_Gift_Cards_Free {
 		}
 
 		/**
-		* BFCM banner for Smart coupons plugin
-		* 	
-		* @since 1.2.6
-		*/
-		$this->loader->add_action('admin_head-edit.php', $this->plugin_admin, 'bfcm_banner_coupon_page_settings_button');
-
-		/**
 		 *  Close BFCM promotion banner
 		 * 
 		 *  @since 1.2.6
 		 */
-		$this->loader->add_action( 'wp_ajax_wbte_gc_hide_promotion_banner', $this->plugin_admin, 'hide_bfcm_promotion_banner' );
+		$this->loader->add_action( 'wp_ajax_wbte_gc_hide_promotion_banner', $this->plugin_admin, 'hide_promotion_banner' );
 
 		/**
 		 *  Set screens to show promotional banner
@@ -318,6 +324,20 @@ class Wbte_Woocommerce_Gift_Cards_Free {
 		 *  @since 1.2.7
 		 */
 		$this->loader->add_filter( 'wt_bfcm_banner_screens', $this->plugin_admin, 'wt_bfcm_banner_screens' );
+
+		/**
+		 *  Hide newsletter
+		 *
+		 *  @since 1.2.9
+		 */
+		$this->loader->add_action('wp_ajax_wt_gc_hide_newsletter_banner',$this->plugin_admin,'hide_newsletter_banner');
+
+		/**
+		 *  Include Design System file.
+		 *
+		 *  @since 1.2.9
+		 */
+		$this->loader->add_action( 'admin_init', $this->plugin_admin, 'include_design_system' );
 
 
 	}

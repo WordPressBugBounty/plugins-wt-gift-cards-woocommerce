@@ -96,16 +96,16 @@ class Wbte_Gc_Gift_Card_Free_Public extends Wbte_Gc_Gift_Card_Free_Common {
 		wc_get_template(
 			'gift-card.php',
 			array(
-				'templates'                    => $templates,
-				'from'                         => $display_name,
-				'product_id'                   => $product_id,
-				'preview_html'                 => self::get_gift_card_email_preview(),
-				'delete_icon'                  => plugin_dir_url( __FILE__ ) . 'assets/images/custom_template_delete_icon.svg',
-				'dummy_img'                    => Wbte_Woocommerce_Gift_Cards_Free_Common::$no_image,
-				'gift_card_product_page_title' => Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( 'product_page_title_text', $this->module_id ),
-				'templates_main_title'         => Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( 'product_page_templates_title_text', $this->module_id ),
-				'how_to_send_title_text'       => Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( 'product_page_how_to_send_title_text', $this->module_id ),
-				'via_shortcode'         => $via_shortcode,
+				'templates'                        => $templates,
+				'from'                             => $display_name,
+				'product_id'                       => $product_id,
+				'preview_html'                     => self::get_gift_card_email_preview(),
+				'delete_icon'                      => plugin_dir_url( __FILE__ ) . 'assets/images/custom_template_delete_icon.svg',
+				'dummy_img'                        => Wbte_Woocommerce_Gift_Cards_Free_Common::$no_image,
+				'wbte_gift_card_product_page_title' => Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( 'product_page_title_text', $this->module_id ),
+				'templates_main_title'             => Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( 'product_page_templates_title_text', $this->module_id ),
+				'how_to_send_title_text'           => Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( 'product_page_how_to_send_title_text', $this->module_id ),
+				'via_shortcode'                    => $via_shortcode,
 			),
 			'',
 			$this->module_path . 'templates/'
@@ -121,18 +121,18 @@ class Wbte_Gc_Gift_Card_Free_Public extends Wbte_Gc_Gift_Card_Free_Common {
 	 */
 	public static function get_product_object() {
 
-		global $product, $post;
+		global $post;
 
-		if ( is_product() ) {
-
-			if ( ! is_object( $product ) ) { // In some themes the $product object is not ready
-				$product = wc_get_product( $post->ID );
-			}
-
-			return $product;
+		if ( ! is_product() || ! $post || 'product' !== get_post_type( $post ) ) {
+			return null;
 		}
 
-		return null;
+		// WooCommerce API: sets template global without assigning to unprefixed $product in plugin code.
+		wc_setup_product_data( $post );
+
+		$wbte_product = wc_get_product( $post->ID );
+
+		return ( $wbte_product instanceof \WC_Product ) ? $wbte_product : null;
 	}
 }
 

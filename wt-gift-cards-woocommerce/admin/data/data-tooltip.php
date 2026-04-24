@@ -1,3 +1,3 @@
 <?php if ( ! defined( 'ABSPATH' ) ) {
 	exit;}
-$arr = array();
+$wbte_arr = array();

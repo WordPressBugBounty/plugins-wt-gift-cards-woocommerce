@@ -33,6 +33,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Deactivator {
 		/**
 		 *  Re-enable smart coupon store credit
 		 */
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy wt_gc hook for extenders.
 		if ( apply_filters( 'wt_gc_force_reenable_smart_coupon_store_credit', true ) ) {
 			$options = array( 'wt_sc_common_modules', 'wt_sc_admin_modules', 'wt_sc_public_modules' );
 

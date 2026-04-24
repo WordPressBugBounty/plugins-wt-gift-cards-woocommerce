@@ -150,6 +150,7 @@ class Wbte_Gc_Store_Credit_Apply_Free extends Wbte_Woocommerce_Gift_Cards_Free_C
 				$valid = false;
 			}
 
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 			$valid = apply_filters( 'wt_gc_store_credit_validation', $valid, $coupon );
 
 			if ( $valid && 0 === $coupon->get_amount() ) {
@@ -439,6 +440,7 @@ class Wbte_Gc_Store_Credit_Apply_Free extends Wbte_Woocommerce_Gift_Cards_Free_C
 
 				$this->add_credit_history( $coupon_id, $order_id, $coupon_amount, $remaining_coupon_amount, $coupon_discount );
 
+				// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 				if ( $remaining_coupon_amount <= 0 && apply_filters( 'wt_gc_delete_store_credit_after_use', false, $coupon ) ) {
 					wp_trash_post( $coupon_id );
 				}

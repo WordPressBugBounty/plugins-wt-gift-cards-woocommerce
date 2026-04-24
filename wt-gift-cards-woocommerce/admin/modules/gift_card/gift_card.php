@@ -206,7 +206,7 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 	 */
 	public function register_tooltips( $tooltip_arr ) {
 		include plugin_dir_path( __FILE__ ) . 'data/data-tooltip.php';
-		$tooltip_arr[ $this->module_id ] = $arr;
+		$tooltip_arr[ $this->module_id ] = $wbte_arr;
 		return $tooltip_arr;
 	}
 
@@ -644,6 +644,7 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 		if ( $this->is_product_edit_page() ) {
 			add_filter( 'wt_gc_include_admin_js_file', '__return_true', 1 ); // include admin JS file
 
+			// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 			$not_hide_meta_boxes  = apply_filters( 'wt_gc_product_page_non_hidden_metaboxes', array( '#submitdiv', '#postimagediv', '#product_catdiv', '#tagsdiv-product_tag', '#wt-gc-custom-product-data-meta-box', '#wt-gc-upsell-banner-metabox' ) );
 			$gift_product_tab_url = admin_url( 'admin.php?page=' . WBTE_GC_FREE_PLUGIN_NAME . '&wt_gc_tab=' . $this->gift_card_product_tab_id );
 			?>
@@ -903,6 +904,7 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 						$force_set_email_restriction = true;
 					}
 
+                    // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
                     $force_email_restriction = apply_filters( 'wt_gc_admin_coupon_set_email_restriction', $force_set_email_restriction );
 					// email restrictions
                     if( $force_email_restriction ){
@@ -915,8 +917,10 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 					 *
 					 *  @param  $coupon_obj  WC_Coupon object
 					 *  @param  action  For which action the coupon was generated
+					 *  @param  int|null  $product_id  The product ID related to the coupon, or null if not applicable.
 					 */
-					do_action( 'wt_gc_after_store_credit_coupon_generated', $coupon_obj, 'admin_send_gift_card' );
+					// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
+					do_action( 'wt_gc_after_store_credit_coupon_generated', $coupon_obj, 'admin_send_gift_card', null );
 
 					++$coupons_created;
 
@@ -939,10 +943,12 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 					 *  @param  $credit_email_args  Email arguments array
 					 *  @param  $coupon_obj  WC_Coupon object
 					 */
+					// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 					$credit_email_args = apply_filters( 'wt_gc_alter_admin_gift_card_email_args', $credit_email_args, $coupon_obj );
 
 					/* trigger the mail to send */
 					WC()->mailer();
+					// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 					do_action( 'wt_gc_send_gift_card_coupon_to_customer', $credit_email_args );
 
 					update_post_meta( $coupon_id, '_wt_smart_coupon_credit_activated', true );

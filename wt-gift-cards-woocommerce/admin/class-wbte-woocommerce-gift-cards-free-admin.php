@@ -123,6 +123,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 				59,
 			),
 		);
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy wt_gc hook for extenders.
 		$menus = apply_filters( 'wt_gc_admin_menu', $menus );
 
 		if ( is_array( $menus ) ) {
@@ -183,7 +184,8 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 		// phpcs:disable WordPress.Security.NonceVerification.Recommended
 		$gc_page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
 
-		if ( (isset( $_GET['post_type'] ) && 'shop_coupon' === $_GET['post_type'] ) || WBTE_GC_FREE_PLUGIN_NAME === $gc_page || apply_filters( 'wt_gc_include_admin_css_file', false ) ) {
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy wt_gc hook for extenders.
+		if ( (isset( $_GET['post_type'] ) && 'shop_coupon' === $_GET['post_type'] ) || ( isset( $_GET['page'] ) && 'wc-orders' === $_GET['page'] ) || WBTE_GC_FREE_PLUGIN_NAME === $gc_page || apply_filters( 'wt_gc_include_admin_css_file', false ) ) {
 			wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wt-woocommerce-gift-cards-free-admin.css', array( 'wc-admin-layout' ), $this->version, 'all' );
 			wp_enqueue_style( 'wp-color-picker' );
 			wp_enqueue_style( 'woocommerce_admin_styles', WC()->plugin_url() . '/assets/css/admin.css', array(), $this->version );
@@ -199,7 +201,8 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 	public function enqueue_scripts() {
 		$gc_page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : '';
 
-		if ( ( isset($_GET['post_type']) && 'shop_coupon' === $_GET['post_type'] ) || WBTE_GC_FREE_PLUGIN_NAME === $gc_page || apply_filters( 'wt_gc_include_admin_js_file', false ) ) {
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy wt_gc hook for extenders.
+		if ( ( isset($_GET['post_type']) && 'shop_coupon' === $_GET['post_type'] ) || ( isset( $_GET['page'] ) && 'wc-orders' === $_GET['page'] ) || WBTE_GC_FREE_PLUGIN_NAME === $gc_page || apply_filters( 'wt_gc_include_admin_js_file', false ) ) {
 
 			$params = array(
 				'no_image' => Wbte_Woocommerce_Gift_Cards_Free_Common::$no_image,
@@ -232,6 +235,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 	 * @since     1.0.0
 	 */
 	public static function generate_settings_tabhead( $title_arr, $type = 'plugin' ) {
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy wt_gc hook for extenders.
 		$out_arr = apply_filters( 'wt_gc_' . $type . '_settings_tabhead', $title_arr );
 		$tab_key = self::get_tab_key();
 
@@ -325,9 +329,10 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 	public function register_tooltips() {
 		include plugin_dir_path( __FILE__ ) . 'data/data-tooltip.php';
 		self::$tooltip_arr = array(
-			'main' => $arr,
+			'main' => $wbte_arr,
 		);
 		/* hook for modules to register tooltip */
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy wt_gc hook for extenders.
 		self::$tooltip_arr = apply_filters( 'wt_gc_alter_tooltip_data', self::$tooltip_arr );
 	}
 
@@ -347,9 +352,12 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 	/**
 	 * Add setting tab footer
 	 *
-	 *  @since 1.0.0
+	 * @since 1.0.0
+	 * @param string $wbte_settings_button_title Primary submit button label.
+	 * @param string $wbte_settings_footer_left    HTML before the submit button.
+	 * @param string $wbte_settings_footer_right   HTML after the submit button.
 	 */
-	public static function add_settings_footer( $settings_button_title = '', $settings_footer_left = '', $settings_footer_right = '' ) {
+	public static function add_settings_footer( $wbte_settings_button_title = '', $wbte_settings_footer_left = '', $wbte_settings_footer_right = '' ) {
 		include WBTE_GC_FREE_MAIN_PATH . 'admin/views/admin-settings-save-button.php';
 	}
 
@@ -393,6 +401,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 		 *  @param array    $out        Default response array
 		 *  @param string   $base_id    Settings base ID
 		 */
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy wt_gc hook for extenders.
 		$out = apply_filters( 'wt_gc_intl_alter_setting_saved_response', $out, $base_id );
 
 		echo wp_json_encode( $out ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
@@ -410,6 +419,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 		}
 
 		$the_options = Wbte_Woocommerce_Gift_Cards_Free_Common::get_settings( $base_id );
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy wt_gc hook for extenders.
 		do_action( 'wt_gc_intl_before_setting_update', $the_options, $base_id );
 
 		// Multi select form fields array. (It will not return a POST val if it's value is empty so we need to set default value)
@@ -430,6 +440,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 
 		Wbte_Woocommerce_Gift_Cards_Free_Common::update_settings( $the_options, $base_id );
 
+		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy wt_gc hook for extenders.
 		do_action( 'wt_gc_intl_after_setting_update', $the_options, $base_id );
 	}
 
@@ -571,64 +582,12 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 		}
 	}
 
-	/**
-	 * Smart coupon banner for BFCM on coupons page
-	 * 
-	 *  @since 1.2.6
-	 */
-	public function bfcm_banner_coupon_page_settings_button()
-	{
-		global $current_screen;
-		include_once( ABSPATH . 'wp-admin/includes/plugin.php' );
-
-		if( 'shop_coupon' !== $current_screen->post_type )
-		{
-			return;
-		}
-		?>
-		<script type="text/javascript">
-			jQuery(document).ready(function($){				
-				<?php  
-				$hidden_banners = get_option( 'wbte_sc_hidden_promotion_banners', array() );
-		
-				if( !defined('WBTE_BFCM_SC_COUPONS_PAGE') && ! in_array( 'sc_cpns_page', $hidden_banners ) )
-				{
-					define('WBTE_BFCM_SC_COUPONS_PAGE', true);
-					$campaign_url = 'https://www.webtoffee.com/product/smart-coupons-for-woocommerce/?utm_source=free_plugin_add_coupon_menu&utm_medium=gift_card_free&utm_campaign=smart_coupons';
-
-					$bulk_plugin_text = sprintf( 
-						'<div data-wbte-gc-promotion-banner-id="sc_cpns_page" class="wbte_gc_promotion_banner_div"><span><img src="%s" style="width: 16px;" /></span>&nbsp;<span class="wbte_gc_promotion_banner_title">%s</span><div class="wbte_gc_promotion_banner_content"><p style="margin: 0; font-size: 14px;"> %s </p><div class="wbte_gc_promotion_banner_actions"> <a class="button button-secondary wbte_gc_promotion_banner_link_btn" href="%s" target="_blank"> %s <span class="dashicons dashicons-arrow-right-alt" style="font-size: 14px; line-height: 1.5;"></span> </a>&ensp;<button type="button" class="button button-secondary wbte_gc_promotion_banner_close wbte_gc_promotion_banner_later"> %s </button></div></div><span class="dashicons dashicons-no-alt wbte_gc_promotion_banner_close wbte_gc_promotion_banner_close_btn"></span></div>',
-						esc_url( WBTE_GC_FREE_URL . 'admin/images/idea_bulb_purple.svg' ),
-						esc_html__( 'Did you know?', 'wt-gift-cards-woocommerce' ),
-						sprintf(
-							// Translators: 1. Opening <a> tag with link to Smart Coupons campaign page. 2. Closing </a> tag.
-							esc_html__(
-								'With the %1$s Smart Coupons %2$s plugin, you can create Buy One Get One offers and advanced coupons that boost sales during BFCM.',
-								'wt-gift-cards-woocommerce'
-							),
-							'<a href="' . esc_url( $campaign_url ) . '" target="_blank"><b>',
-							'</b></a>'
-						),
-						esc_url( $campaign_url ),
-						esc_html__( "Get Plugin Now", "wt-gift-cards-woocommerce" ),
-						esc_html__( "Maybe later", "wt-gift-cards-woocommerce" )
-					);
-				?>
-					jQuery( '.page-title-action' ).after( '<?php echo wp_kses_post( $bulk_plugin_text ); ?>' );
-				<?php  
-				}
-				?>
-			});
-		</script>
-		<?php
-	}
-	
 	 /**
 	 *  Hide promotion banner
 	 *
 	 *  @since 1.2.6
 	 */
-	public static function hide_bfcm_promotion_banner(){
+	public static function hide_promotion_banner(){
 
 		check_ajax_referer( 'wt_gc_admin_nonce', '_wpnonce' );
 
@@ -674,6 +633,40 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 	public function wt_bfcm_banner_screens( $screen_ids ) {
 		$screen_ids[] = 'toplevel_page_wt-woocommerce-gift-cards';
 		return $screen_ids;
+	}
+
+
+	/**
+	 *  AJAX handler to hide newsletter banner permanently
+	 * 
+	 *  @since 1.2.9
+	 * 
+	 */
+	public function hide_newsletter_banner() {
+		check_ajax_referer( 'wt_gc_admin_nonce', '_wpnonce' );
+			
+		if ( ! current_user_can( 'manage_woocommerce' ) ) {
+			wp_send_json_error( esc_html__( 'Access denied', 'wt-gift-cards-woocommerce' ) );
+		}
+		update_option('wt_newsletter_banner_hidden', true);
+		
+		wp_send_json_success( __( 'Newsletter subscription successful', 'wt-gift-cards-woocommerce' ) );
+	}
+
+	/**
+	 *  Load the design system files and initiate it.
+	 *
+	 *  @since 1.2.9
+	 */
+	public function include_design_system() {
+
+		include_once plugin_dir_path( __FILE__ ) . 'wt-ds/class-wbte-ds.php';
+
+		if ( class_exists( 'Wbte\Gc\Ds\Wbte_Ds' ) ) {
+
+			// Just initiate it. This is to load the CSS and JS.
+			Wbte\Gc\Ds\Wbte_Ds::get_instance( WBTE_GC_FREE_VERSION );
+		}
 	}
 
 }

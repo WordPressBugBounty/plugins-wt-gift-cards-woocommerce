@@ -155,6 +155,9 @@
 .wbte_gc_promotion_banner_div{ position: relative; padding: 20px 10px; background: #E3E3FF; border-left: solid 3px #5454A5; margin: 10px 0px; }
 .wbte_gc_promotion_banner_title{ color: #5454A5; font-size: 16px; font-weight: 500; }
 .wbte_gc_promotion_banner_close_btn{ position: absolute; right: 8px; top: 8px; color: #505050; cursor: pointer; }
+.wbte_gc_promotion_banner_secondary_btn{ color: #5454A5 !important; background-color: #E3E3FF !important; border: 1px solid #5454A5 !important; cursor: pointer; }
+.wbte_gc_promotion_banner_primary_btn{ background-color: #5454A5 !important; color: #fff !important; border: none !important; cursor: pointer; }
+.wbte_gc_promotion_banner_primary_btn:hover{ background-color: #0263D5 !important;  }
 
 /* Hide CTA banners on coupon edit page if coupons are not created yet */
 .wrap:has(.woocommerce-BlankState) .wbte_gc_promotion_banner_div, .wrap:has(.woocommerce-BlankState) #wbte_gc_gc_promo_banner, .wrap:has(.woocommerce-BlankState) .wt-gdpr-promotion-banner { display: none !important; }
@@ -166,3 +169,42 @@
   .wbte_gc_promotion_banner_content{ flex-direction: column; align-items: flex-start; }
   .wbte_gc_promotion_banner_actions{ width: 100%; margin-top: 10px; margin-left: 0px; }
 }
+
+/* MailChimp Form Embed Code */
+.wt_gc_newsletter_subscription_widget { z-index: 1000; background: #FFFFFF; border-radius: 0px 7px 7px 7px; position: absolute; display: flex; flex-direction: column; min-width: 0; word-wrap: break-word; width: 27.6%; float: right; box-sizing: border-box; margin: 10px 0px 20px 0px; }
+.wt_gc_newsletter_subscription_box { border: 1px solid #e8e8e8; background-color: #fff; position: absolute; display: block; border-radius: 10px; }
+.wt_newsletter_header { display: flex; align-items: flex-start; margin-bottom: 18px; padding: 18px 17px 8px 17px; border-radius: 0px 7px 0px 7px; }
+.wt_newsletter_icon { margin-right: 16px; margin-left: 5px; margin-top: 5px; flex-shrink: 0; }
+.wt_newsletter_title h3 { margin: 0 0 4px 0; font-size: 18px; font-weight: 700; color: #1d2327; line-height: 1.2; }
+.wt_newsletter_title p { margin: 0; font-size: 14px; color: #646970; line-height: 1.4; font-weight: 400; }
+.wt_gc_newsletter_subscription_box #mc_embed_signup { margin: 20px; background: transparent; clear: left; font: 14px -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 88%; }
+.wbte-gc-newsletter-email, .wbte-newsletter-consent-checkbox{ margin-bottom: 16px; }
+.wbte-newsletter-consent-checkbox input[type="checkbox"]{ border: 1px solid #BFCBE3; }
+.wbte-newsletter-consent-checkbox label{ font-size: 14px; font-weight: 400; line-height: 1.4; color: #212121; }
+.wbte-newsletter-consent-checkbox label a{ color: #212121; }
+
+.wt_gc_newsletter_subscription_box #mc_embed_signup .clear input[type="submit"],
+.wt_gc_newsletter_subscription_box #mc_embed_signup .button,
+.wt_gc_newsletter_subscription_box .clear input[type="submit"] { 
+  background: #fff !important; color: #4034e0 !important; border: 1px solid #4034e0 !important; padding: 12px 24px !important; border-radius: 6px !important; font-size: 14px !important; font-weight: 600 !important; cursor: pointer !important; width: 100% !important; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important; transition: all 0.2s ease !important; height: auto !important; line-height: normal !important; margin: 0 !important; display: block !important;
+}
+
+.wt_gc_newsletter_subscription_box #mc_embed_signup .clear input[type="submit"]:hover, .wt_gc_newsletter_subscription_box #mc_embed_signup .button:hover, .wt_gc_newsletter_subscription_box .clear input[type="submit"]:hover { background: #3157A6 !important; color: #fff !important; }
+.wt_gc_newsletter_subscription_box #mc_embed_signup .clear input[type="submit"]:disabled,
+.wt_gc_newsletter_subscription_box #mc_embed_signup .button:disabled,
+.wt_gc_newsletter_subscription_box .clear input[type="submit"]:disabled { background: #fff !important; color: #4034e0 !important; border-color: #4034e0 !important; cursor: not-allowed !important; }
+.wt_gc_newsletter_subscription_box .consent-checkbox { margin: 16px 0px 20px 0; display: flex; align-items: flex-start-gap: 5px; }
+.wt_gc_newsletter_subscription_box .consent-checkbox input[type="checkbox"] { margin-right: 8px; margin-top: 2px; vertical-align: top; }
+.wt_gc_newsletter_subscription_box .consent-checkbox label { font-size: 13px; color: #646970; line-height: 1.4; cursor: pointer; font-weight: 400; }
+.wt_gc_newsletter_subscription_box .consent-checkbox label a { color: #4034e0; text-decoration: underline; }
+.wt_gc_newsletter_subscription_box .consent-checkbox label a:hover { color: #4034e0; }
+
+.wt_gc_newsletter_subscription_box .wbte-gc-newsletter-email input{ border: 1px solid #BFCBE3; width: 100%; padding: 8px 12px; }
+.wt_gc_newsletter_subscription_box .wbte-gc-newsletter-email input:focus{ border-color: #4750CB; outline: none; }
+
+.wt_gc_newsletter_subscription_box #mce-responses { margin-top: 12px; }
+.wt_gc_newsletter_subscription_box .response { font-size: 13px; padding: 8px 12px; border-radius: 4px; margin-bottom: 8px; }
+.wt_gc_newsletter_subscription_box #mce-error-response { background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb;}
+.wt_gc_newsletter_subscription_box #mce-success-response { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; margin-bottom: 24px;}
+.wt_gc_newsletter_subscription_box #mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error { margin:2px 0 1em 0; padding:3px; background-color: transparent; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size:14px; font-weight:normal; z-index:1; color:#e85c41;}
+.wt_gc_newsletter_subscription_box #mc_embed_signup #mc-embedded-subscribe-form input.mce_inline_error {border:1px solid #e85c41;}

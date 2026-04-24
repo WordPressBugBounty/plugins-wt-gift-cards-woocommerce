@@ -83,8 +83,8 @@ $this->manage_template_css(); // insert css
 	?>
 	<div class="wbte_gc_upsell_banner_content">
 		<?php 
-		$gc_pro_banner = Wbte_Gc_Upsell_Banner::get_instance(); 
-		$gc_pro_banner->pro_banner_content('email_page');
+		$wbte_gc_pro_banner = Wbte_Gc_Upsell_Banner::get_instance();
+		$wbte_gc_pro_banner->pro_banner_content( 'email_page' );
 		?>
 	</div>
 	<input type="hidden" name="wt_gc_send_email_template" value="general">

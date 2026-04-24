@@ -1,5 +1,8 @@
 == Changelog ==
 
+= 1.2.9 2026-04-24 =
+*[Compatibility] - Tested OK with WooCommerce 10.7
+
 = 1.2.8 2025-12-19 =
 *[Compatibility] - Tested OK with WooCommerce 10.4
 *[Compatibility] - Tested OK with WordPress 6.9

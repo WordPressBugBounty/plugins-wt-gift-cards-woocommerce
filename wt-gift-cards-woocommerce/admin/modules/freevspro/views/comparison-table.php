@@ -3,12 +3,12 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 
-$no_icon  = '<span class="dashicons dashicons-dismiss" style="color:#ea1515;"></span>&nbsp;';
-$yes_icon = '<span class="dashicons dashicons-yes-alt" style="color:#18c01d;"></span>&nbsp;';
+$wbte_no_icon  = '<span class="dashicons dashicons-dismiss" style="color:#ea1515;"></span>&nbsp;';
+$wbte_yes_icon = '<span class="dashicons dashicons-yes-alt" style="color:#18c01d;"></span>&nbsp;';
 
 global $wp_version;
 if ( version_compare( $wp_version, '5.2.0' ) < 0 ) {
-	$yes_icon = '<img src="' . esc_url( plugin_dir_url( __DIR__ ) ) . 'assets/images/tick_icon_green.png" style="float:left;" />&nbsp;';
+	$wbte_yes_icon = '<img src="' . esc_url( plugin_dir_url( __DIR__ ) ) . 'assets/images/tick_icon_green.png" style="float:left;" />&nbsp;';
 }
 
 /**
@@ -17,7 +17,7 @@ if ( version_compare( $wp_version, '5.2.0' ) < 0 ) {
  *  Second  : Basic availability. Supports: Boolean, Array(Boolean and String values), String
  *  Pro     : Pro availability. Supports: Boolean, Array(Boolean and String values), String
  */
-$comparison_data = array(
+$wbte_comparison_data = array(
 	array(
 		__( 'Number of gift cards', 'wt-gift-cards-woocommerce' ),
 		1,
@@ -169,18 +169,18 @@ function wbte_gc_free_vs_pro_column_vl( $vl, $yes_icon, $no_icon ) {
 		<td class="wt_gc_upsell_text_align_center"><?php esc_html_e( 'PREMIUM', 'wt-gift-cards-woocommerce' ); ?>&nbsp;<span><img src="<?php echo esc_url( WBTE_GC_FREE_URL . 'admin/images/pro_crown.svg' ); ?>" style="width:16px;"></span></td>
 	</tr>
 	<?php
-	foreach ( $comparison_data as $val_arr ) {
+	foreach ( $wbte_comparison_data as $wbte_val_arr ) {
 		?>
 		<tr class="wt_gc_freevspro_table_body_tr">
-			<td><?php echo wp_kses_post( $val_arr[0] ); ?></td>
+			<td><?php echo wp_kses_post( $wbte_val_arr[0] ); ?></td>
 			<td class="wt_gc_upsell_text_align_center">
 				<?php
-				wbte_gc_free_vs_pro_column_vl( $val_arr[1], $yes_icon, $no_icon );
+				wbte_gc_free_vs_pro_column_vl( $wbte_val_arr[1], $wbte_yes_icon, $wbte_no_icon );
 				?>
 			</td>
 			<td class="wt_gc_upsell_text_align_center">
 				<?php
-				wbte_gc_free_vs_pro_column_vl( $val_arr[2], $yes_icon, $no_icon );
+				wbte_gc_free_vs_pro_column_vl( $wbte_val_arr[2], $wbte_yes_icon, $wbte_no_icon );
 				?>
 			</td>
 		</tr>

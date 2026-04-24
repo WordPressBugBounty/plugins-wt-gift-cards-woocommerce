@@ -6,11 +6,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die;
 }
 // phpcs:disable WordPress.Security.NonceVerification.Recommended
-$product_status_tab_key        = isset( $_GET['product_status_tab_key'] ) ? sanitize_text_field( wp_unslash( $_GET['product_status_tab_key'] ) ) : 'all';
-$gift_card_products            = self::get_gift_card_products();
-$post_status_arr               = get_post_statuses();
-$post_status_arr['trash']      = __( 'Trash', 'wt-gift-cards-woocommerce' );
-$post_status_arr['auto-draft'] = __( 'Auto draft', 'wt-gift-cards-woocommerce' );
+$wbte_product_status_tab_key        = isset( $_GET['product_status_tab_key'] ) ? sanitize_text_field( wp_unslash( $_GET['product_status_tab_key'] ) ) : 'all';
+$wbte_gift_card_products            = self::get_gift_card_products();
+$wbte_post_status_arr               = get_post_statuses();
+$wbte_post_status_arr['trash']      = __( 'Trash', 'wt-gift-cards-woocommerce' );
+$wbte_post_status_arr['auto-draft'] = __( 'Auto draft', 'wt-gift-cards-woocommerce' );
 ?>
 <style type="text/css">
 table.wp-list-table span.wc-image {
@@ -73,116 +73,117 @@ table.wp-list-table span.wc-image::before {
 		</thead>
 		<tbody>
 			<?php
-			$j = 0;
+			$wbte_j = 0;
 
-			if ( ! empty( $gift_card_products ) ) {
-				foreach ( $gift_card_products as $product_id ) {
-					$product = wc_get_product( $product_id );
+			if ( ! empty( $wbte_gift_card_products ) ) {
+				foreach ( $wbte_gift_card_products as $wbte_product_id ) {
+					$wbte_product = wc_get_product( $wbte_product_id );
 
-					if ( ! $product ) {
+					if ( ! $wbte_product ) {
 						continue; }
-					if ( ! $this->is_gift_card_product( $product_id ) ) {
+					if ( ! $this->is_gift_card_product( $wbte_product_id ) ) {
 						continue; }
 
 
-					$post_title = ( trim( $product->get_title() ) ? $product->get_title() : __( '(no title)', 'wt-gift-cards-woocommerce' ) );
+					$wbte_post_title = ( trim( $wbte_product->get_title() ) ? $wbte_product->get_title() : __( '(no title)', 'wt-gift-cards-woocommerce' ) );
 
-					$image       = self::get_product_image( $product );
-					$metas       = self::get_product_metas( $product_id );
-					$post_status = $product->get_status();
+					$wbte_image       = self::get_product_image( $wbte_product );
+					$wbte_metas       = self::get_product_metas( $wbte_product_id );
+					$wbte_post_status = $wbte_product->get_status();
 
-					++$j;
+					++$wbte_j;
 					?>
 					<tr>
-						<td class="wt_gc_text_left"> <?php echo esc_html( $j ); ?> </td>
+						<td class="wt_gc_text_left"> <?php echo esc_html( $wbte_j ); ?> </td>
 						<td class="wt_gc_text_center">
 							<?php
-							if ( $image && is_array( $image ) && isset( $image[0] ) ) {
+							if ( $wbte_image && is_array( $wbte_image ) && isset( $wbte_image[0] ) ) {
 								?>
-								<img src="<?php echo esc_attr( $image[0] ); ?>" data-id="<?php echo esc_attr( $product_id ); ?>" width="50" height="50" />
+								<img src="<?php echo esc_attr( $wbte_image[0] ); ?>" data-id="<?php echo esc_attr( $wbte_product_id ); ?>" width="50" height="50" />
 								<?php
 							}
 							?>
 						</td>
 						<td>
 							<?php
-							$edit_url = '';
+							$wbte_edit_url = '';
 
-							if ( current_user_can( 'edit_post', $product_id ) && 'trash' !== $post_status ) {
-								$edit_url = $current_url . '&wt_gc_product_edit_tab=' . $product_id;
-								echo wp_kses_post( '<a href="' . esc_url( $edit_url ) . '">' );
+							if ( current_user_can( 'edit_post', $wbte_product_id ) && 'trash' !== $wbte_post_status ) {
+								$wbte_edit_url = $current_url . '&wt_gc_product_edit_tab=' . $wbte_product_id;
+								echo wp_kses_post( '<a href="' . esc_url( $wbte_edit_url ) . '">' );
 							}
 
-							echo wp_kses_post( '<b>' . esc_html( $post_title ) . '</b>' );
+							echo wp_kses_post( '<b>' . esc_html( $wbte_post_title ) . '</b>' );
 
-							if ( '' !== $edit_url ) {
+							if ( '' !== $wbte_edit_url ) {
 								echo wp_kses_post( '</a>' );
 							}
 
 							?>
 							<div class="row-actions wt_gc_product_action_box">                         
 								<?php
-								$actions = array(
+								$wbte_actions = array(
 									/* translators: %d: Product ID. */
-									'id' => array( 'title' => sprintf( __( 'ID: %d', 'wt-gift-cards-woocommerce' ), $product_id ) ),
+									'id' => array( 'title' => sprintf( __( 'ID: %d', 'wt-gift-cards-woocommerce' ), $wbte_product_id ) ),
 								);
 
-								if ( '' !== $edit_url ) {
-									$actions['edit'] = array(
-										'url'   => $edit_url,
+								if ( '' !== $wbte_edit_url ) {
+									$wbte_actions['edit'] = array(
+										'url'   => $wbte_edit_url,
 										'title' => __( 'Edit', 'wt-gift-cards-woocommerce' ),
 									);
 								}
 
-								if ( current_user_can( 'delete_post', $product_id ) ) {
-									if ( 'trash' === $post_status ) {
-										$actions['untrash'] = array(
+								if ( current_user_can( 'delete_post', $wbte_product_id ) ) {
+									if ( 'trash' === $wbte_post_status ) {
+										$wbte_actions['untrash'] = array(
 											'url'   => wp_nonce_url(
 												add_query_arg(
 													array(
-														'post' => $product_id,
+														'post' => $wbte_product_id,
 														'action' => 'untrash',
 													),
 													admin_url( 'post.php' )
 												),
-												'untrash-post_' . $product_id
+												'untrash-post_' . $wbte_product_id
 											),
 											'title' => __( 'Restore', 'wt-gift-cards-woocommerce' ),
 										);
 									} else {
-										$actions['trash'] = array(
-											'url'   => get_delete_post_link( $product_id ),
+										$wbte_actions['trash'] = array(
+											'url'   => get_delete_post_link( $wbte_product_id ),
 											'title' => __( 'Trash', 'wt-gift-cards-woocommerce' ),
 										);
 									}
 								}
 
 								// Permalink
-								if ( 'trash' !== $post_status ) {
-									$actions['view'] = array(
-										'url'   => get_permalink( $product_id ),
+								if ( 'trash' !== $wbte_post_status ) {
+									$wbte_actions['view'] = array(
+										'url'   => get_permalink( $wbte_product_id ),
 										'title' => __( 'View', 'wt-gift-cards-woocommerce' ),
 									);
 								}
 
-								$actions = apply_filters( 'wt_gc_gift_product_actions', $actions, $product_id );
+								// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy wt_gc hook for extenders.
+								$wbte_actions = apply_filters( 'wt_gc_gift_product_actions', $wbte_actions, $wbte_product_id );
 
-								$i = 0;
+								$wbte_i = 0;
 
-								foreach ( $actions as $action => $action_data ) {
-									++$i;
+								foreach ( $wbte_actions as $wbte_action => $wbte_action_data ) {
+									++$wbte_i;
 									?>
-									<span class="<?php echo esc_attr( $action ); ?>">
+									<span class="<?php echo esc_attr( $wbte_action ); ?>">
 										<?php
-										if ( isset( $action_data['url'] ) ) {
+										if ( isset( $wbte_action_data['url'] ) ) {
 											?>
-											<a href="<?php echo esc_url( $action_data['url'] ); ?>"><?php echo esc_html( $action_data['title'] ); ?></a>
+											<a href="<?php echo esc_url( $wbte_action_data['url'] ); ?>"><?php echo esc_html( $wbte_action_data['title'] ); ?></a>
 											<?php
 										} else {
-											echo esc_html( $action_data['title'] );
+											echo esc_html( $wbte_action_data['title'] );
 										}
 										?>
-										<?php echo wp_kses_post( count( $actions ) > $i ? '|' : '' ); ?>
+										<?php echo wp_kses_post( count( $wbte_actions ) > $wbte_i ? '|' : '' ); ?>
 									</span>
 									<?php
 								}
@@ -193,16 +194,16 @@ table.wp-list-table span.wc-image::before {
 						</td>
 						<td>
 							<?php
-							if ( isset( $metas['_wt_gc_amounts']['value'] ) ) {
-								echo wp_kses_post( $metas['_wt_gc_amounts']['value'] );
+							if ( isset( $wbte_metas['_wt_gc_amounts']['value'] ) ) {
+								echo wp_kses_post( $wbte_metas['_wt_gc_amounts']['value'] );
 							}
 							?>
 						</td>
 						<td>
-							<b><?php echo esc_html( isset( $post_status_arr[ $post_status ] ) ? $post_status_arr[ $post_status ] : $post_status ); ?></b>
+							<b><?php echo esc_html( isset( $wbte_post_status_arr[ $wbte_post_status ] ) ? $wbte_post_status_arr[ $wbte_post_status ] : $wbte_post_status ); ?></b>
 						</td>
 						<td>
-							<?php echo esc_html( ! is_null( $product->get_date_modified() ) ? gmdate( 'Y-m-d h:i:s A', $product->get_date_modified()->getOffsetTimestamp() ) : '' ); ?>
+							<?php echo esc_html( ! is_null( $wbte_product->get_date_modified() ) ? gmdate( 'Y-m-d h:i:s A', $wbte_product->get_date_modified()->getOffsetTimestamp() ) : '' ); ?>
 						</td>
 						<?php 
                         /**
@@ -213,14 +214,14 @@ table.wp-list-table span.wc-image::before {
                         ?>
                         <td style="text-align:center;">
                             <?php 
-                            if ( 'publish' === $product->get_status() 
-                                && $product->is_visible()  
-                                && self::is_templates_enabled( $product_id ) 
+                            if ( 'publish' === $wbte_product->get_status() 
+                                && $wbte_product->is_visible()  
+                                && self::is_templates_enabled( $wbte_product_id ) 
                             ) 
                             {
                             ?> 
                                 <span class="wt_gc_copy_shortcode_btn">
-                                    <span><?php echo esc_html( '[' . self::$product_page_shortcode_name . ' id="' . $product_id . '"]' ); ?></span>
+                                    <span><?php echo esc_html( '[' . self::$product_page_shortcode_name . ' id="' . $wbte_product_id . '"]' ); ?></span>
                                 </span>
                                 <span class="wt_gc_copy_shortcode_copied"><?php esc_html_e( 'Copied', 'wt-gift-cards-woocommerce' ); ?> <span class="dashicons dashicons-yes-alt"></span></span>
                             <?php 
@@ -251,8 +252,8 @@ table.wp-list-table span.wc-image::before {
 		 * 
 		 * Display upsell banner
 		 */
-		$gc_pro_banner = Wbte_Gc_Upsell_Banner::get_instance(); 
-		$gc_pro_banner->pro_banner_content(); 
+		$wbte_gc_pro_banner = Wbte_Gc_Upsell_Banner::get_instance();
+		$wbte_gc_pro_banner->pro_banner_content();
 	?>
 	</div>
 </div>

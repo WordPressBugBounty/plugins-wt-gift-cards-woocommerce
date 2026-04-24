@@ -26,7 +26,7 @@ $this->manage_template_css(); // insert css
 		 * 
 		 * Display upsell banner
 		 */
-		$gc_pro_banner = Wbte_Gc_Upsell_Banner::get_instance(); 
-		$gc_pro_banner->pro_banner_content(); 
+		$wbte_gc_pro_banner = Wbte_Gc_Upsell_Banner::get_instance();
+		$wbte_gc_pro_banner->pro_banner_content(); 
 	?>
 </div>

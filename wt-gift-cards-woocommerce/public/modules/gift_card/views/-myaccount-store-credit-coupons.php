@@ -25,17 +25,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<div class="wt_gc_myaccount_coupons_block_hd"><?php esc_html_e( 'Available coupons', 'wt-gift-cards-woocommerce' ); ?></div>
 	<div class="wt_gc_coupon_wrapper">
 		<?php
-		$allowed_html = Wbte_Woocommerce_Gift_Cards_Free_Common::get_allowed_html();
+		$wbte_allowed_html = Wbte_Woocommerce_Gift_Cards_Free_Common::get_allowed_html();
 
 		while ( $the_query->have_posts() ) {
 			$the_query->the_post();
-			$coupon_id = get_the_ID();
-			$coupon    = new WC_Coupon( $coupon_id );
+			$wbte_coupon_id = get_the_ID();
+			$wbte_coupon    = new WC_Coupon( $wbte_coupon_id );
 
 			/** Display store coupons using Smart coupon plugin functions. Plugin exists check done in the class file */
-			$coupon_data                    = Wt_Smart_Coupon_Public::get_coupon_meta_data( $coupon );
-			$coupon_data['display_on_page'] = 'my_account';
-            echo wp_kses( Wt_Smart_Coupon_Public::get_coupon_html($coupon, $coupon_data), $allowed_html ); // phpcs:ignore
+			$wbte_coupon_data                    = Wt_Smart_Coupon_Public::get_coupon_meta_data( $wbte_coupon );
+			$wbte_coupon_data['display_on_page'] = 'my_account';
+            echo wp_kses( Wt_Smart_Coupon_Public::get_coupon_html($wbte_coupon, $wbte_coupon_data), $wbte_allowed_html ); // phpcs:ignore
 		}
 		?>
 	</div>

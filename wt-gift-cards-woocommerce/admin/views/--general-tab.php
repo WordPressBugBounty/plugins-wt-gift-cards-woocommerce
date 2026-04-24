@@ -8,6 +8,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 ?>
 <table class="wt-gc-form-table">
 
-	<?php do_action( 'wt_gc_general_settings' );	?>
+	<?php
+	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
+	do_action( 'wt_gc_general_settings' );
+	?>
 
 </table>

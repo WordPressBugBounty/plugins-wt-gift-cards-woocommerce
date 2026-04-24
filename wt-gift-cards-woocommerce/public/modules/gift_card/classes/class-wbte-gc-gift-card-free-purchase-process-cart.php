@@ -127,6 +127,7 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Process_Cart extends Wbte_Gc_Gift_Card_Fre
 				return false;
 			}
 		} else {
+                        // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
                         $mandatory_fields = apply_filters( 'wt_gc_alter_gift_card_form_mandatory_fields', array( 'reciever_email' ) );
                         if( in_array( 'reciever_email', $mandatory_fields ) ){
                             wc_add_notice( __( 'Recipient email is required ', 'wt-gift-cards-woocommerce' ), 'error' );
@@ -367,6 +368,7 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Process_Cart extends Wbte_Gc_Gift_Card_Fre
                     $force_set_email_restriction = true;
                 }
 
+                // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
                 $force_email_restriction = apply_filters( 'wt_gc_coupon_set_email_restriction', $force_set_email_restriction );
 				/**
 				 *  Set coupon properties
@@ -396,8 +398,10 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Process_Cart extends Wbte_Gc_Gift_Card_Fre
 				 *
 				 *  @param  $coupon_obj  WC_Coupon object
 				 *  @param  action  For which action the coupon was generated
+				 *  @param  int|null  $product_id  The product ID related to the coupon, or null if not applicable.
 				 */
-				do_action( 'wt_gc_after_store_credit_coupon_generated', $coupon_obj, 'purchased_gift_card' );
+				// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
+				do_action( 'wt_gc_after_store_credit_coupon_generated', $coupon_obj, 'purchased_gift_card', $product_id );
 
 				if ( 'draft' !== get_post_status($coupon_id)) {
                     // Update coupon status to draft

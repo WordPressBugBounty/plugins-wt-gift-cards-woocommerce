@@ -8,7 +8,7 @@
  * Plugin Name:       WebToffee Gift Cards for WooCommerce
  * Plugin URI:        https://wordpress.org/plugins/wt-gift-cards-woocommerce/
  * Description:       Create and manage beautiful gift cards for your WooCommerce store.
- * Version:           1.2.8
+ * Version:           1.2.9
  * Author:            WebToffee
  * Author URI:        https://www.webtoffee.com/
  * License:           GPLv3
@@ -34,7 +34,7 @@ if ( is_plugin_active( 'wt-woocommerce-gift-cards/wt-woocommerce-gift-cards.php'
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
  */
-define( 'WBTE_GC_FREE_VERSION', '1.2.8' );
+define( 'WBTE_GC_FREE_VERSION', '1.2.9' );
 
 define( 'WBTE_GC_FREE_FILE_NAME', __FILE__ );
 define( 'WBTE_GC_FREE_BASE_NAME', plugin_basename( WBTE_GC_FREE_FILE_NAME ) );
@@ -44,6 +44,11 @@ define( 'WBTE_GC_FREE_URL', plugin_dir_url( WBTE_GC_FREE_FILE_NAME ) );
 define( 'WBTE_GC_FREE_PLUGIN_NAME', 'wt-woocommerce-gift-cards' ); // Keep it same as pro
 define( 'WBTE_GC_FREE_PLUGIN_ID', 'wt_woocommerce_gift_cards_free' );
 define( 'WBTE_GC_FREE_SETTINGS_FIELD', WBTE_GC_FREE_PLUGIN_NAME ); // Option name to store settings.
+
+if ( ! defined( 'WBTE_GC_FREE_CROSS_PROMO_BANNER_VERSION' ) ) {
+	// This constant must be unique for each plugin. Update this value when updating to a new banner.
+	define( 'WBTE_GC_FREE_CROSS_PROMO_BANNER_VERSION', '1.0.2' );
+}
 
 /**
  * The code that runs during plugin activation.
