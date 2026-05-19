@@ -206,7 +206,7 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 	public static function default_settings( $base_id = '' ) {
 		$settings = array(
 			'usage_with_other_coupons'     => 'yes',
-			'allow_to_purchase_gift_cards' => 'yes',
+			'allow_to_purchase_gift_cards' => 'no',
 			'generated_coupon_expiry_days' => 365,
 
 		);
@@ -818,7 +818,16 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 	 *  @return bool    Is allowed or not
 	 */
 	public static function allow_to_purchase_gift_cards() {
-		return wc_string_to_bool( self::get_option( 'allow_to_purchase_gift_cards' ) );
+		$allowed = wc_string_to_bool( self::get_option( 'allow_to_purchase_gift_cards' ) );
+
+		/**
+		 * Filter to override whether store credit can be used to purchase gift cards.
+		 *
+		 * @since 1.3.0
+		 *
+		 * @param bool $allowed Resolved value from the stored option.
+		 */
+		return (bool) apply_filters( 'wbte_gc_free_allow_to_purchase_gift_cards', $allowed );
 	}
 
 
@@ -1007,7 +1016,16 @@ class Wbte_Woocommerce_Gift_Cards_Free_Common {
 	 *  @return bool        Is valid or not
 	 */
 	public function set_coupon_validity_for_excluded_products( $valid, $product, $coupon, $values ) {
-		return ( $coupon->is_type( 'store_credit' ) ? true : $valid );
+		if ( ! $coupon->is_type( 'store_credit' ) ) {
+			return $valid;
+		}
+
+		// Block store credit from being applied to gift card products when setting is disabled.
+		if ( ! self::allow_to_purchase_gift_cards() && Wbte_Gc_Gift_Card_Free_Common::is_gift_card_product( $product->get_id() ) ) {
+			return false;
+		}
+
+		return true;
 	}
 
 

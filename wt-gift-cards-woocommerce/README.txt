@@ -1,72 +1,126 @@
 === WebToffee Gift Cards for WooCommerce ===
 Contributors: WebToffee
-Version: 1.2.9
+Version: 1.3.0
 Donate link:https://www.webtoffee.com/product/woocommerce-gift-cards/
 Tags: gift cards, woocommerce gift cards,  gift certificates, gift voucher, advanced gift cards
 Requires at least: 3.5
-Tested up to: 6.9
+Tested up to: 7.0
 Requires PHP: 5.6
-Stable tag: 1.2.9
+Stable tag: 1.3.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Create and sell WooCommerce gift cards in your store. Allow your customers to buy, redeem, and share gift vouchers easily.
-
+Sell WooCommerce gift cards in your store. Let customers buy, personalize, and send digital gift vouchers via email with ease.
+ 
 == Description ==
+ 
+**The easiest way to sell WooCommerce gift cards.** The WebToffee Gift Cards for WooCommerce plugin lets you create digital gift card products, send them to recipients via email, and let customers redeem them at checkout.
+ 
+Whether you want to run a holiday gifting campaign, reward loyal customers, or offer store credit, this free WooCommerce gift card plugin has you covered. It works like an Amazon-style gift card experience. Customers pick a value, enter the recipient's details, add a personal message, and you handle the rest automatically.
+ 
+Looking for advanced features like expiry dates, 20+ templates, physical gift cards, or store credit refunds? The [premium version](https://www.webtoffee.com/product/woocommerce-gift-cards/?utm_source=free_plugin_readme&utm_medium=gift_cards&utm_campaign=WooCommerce_Gift_Cards) unlocks the full gift card toolkit.
+ 
+[youtube https://www.youtube.com/watch?v=bKmGBG9U1uY&ab_channel=WebToffee]
 
-**Create and sell digital gift cards on your WordPress website with a complete WooCommerce gift certificates solution. Easily generate, redeem, and manage WooCommerce gift cards. Offer personalized WooCommerce gift cards, set beautiful festive gift voucher templates, and share gift vouchers via email with your customers.**
+== Why Store Owners Choose This WooCommerce Gift Cards Plugin ==
+ 
+Gift cards are one of the highest-margin products you can sell. Recipients almost always spend more than the card's value, and every gift card introduces your store to a brand-new customer. This plugin makes it straightforward to tap into that opportunity.
 
+== WooCommerce Gift Cards Free Version Features ==
+ 
+= Create and Sell Gift Cards =
+&#128312; Create digital gift card products in WooCommerce
+&#128312; Set predefined gift card amounts ($10, $25, $50, $100, etc.)
+&#128312; Rename the gift card product title to match your brand
+&#128312; Display gift card products anywhere on your site using shortcodes
+&#128312; Auto-generate and send gift cards on order Processing or Completed status
+ 
+= Gift Card Design =
+&#128312; Four free gift card templates covering a range of occasions and styles
+&#128312; Attach gift cards as PDF files to the recipient's email
+ 
+= Gift Card Delivery and Personalization =
+&#128312; Send gift cards to recipients directly via email from the backend
+&#128312; Add multiple recipients to a single gift card email
+&#128312; Let customers add a custom personal message with their gift card
+&#128312; Allow senders to remain anonymous when sending gift cards
+ 
+= Gift Card Email =
+&#128312; Fully editable gift card email content and messaging
+&#128312; Gift card code included in the email for easy retrieval
+ 
+= Store Credit Coupons =
+&#128312; Create store credit coupons for WooCommerce
+&#128312; Customers can redeem store credits partially across multiple orders
+&#128312; Assign store credit coupons to specific users for controlled usage
 
-== Create WooCommerce Gift Cards ==
-The WebToffee WooCommerce Gift Cards plugin (also known as WooCommerce gift voucher plugin) is a digital gift card solution that helps create gift certificates in WooCommerce. You can easily generate eye-catching customized WooCommerce gift cards with a beginner-friendly interface.
+== WooCommerce Gift Cards Plugin Premium Version Features ==
+ 
+Upgrade to [WooCommerce Gift Cards Pro](https://www.webtoffee.com/product/woocommerce-gift-cards/?utm_source=free_plugin_readme&utm_medium=gift_cards&utm_campaign=WooCommerce_Gift_Cards) for the full feature set:
+ 
+&#9989; Create unlimited gift card products
+&#9989; 20+ professionally designed gift card templates
+&#9989; Allow customers to choose a custom gift card amount (with optional min/max limits)
+&#9989; Create and sell physical gift cards
+&#9989; Set expiry dates for gift cards
+&#9989; Allow customers to schedule gift card delivery for a future date
+&#9989; Let customers upload custom images for the gift card
+&#9989; Create fully custom gift card templates
+&#9989; Send product recommendations inside gift card emails
+&#9989; Issue free gift cards to specific users with usage restrictions
+&#9989; Manage user gift card and credit balances from the backend
+&#9989; Provide instant refunds as store credits
+&#9989; Apply store credits toward shipping, tax, and other charges
+&#9989; Allow customers to print gift vouchers
+ 
+ 
+== How WooCommerce Gift Cards Work ==
+ 
+= For customers purchasing a gift card: =
+1. Customer visits the gift card product page and selects a predefined amount.
+2. They enter the recipient's name, email address, and an optional personal message.
+3. They complete checkout like any normal product.
+4. The gift card is automatically emailed to the recipient (with a PDF attachment) once the order reaches the configured status.
+ 
+= For recipients redeeming a gift card: =
+1. Recipient receives the gift card email with their unique code.
+2. They visit your store, add products to the cart, and enter the gift card code at checkout.
+3. The gift card balance is applied to their order. If the balance does not cover the full amount, they pay the difference with another payment method.
+4. Any unused balance remains on the gift card for future purchases.
+ 
+= For store owners managing gift cards: =
+1. View all issued gift cards and their balances from the WooCommerce backend.
+2. Send free gift cards to customers directly from the admin panel.
+3. Edit the gift card email content to match your brand tone and messaging.
 
-This free gift card WordPress plugin is the ultimate gift card solution for WooCommerce stores. It lets you create Amazon-like gift vouchers and allows your customers to conveniently purchase and redeem from your store.
-
-== Key Features of this Free WordPress Gift Cards Plugin ==
-&#128312; **Create digital gift card** - Create and sell digital gift card in WooCommerce. 
-&#128312; **Free gift card template** - The WooCommerce gift voucher plugin offers four gift cards free templates. 
-&#128312; **Send free gift card to customers** - You can send free gift card to your WooCommerce customers. Add multiple recipients to gift card email. 
-&#128312; **Rename gift card product title** - Modify the title of the gift card product.
-&#128312; **Add a custom message to gift card email** - You can edit the content of the gift card email and add a custom message.
-&#128312; **Attach gift cards as PDFs to emails** - You can create digital gift cards and attach a PDF version of the gift card to the recipient’s email. 
-&#128312; **Choose a predefined value for gift cards** - Create gift card of different pre-set values, such as $10, $50, $100, etc. 
-&#128312; **Display gift card products using shortcodes** - Promote gift card products on various parts of the website.
-
-
-== Create Store Credit Coupons for WooCommerce ==
-The WooCommerce Gift Card plugin allows you to create store credit coupons for your WooCommerce store. Customers can use these store credits either fully or partially for their purchases, with the balance decreasing until the credit is fully used. You can assign each store credit coupon to specific users, providing greater control over your coupon campaigns and restricting unauthorized usage of store credits.
-
-== Free Templates for WooCommerce Gift Vouchers == 
-This free gift card plugin for WooCommerce offers four cool templates for gift card images. You can create customized WooCommerce gift cards from the free templates. These templates feature a range of designs, from classic and elegant to festive and fun, ensuring a perfect match for every occasion and recipient. With the premium version of this ecommerce gift card plugin you can upload custom images for the gift card and allow your customers to personalize the gift cards with custom images and messages.
-
-== Send Free Gift Cards to Customers ==
-With the WordPress gift card plugin, you can send a gift card of any amount to your customers via email. You can even send them to multiple recipients and add a special message.
-
-It's a nice chance to show your love to your customers by giving them a free gift card on special days like Christmas, New Year, or Thanksgiving. You can also give out gift certificates as a bonus for referrals from your customers.
-
-You can enhance the WooCommerce gift cards by integrating with the [Smart Coupons for WooCommerce](https://wordpress.org/plugins/wt-smart-coupons-for-woocommerce/) - an advanced coupon plugin for WooCommerce.
-
-== Set Predefined Amount for Gift Card ==
-You can add one or multiple predefined values for the gift card on your WooCommerce store. By creating a custom gift card of specific values, you encourage customers to spend a specific amount, which can lead to higher average order values. Customers might be more inclined to choose a slightly higher amount than they initially planned.
-
-First Data’s U.K. Prepaid Consumer Insights Study found that the average consumer is spending more than the original value of the gift card. This trend is expected to grow in the coming years as the global gift card market is projected to hit $2,000 billion by 2027.
-
-== Add Custom Message to WooCommerce Gift Cards ==
-You can allow your customers to add custom gift card messages with the gift card email. So when they send a gift card to their loved ones, they can add a special message with the gift card. Custom gift card messages provide an opportunity to convey emotions, well wishes, or special sentiments. Whether it's for a birthday, holiday, or other occasion, a heartfelt message can significantly enhance the recipient's experience.
-
-== Allow Customers to Send Gift Vouchers Anonymously ==
-When purchasing a gift card from your store, a user can send the gift card anonymously to the recipient. The sender name and email address fields are not mandatory when sending a gift card. This adds a surprise element to the gift-giving experience. Recipients may not anticipate who the gift is from, creating excitement to identify the sender.
-
-== Auto Generate Gift Cards for WooCommerce ==
-The gift card generator plugin also auto-generates and send gift cards to the recipient's email address upon receiving a new gift card order, specifically when the order is in the <strong> Processing </strong> or <strong> Completed </strong> status.
-
-== Why Choose This WooCommerce Gift Voucher Plugin? ==
-
-The WebToffee WooCommerce Gift Cards Plugin is your go-to choice for creating WooCommerce gift cards and gift vouchers effortlessly. Whether you want to create gift card products in WooCommerce, offer free gift cards to customers, or set up advanced store credits for WooCommerce, this plugin covers it all. With a simple, user-friendly UI, it makes managing gift cards easy for both store owners and customers.
-
-As a trusted WordPress plugin developer, we deliver reliable plugins backed by priority support and regular compatibility updates. If you’re looking for a powerful, advanced ecommerce gift cards plugin for WooCommerce, you can count on WebToffee!
-
-But don’t just take our word for it — here’s what our happy customers have to say about the WebToffee WooCommerce Gift Cards Plugin!
+== Store Credit Coupons for WooCommerce ==
+ 
+Beyond standard gift cards, this plugin lets you create store credit coupons — a flexible alternative to cash refunds and a powerful loyalty tool. Store credits work exactly like gift cards but are typically issued by the store rather than purchased by customers.
+ 
+Use cases for store credits:
+1. Offer store credit instead of cash refunds to retain revenue.
+2. Reward loyal customers or referral program participants.
+3. Run promotional campaigns where customers earn store credit for purchases above a certain value.
+ 
+Store credit coupons can be assigned to specific users, which prevents unauthorized use and keeps your discount budget predictable.
+ 
+Pair this with [Smart Coupons for WooCommerce](https://wordpress.org/plugins/wt-smart-coupons-for-woocommerce/) for advanced store credit management, BOGO deals, bulk coupon generation, and URL-based coupons.
+ 
+ 
+== Extend Your Gift Card Strategy with Smart Coupons ==
+ 
+The WebToffee Gift Cards plugin works seamlessly alongside **Smart Coupons for WooCommerce** — a dedicated WooCommerce coupon plugin that handles advanced discounting, store credits, and coupon automation.
+ 
+Together, they cover the full spectrum of gifting and discounting:
+ 
+* **Gift Cards** handle purchase-based gifting and recipient delivery.
+* **Smart Coupons** handle store-issued credits, BOGO offers, bulk discount rules, auto-applied coupons, and usage-restricted vouchers.
+ 
+* [Get Smart Coupons Free](https://wordpress.org/plugins/wt-smart-coupons-for-woocommerce/)
+* [Get Smart Coupons Premium](https://www.webtoffee.com/product/smart-coupons-for-woocommerce/?utm_source=free_plugin_readme&utm_medium=gift_cards&utm_campaign=smart_coupons)
+ 
+ 
+== What Our Customers Say ==
 
 > **Chris.V (@chrisv234)** ⭐⭐⭐⭐⭐
 > Works as advertised! Easy to use and by far superior to the other free alternatives! Great plugin! Great support!
@@ -78,43 +132,6 @@ But don’t just take our word for it — here’s what our happy customers have
 > I needed a simple solution to add a gift card to my WooCommerce website, so I opted for the free version of this plugin. Initially, I ran into some compatibility issues with a multi-currency plugin I wanted to use alongside it. I reached out to the support team, and they quickly responded with a solution, making the plugin compatible with the multi-currency one I was using. Their support was both friendly and prompt.
 
 
-== WebToffee WooCommerce Gift Cards (Premium) ==
-The [WooCommerce Gift Cards](https://www.webtoffee.com/product/woocommerce-gift-cards/?utm_source=free_plugin_readme&utm_medium=gift_cards&utm_campaign=WooCommerce_Gift_Cards) plugin by WebToffee allows you to create and sell gift card codes on your WooCommerce store. You can set up both digital and physical gift cards and allow customers to send custom gift cards from your store. Unlock advanced gift cards features with the premium version.
-
-[youtube https://www.youtube.com/watch?v=bKmGBG9U1uY&ab_channel=WebToffee]
-
-&#9989; Create an unlimited number of gift cards </li>
-&#9989; Allow users to email or print WooCommerce gift vouchers </li>
-&#9989; Create physical gift cards </li>
-&#9989; Set expiry date for gift cards </li>
-&#9989; Allow users to schedule sending gift cards </li>
-&#9989; Choose from 20+ free templates </li>
-&#9989; Allow users to choose custom value for gift cards </li>
-&#9989; Create custom gift card templates </li>
-&#9989; Allow users to choose custom gift card images </li>
-&#9989; Attach gift cards as PDFs to emails </li>
-&#9989; Send product recommendation in the gift cards </li>
-&#9989; Send free gift cards to users with usage restrictions </li>
-&#9989; Manage user credit/gift card balances </li>
-&#9989; Provide instant refunds to store credits </li>
-&#9989; Use store credits on shipping, tax, and other charges </li>
-
-== Extend Gift Cards with WooCommerce Smart Coupons ==
-
-Want to supercharge your WooCommerce gift cards? Pair them with **Smart Coupons for WooCommerce** – the all-in-one solution for coupons, store credits, and advanced discounts.  
-
-With **Smart Coupons**, you can:  
-- Generate and assign **store credits** that customers can redeem partially or fully.  
-- Create **advanced coupon types** like BOGO (Buy One Get One), bulk discounts, and more.  
-- Set **usage restrictions** based on products, categories, user roles, and cart conditions.  
-- Schedule coupons for **special promotions** and campaigns.  
-- Issue **store credit-style gift vouchers** that customers can use across multiple orders until fully redeemed.  
-
-Both free and premium options are available:  
-- **[Get Smart Coupons Free](https://wordpress.org/plugins/wt-smart-coupons-for-woocommerce/)** – Start with essential coupon and store credit features to run basic campaigns.  
-- **[Get Smart Coupons Premium](https://www.webtoffee.com/product/smart-coupons-for-woocommerce/?utm_source=free_plugin_readme&utm_medium=gift_cards&utm_campaign=smart_coupons)** – Unlock the full power of Smart Coupons with BOGO deals, auto-apply coupons, bulk generation, URL coupons, advanced restrictions, and more.  
-
-By combining WooCommerce Gift Cards with Smart Coupons, you can create a complete gifting and discounting strategy that keeps customers coming back and helps boost your store’s revenue.  
 
 == You May Also Need ==
 GDPR Cookie Consent is our flagship cookie consent plugin, which is a Google-certified CMP built specifically for WordPress websites. With this plugin, you can display a fully customizable cookie banner on your site to help ensure compliance with major privacy laws like the GDPR and CCPA.
@@ -196,13 +213,13 @@ The gift card code will be sent along with the gift card email. Customers can fi
 
 == Changelog ==
 
-= 1.2.9 2026-04-24 =
-*[Compatibility] - Tested OK with WooCommerce 10.7
+= 1.3.0 2026-05-19 =
+*[Compatibility] - Tested OK with Wordpress 7.0
 
 [See changelog for all versions](https://plugins.svn.wordpress.org/wt-gift-cards-woocommerce/trunk/changelog.txt)
 
 
 == Upgrade Notice ==
 
-= 1.2.9 2026-04-24 =
-*[Compatibility] - Tested OK with WooCommerce 10.7
+= 1.3.0 2026-05-19 =
+*[Compatibility] - Tested OK with Wordpress 7.0

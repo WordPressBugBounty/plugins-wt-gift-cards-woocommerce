@@ -162,10 +162,14 @@ class Wbte_Gc_Store_Credit_Apply_Free extends Wbte_Woocommerce_Gift_Cards_Free_C
 			 */
 			if ( $valid && ! self::allow_to_purchase_gift_cards() ) {
 				foreach ( $discount->get_items_to_validate() as $item ) {
-					if ( isset( $item->object['wt_credit_amount'] ) || isset( $item->object['wt_credit_coupon_generated'] ) ) {
+					$product_id = isset( $item->object['product_id'] ) ? absint( $item->object['product_id'] ) : 0;
+
+					$is_gc_by_meta    = isset( $item->object['wt_credit_amount'] ) || isset( $item->object['wt_credit_coupon_generated'] );
+					$is_gc_by_product = ( $product_id > 0 && Wbte_Gc_Gift_Card_Free_Common::is_gift_card_product( $product_id ) );
+
+					if ( $is_gc_by_meta || $is_gc_by_product ) {
 						$valid = false;
-						throw new Exception( esc_html__( 'Sorry, you cannot purchase store credit with this coupon.', 'wt-gift-cards-woocommerce' ) );
-						break;
+						throw new Exception( esc_html__( 'Gift card coupons cannot be used to purchase gift card products.', 'wt-gift-cards-woocommerce' ) );
 					}
 				}
 			}
