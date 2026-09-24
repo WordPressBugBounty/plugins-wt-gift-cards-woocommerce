@@ -71,7 +71,7 @@ $wbte_order_currency = $wbte_order ? $wbte_order->get_currency() : get_woocommer
 		</div>
 
 		<div class="wt_gc_email_message" style="<?php echo esc_attr( '' === $wbte_coupon_message ? 'display: none;' : '' ); ?>">
-			<?php echo wp_kses_post( $wbte_coupon_message ); ?>
+			<?php echo Wbte_Gc_Gift_Card_Free_Common::format_message_for_html( $wbte_coupon_message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped inside format_message_for_html() via wp_kses_post(). ?>
 		</div>
 	</div>
 	<?php

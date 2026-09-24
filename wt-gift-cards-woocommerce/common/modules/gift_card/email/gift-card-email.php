@@ -74,7 +74,7 @@ $wbte_order_currency = $wbte_order ? $wbte_order->get_currency() : get_woocommer
 			</div>
 
 			<div class="wt_gc_email_message" style="<?php echo esc_attr( '' === $wbte_coupon_message ? 'display: none;' : '' ); ?>">
-				<?php echo wp_kses_post( $wbte_coupon_message ); ?>
+				<?php echo Wbte_Gc_Gift_Card_Free_Common::format_message_for_html( $wbte_coupon_message ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Escaped inside format_message_for_html() via wp_kses_post(). ?>
 			</div>
 		</div>
 		<div class="wt_gc_email_img">
@@ -129,15 +129,26 @@ $wbte_order_currency = $wbte_order ? $wbte_order->get_currency() : get_woocommer
 	</div>
 
 	<div class="wt_gc_email_wrapper_inner">
-		<div class="wt_gift_coupon_additional_content">     
-			<div class="wt_gift_coupon_custom_additional_content">
-				<?php
-					$wbte_custom_addition_content = __( 'To redeem this gift card, you can enter the gift card code in the dedicated field during the checkout.', 'wt-gift-cards-woocommerce' );
-					// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
-					echo wp_kses_post( apply_filters( 'wt_gc_alter_gift_card_email_custom_addition_content', $wbte_custom_addition_content, $wbte_coupon_obj ) );
+		<div class="wt_gift_coupon_additional_content">
+			<?php
+				// Admin-configured additional text (empty when cleared).
+				$wbte_custom_addition_content = Wbte_Gc_Gift_Card_Free_Common::get_additional_email_text();
+				/**
+				 *  Filter the additional content printed on the gift card email.
+				 *
+				 *  @since 1.3.1
+				 *  @param string    $wbte_custom_addition_content Additional content.
+				 *  @param WC_Coupon $wbte_coupon_obj              Coupon object.
+				 */
+				$wbte_custom_addition_content = apply_filters( 'wt_gc_alter_gift_card_email_custom_addition_content', $wbte_custom_addition_content, $wbte_coupon_obj ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
+			if ( '' !== trim( (string) $wbte_custom_addition_content ) ) {
 				?>
-				  
-			</div>
+				<div class="wt_gift_coupon_custom_additional_content">
+					<?php echo wp_kses_post( $wbte_custom_addition_content ); ?>
+				</div>
+				<?php
+			}
+			?>
 
 			<?php
 			/**

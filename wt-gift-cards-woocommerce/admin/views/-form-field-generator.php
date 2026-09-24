@@ -132,6 +132,21 @@ if ( is_array( $args ) ) {
 						&nbsp;&nbsp;
 						<?php
 					}
+				} elseif ( 'coupon_format' === $type ) {
+					/* Composite field: [prefix input] coupon_code [suffix input]. `option_name` stores the prefix, `suffix_option` stores the suffix. */
+					$wbte_suffix_option = isset( $wbte_value['suffix_option'] ) ? $wbte_value['suffix_option'] : '';
+					$wbte_suffix_vl     = ( '' !== $wbte_suffix_option ? Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( $wbte_suffix_option, $base ) : '' );
+					$wbte_suffix_vl     = is_string( $wbte_suffix_vl ) ? stripslashes( $wbte_suffix_vl ) : $wbte_suffix_vl;
+					$wbte_prefix_ph     = isset( $wbte_value['prefix_placeholder'] ) ? $wbte_value['prefix_placeholder'] : '';
+					$wbte_suffix_ph     = isset( $wbte_value['suffix_placeholder'] ) ? $wbte_value['suffix_placeholder'] : '';
+					$wbte_code_label    = isset( $wbte_value['code_label'] ) ? $wbte_value['code_label'] : 'coupon_code';
+					?>
+						<span class="wt_gc_coupon_format_field_block">
+							<input type="text" <?php echo wp_kses_post( $wbte_fld_attr ); ?> class="<?php echo esc_attr( $wbte_css_class ); ?>" name="<?php echo esc_attr( $wbte_field_name ); ?>" value="<?php echo esc_attr( $wbte_vl ); ?>" placeholder="<?php echo esc_attr( $wbte_prefix_ph ); ?>" />
+							<span class="wt_gc_coupon_format_code_wrap"><code><?php echo esc_html( $wbte_code_label ); ?></code></span>
+							<input type="text" class="<?php echo esc_attr( $wbte_css_class ); ?>" name="<?php echo esc_attr( $wbte_suffix_option ); ?>" value="<?php echo esc_attr( $wbte_suffix_vl ); ?>" placeholder="<?php echo esc_attr( $wbte_suffix_ph ); ?>" />
+						</span>
+					<?php
 				}
 
 				if ( 'checkbox' === $type || 'checkbox_list' === $type ) {
@@ -144,7 +159,6 @@ if ( is_array( $args ) ) {
 					<?php
 				}
 
-				echo wp_kses( $wbte_after_form_field, $wbte_allowed_html ); // phpcs:ignore
 			}
 
 			if ( isset( $wbte_value['help_text'] ) ) {
@@ -152,6 +166,8 @@ if ( is_array( $args ) ) {
 				<span class="wt_gc_form_help"><?php echo wp_kses_post( $wbte_value['help_text'] ); ?></span>
 				<?php
 			}
+
+			echo wp_kses( $wbte_after_form_field, $wbte_allowed_html ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Output escaped via wp_kses() with a whitelisted allowed-HTML set.
 
 			if ( false === $wbte_field_only ) {
 				?>

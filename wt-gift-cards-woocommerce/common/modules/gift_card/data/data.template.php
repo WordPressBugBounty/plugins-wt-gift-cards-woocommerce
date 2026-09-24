@@ -132,7 +132,7 @@ $wbte_order_currency = $wbte_order ? $wbte_order->get_currency() : get_woocommer
 					?>
 				<tr>
 					<td align="left" valign="bottom"><?php esc_html_e( 'Message:', 'wt-gift-cards-woocommerce' ); ?></td>
-					<td><?php echo esc_html( $wbte_coupon_message ); ?></td>
+					<td><?php echo nl2br( esc_html( $wbte_coupon_message ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- esc_html() escapes first, then nl2br() adds <br /> to preserve line breaks in the PDF. ?></td>
 				</tr>
 					<?php
 				}
@@ -141,18 +141,26 @@ $wbte_order_currency = $wbte_order ? $wbte_order->get_currency() : get_woocommer
 		</div>
 
 		<div class="wt_gc_pdf_bottom">
-			<div class="wt_gift_coupon_custom_additional_content">
-				<?php
-				$wbte_custom_addition_content = __(
-					'To redeem this gift card, you can enter the gift card code in the dedicated field during checkout.',
-					'wt-gift-cards-woocommerce'
-				);
+			<?php
+			// Admin-configured additional text (empty when cleared).
+			$wbte_custom_addition_content = Wbte_Gc_Gift_Card_Free_Common::get_additional_email_text();
 
-				// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
-				echo esc_html( apply_filters( 'wt_gc_alter_gift_card_pdf_custom_addition_content', $wbte_custom_addition_content, $wbte_coupon_obj ) );
-
+			/**
+			 *  Filter the additional content printed on the gift card PDF.
+			 *
+			 *  @since 1.3.1
+			 *  @param string    $wbte_custom_addition_content Additional content.
+			 *  @param WC_Coupon $wbte_coupon_obj              Coupon object.
+			 */
+			$wbte_custom_addition_content = apply_filters( 'wt_gc_alter_gift_card_pdf_custom_addition_content', $wbte_custom_addition_content, $wbte_coupon_obj ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
+			if ( '' !== trim( (string) $wbte_custom_addition_content ) ) {
 				?>
-							</div>
+				<div class="wt_gift_coupon_custom_additional_content">
+					<?php echo esc_html( $wbte_custom_addition_content ); ?>
+				</div>
+				<?php
+			}
+			?>
 		</div>
 	</div>
 	</body>

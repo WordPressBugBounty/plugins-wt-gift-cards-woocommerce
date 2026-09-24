@@ -1,5 +1,13 @@
 == Changelog ==
 
+= 1.3.1 2026-09-24 =
+*[Add] - Settings option to customize the gift card additional text.
+*[Add] - Configurable prefix and suffix for generated gift card codes.
+*[Fix] - Gift card message now preserves line breaks in emails, PDFs and previews.
+*[Fix] - Vulnerability reported by Berke Bodur.
+*[Compatibility] - Tested OK with Wordpress 7.1.
+*[Compatibility] - Tested OK with WooCommerce 11.1.
+
 = 1.3.0 2026-05-19 =
 *[Compatibility] - Tested OK with Wordpress 7.0
 

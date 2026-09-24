@@ -85,15 +85,17 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Process_Cart extends Wbte_Gc_Gift_Card_Fre
 	 *  @return bool    $passed         Is valid or not
 	 */
 	public function validate_store_credit_on_add_to_cart( $passed, $product_id ) {
+		/* Per product check only: the `gift_card_products` option holds just the first product (MAR-613). */
 		if ( ! self::is_gift_card_product( $product_id ) ) {
 			return $passed;
 		}
 
-		$gift_card_products   = self::get_gift_card_products();
-		$gift_card_product_id = ( is_array( $gift_card_products ) && ! empty( $gift_card_products ) && isset( $gift_card_products[0] ) ? absint( $gift_card_products[0] ) : 0 );
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		$wbte_raw_amount = ( isset( $_REQUEST['wt_credit_amount'] ) ? wp_unslash( $_REQUEST['wt_credit_amount'] ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized within get_validated_credit_amount().
 
-		if ( $product_id !== $gift_card_product_id ) { // Not the first product in the array
-			return $passed;
+		if ( false === $this->get_validated_credit_amount( $product_id, $wbte_raw_amount ) ) {
+			wc_add_notice( __( 'Please select a valid gift card amount.', 'wt-gift-cards-woocommerce' ), 'error' );
+			return false;
 		}
 
         // phpcs:disable WordPress.Security.NonceVerification.Recommended
@@ -108,12 +110,6 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Process_Cart extends Wbte_Gc_Gift_Card_Fre
 				wc_add_notice( __( 'Please select a template', 'wt-gift-cards-woocommerce' ), 'error' );
 
 			}			
-			return false;
-		}
-
-		// phpcs:disable WordPress.Security.NonceVerification.Recommended
-		if ( ! isset( $_REQUEST['wt_credit_amount'] ) || ( isset( $_REQUEST['wt_credit_amount'] ) && 0 === floatval( wp_unslash( $_REQUEST['wt_credit_amount'] ) ) ) ) {
-			wc_add_notice( __( 'Amount is required!', 'wt-gift-cards-woocommerce' ), 'error' );
 			return false;
 		}
 
@@ -164,6 +160,8 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Process_Cart extends Wbte_Gc_Gift_Card_Fre
 
 			if ( false !== stripos( $key, 'email' ) ) {
 				$template_items[ $meta_key ] = ( isset( $_REQUEST[ $field_key ] ) ? sanitize_email( wp_unslash( $_REQUEST[ $field_key ] ) ) : '' );
+			} elseif ( 'message' === $key ) {
+				$template_items[ $meta_key ] = ( isset( $_REQUEST[ $field_key ] ) ? sanitize_textarea_field( wp_unslash( $_REQUEST[ $field_key ] ) ) : '' );
 			} else {
 				$template_items[ $meta_key ] = ( isset( $_REQUEST[ $field_key ] ) ? sanitize_text_field( wp_unslash( $_REQUEST[ $field_key ] ) ) : '' );
 			}
@@ -179,7 +177,11 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Process_Cart extends Wbte_Gc_Gift_Card_Fre
 		/* user action: email, print */
 		$template_items['user_action'] = ( isset( $_REQUEST['wt_gc_gift_card_action'] ) ? sanitize_text_field( wp_unslash( $_REQUEST['wt_gc_gift_card_action'] ) ) : '' );
 
-		$cart_item_data['wt_credit_amount']         = ( isset( $_REQUEST['wt_credit_amount'] ) ? $this->sanitize_price( sanitize_text_field( wp_unslash( $_REQUEST['wt_credit_amount'] ) ) ) : 0 );
+		/* Store the validated denomination, never the raw submitted amount. */
+		$wbte_raw_amount       = ( isset( $_REQUEST['wt_credit_amount'] ) ? wp_unslash( $_REQUEST['wt_credit_amount'] ) : '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- Sanitized within get_validated_credit_amount().
+		$wbte_validated_amount = $this->get_validated_credit_amount( $product_id, $wbte_raw_amount );
+
+		$cart_item_data['wt_credit_amount']         = ( false !== $wbte_validated_amount ? $wbte_validated_amount : 0 );
 		$cart_item_data['wt_store_credit_template'] = $template_items;
 
 		return $cart_item_data;
@@ -354,7 +356,7 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Process_Cart extends Wbte_Gc_Gift_Card_Fre
 		$qty = absint( ! empty( $qty ) ? $qty : 1 );
 
 		for ( $i = 0; $i < $qty; $i++ ) {
-			$coupon_data = $this->create_gift_card_coupon( $credit_value, $product_short_desc );
+			$coupon_data = $this->create_gift_card_coupon( $credit_value, $product_short_desc, true );
 
 			if ( ! empty( $coupon_data ) ) {
 				$coupon_id  = $coupon_data['coupon_id'];

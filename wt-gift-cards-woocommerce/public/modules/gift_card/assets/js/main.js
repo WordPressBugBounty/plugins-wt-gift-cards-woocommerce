@@ -96,7 +96,13 @@ var wt_gc_gift_card =
 			return; /* only on first page load */
 		}
 
-		jQuery( '#wt_gc_gift_card_message' ).val( jQuery( '.wt_gc_email_preview .wt_gc_email_message' ).text().trim() );
+		/* <br /> tags printed by the email template are turned back into newlines for the textarea */
+		var message_elm = jQuery( '.wt_gc_email_preview .wt_gc_email_message' );
+		if (message_elm.length) {
+			var message_text = jQuery( '<div />' ).html( message_elm.html().replace( /<br\s*\/?>/gi, '\n' ) ).text();
+			jQuery( '#wt_gc_gift_card_message' ).val( message_text.trim() );
+		}
+
 		jQuery( '#wt_gc_gift_card_sender_name' ).val( jQuery( '.wt_gc_email_preview .wt_gc_from_name' ).text().trim() );
 
 		var reciever_name = jQuery( '.wt_gc_email_preview .wt_gc_reciever_name' ).text().trim();
@@ -115,6 +121,12 @@ var wt_gc_gift_card =
 			}
 		);
 	},
+	/**
+	 * Format the personal message for the preview.
+	 */
+	format_message_for_preview:function (text) {
+		return jQuery( '<div />' ).text( text ).html().replace( /\r\n|\r|\n/g, '<br />' );
+	},
 	set_email_preview_values:function (elm) {
 		var vl   = elm.val();
 		var name = elm.attr( 'name' );
@@ -125,14 +137,14 @@ var wt_gc_gift_card =
 			this.set_preview_price( vl );
 
 		} else if ('wt_gc_gift_card_message' === name) {
-			if (jQuery( '.wt_gc_email_preview .wt_gc_email_message' ).length) {
+			if ( ! jQuery( '.wt_gc_email_preview .wt_gc_email_message' ).length) {
 				jQuery( '.wt_gc_email_preview .wt_gc_from_name_block' ).after( '<div class="wt_gc_email_message"></div>' );
 			}
 
 			if ("" === vl.trim()) {
 				jQuery( '.wt_gc_email_preview .wt_gc_email_message' ).hide();
 			} else {
-				jQuery( '.wt_gc_email_preview .wt_gc_email_message' ).show().html( vl );
+				jQuery( '.wt_gc_email_preview .wt_gc_email_message' ).show().html( this.format_message_for_preview( vl ) );
 			}
 
 		} else if ('wt_gc_gift_card_sender_name' === name) {

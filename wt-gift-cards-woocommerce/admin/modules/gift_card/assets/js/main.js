@@ -145,6 +145,12 @@
 			jQuery( '[name="wt_gc_send_email_template"]' ).val( wt_gc_gift_card_params.default_template );
 			jQuery( '.wt_gc_email_preview div.wt_gc_email_img img' ).attr( {'src': wt_gc_gift_card_params.default_template_url, 'alt': wt_gc_gift_card_params.default_template} );
 		},
+		/**
+		 * Format the personal message for the preview.
+		 */
+		format_message_for_preview:function (text) {
+			return jQuery( '<div />' ).text( text ).html().replace( /\r\n|\r|\n/g, '<br />' );
+		},
 		set_email_preview_values:function (elm) {
 			var vl   = elm.val();
 			var name = elm.attr( 'name' );
@@ -162,7 +168,7 @@
 				if ("" === vl.trim()) {
 					jQuery( '.wt_gc_email_preview .wt_gc_email_message' ).hide();
 				} else {
-					jQuery( '.wt_gc_email_preview .wt_gc_email_message' ).show().html( vl );
+					jQuery( '.wt_gc_email_preview .wt_gc_email_message' ).show().html( this.format_message_for_preview( vl ) );
 				}
 
 			} else if ('wt_gc_send_email_from_name' === name) {

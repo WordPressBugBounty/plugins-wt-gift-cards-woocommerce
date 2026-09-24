@@ -83,6 +83,61 @@ class Wbte_Gc_Gift_Card_Free_Purchase extends Wbte_Gc_Gift_Card_Free_Public {
 
 
 	/**
+	 * Get the configured denominations of a gift card product
+	 *
+	 * @since 1.3.1
+	 * @param  int $product_id  Id of the gift card product.
+	 * @return float[]   Configured denominations. Empty array when not configured.
+	 */
+	protected function get_product_denominations( $product_id ) {
+		$amounts = self::get_product_meta( absint( $product_id ), '_wt_gc_amounts', '' );
+
+		if ( ! is_string( $amounts ) || '' === trim( $amounts ) ) {
+			return array();
+		}
+
+		return $this->process_denomination_list( $amounts );
+	}
+
+
+	/**
+	 * Resolve a submitted credit amount to a configured denomination
+	 *
+	 * @since 1.3.1
+	 * @param  int   $product_id  Id of the gift card product.
+	 * @param  mixed $amount      Raw submitted amount.
+	 * @return float|false   Configured denomination, or false when invalid.
+	 */
+	protected function get_validated_credit_amount( $product_id, $amount ) {
+		if ( ! is_scalar( $amount ) ) {
+			return false;
+		}
+
+		$amount = (float) $this->sanitize_price( (string) $amount );
+
+		if ( 0 >= $amount ) {
+			return false;
+		}
+
+		$denominations = $this->get_product_denominations( $product_id );
+
+		if ( empty( $denominations ) ) {
+			return false; /* Fail closed when the product has no configured amounts. */
+		}
+
+		foreach ( $denominations as $denomination ) {
+			$denomination = (float) $denomination;
+
+			if ( 0.00001 > abs( $denomination - $amount ) ) {
+				return $denomination;
+			}
+		}
+
+		return false;
+	}
+
+
+	/**
 	 *  Disable some payment gateways on Gift card purchase
 	 *  Hooked into: `woocommerce_available_payment_gateways`
 	 *

@@ -75,6 +75,7 @@
 .wt-gc-form-table textarea{padding:.375rem .75rem;font-size:.85rem;line-height:1.5;border:1px solid #ced4da;border-radius:.25rem}
 .wt_gc_checkbox_list_item, .wt_gc_radio_list_item{ display:inline-block; padding-bottom:10px; padding-right:10px; }
 .wt-gc-form-table input.wt_gc_number_field[type="number"], .wt_gc_number_field{ max-width:100px; display:inline-block; }
+.wt-gc-form-table input:disabled, .wt-gc-form-table select:disabled, .wt-gc-form-table textarea:disabled{ opacity:0.55; background-color:#f6f7f7; cursor:not-allowed; }
 
 /* multi select */
 .wt-gc-form-table .select2-selection[aria-expanded="false"],.wt-gc-form-table .select2-selection.select2-selection--multiple[aria-expanded="false"], .toplevel_page_wt-woocommerce-gift-cards .select2-container .select2-selection--multiple[aria-expanded="false"]{border:1px solid #ced4da !important; border-radius:.25rem; min-height:60px; font-size:.75rem}
@@ -126,7 +127,9 @@
 
 /* messages */
 .wt_gc_msgs{ padding:10px; border-radius:5px; }
-.wt_gc_msg_wrn{ background:#fef8e7; border:solid 1px #ffdc60; color:#3b3a36; font-size:13px; }
+.wt_gc_msg_wrn{ display:flex; align-items:center; gap:5px; margin-top:9px; padding:8px 8px; border:solid 1px #e3c65a; border-radius:5px; box-shadow:0 0 0 4px rgba(227,198,90,0.12); color:#96751a; font-size:14px; width:74%; }
+.wt_gc_msg_wrn .wt_gc_msg_wrn_icon{ flex-shrink:0; width:20px; height:20px; background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23c8991c' d='M12 3c.71 0 1.36.38 1.71.99l8 13.9A1.98 1.98 0 0 1 19.99 21H4.01a1.98 1.98 0 0 1-1.72-2.11l8-13.9C10.64 3.38 11.29 3 12 3z'/%3E%3Crect fill='%23fff' x='11' y='8.5' width='2' height='5.5' rx='1'/%3E%3Ccircle fill='%23fff' cx='12' cy='17' r='1.15'/%3E%3C/svg%3E") no-repeat center / contain; }
+.wt_gc_msg_wrn .wt_gc_msg_wrn_text{ line-height:1.45; }
 
 .wt_gc_upgrade_pro{ box-shadow:0px 2px 2px #ccc; float:left; border-radius:11px;background: #fff; }
 .wt_gc_upgrade_pro_main{ float:left; width:93%; height:auto; padding:25px 17px; text-align:center; box-sizing:border-box; background: #F4F8FF; display: flex; gap: 10px; margin: 12px;}
@@ -208,3 +211,7 @@
 .wt_gc_newsletter_subscription_box #mce-success-response { background: #d4edda; color: #155724; border: 1px solid #c3e6cb; margin-bottom: 24px;}
 .wt_gc_newsletter_subscription_box #mc_embed_signup #mc-embedded-subscribe-form div.mce_inline_error { margin:2px 0 1em 0; padding:3px; background-color: transparent; -webkit-border-radius: 3px; -moz-border-radius: 3px; border-radius: 3px; font-size:14px; font-weight:normal; z-index:1; color:#e85c41;}
 .wt_gc_newsletter_subscription_box #mc_embed_signup #mc-embedded-subscribe-form input.mce_inline_error {border:1px solid #e85c41;}
+
+/* `Used in orders` coupon column icon */
+.column-wt_gc_coupon_used_in_orders { text-align: center; }
+.column-wt_gc_coupon_used_in_orders .dashicons-external { vertical-align: middle; color: #2271b1; text-decoration: none; }

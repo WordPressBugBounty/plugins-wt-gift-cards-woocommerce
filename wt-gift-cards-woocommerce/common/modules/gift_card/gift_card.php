@@ -90,6 +90,9 @@ class Wbte_Gc_Gift_Card_Free_Common {
              */
             'attach_as_pdf' => 'no',
 
+			// Additional text shown in the gift card email and PDF. @since 1.3.1.
+			'gift_card_additional_email_text'        => self::get_default_additional_email_text(),
+
 			/* gift card template */
 			'gift_card_template_to_hide'          => array(), /* templates not to show in front end */
 
@@ -97,6 +100,11 @@ class Wbte_Gc_Gift_Card_Free_Common {
 			'product_page_templates_title_text'   => __( 'Select template', 'wt-gift-cards-woocommerce' ),
 			'product_page_how_to_send_title_text' => __( 'How do you want to send it', 'wt-gift-cards-woocommerce' ),
 			'remove_email_restriction_for_gift_card' => 'no',
+
+			/* coupon code format  */
+			'coupon_code_prefix'                     => '',
+			'coupon_code_suffix'                     => '',
+			'coupon_code_length'                     => 12,
 
 		);
 
@@ -141,10 +149,12 @@ class Wbte_Gc_Gift_Card_Free_Common {
 		}
 
 		return array(
-			'order_status_to_generate'   => array( 'type' => 'text_arr' ),
-			'fields_to_be_shown'         => array( 'type' => 'text_arr' ),
-			'gift_card_products'         => array( 'type' => 'int_arr' ),
-			'gift_card_template_to_hide' => array( 'type' => 'text_arr' ),
+			'order_status_to_generate'        => array( 'type' => 'text_arr' ),
+			'fields_to_be_shown'              => array( 'type' => 'text_arr' ),
+			'gift_card_products'              => array( 'type' => 'int_arr' ),
+			'gift_card_template_to_hide'      => array( 'type' => 'text_arr' ),
+			'gift_card_additional_email_text' => array( 'type' => 'textarea' ),
+			'coupon_code_length'              => array( 'type' => 'absint' ),
 		); // this is for plugin settings default. Modules can alter
 	}
 
@@ -337,6 +347,18 @@ class Wbte_Gc_Gift_Card_Free_Common {
 	public static function get_gift_card_message( $template ) {
 		// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.
 		return apply_filters( 'wt_gc_gift_card_message', '', $template );
+	}
+
+
+	/**
+	 *  Format a personal message for safe HTML output, preserving line breaks.
+	 *
+	 *  @since 1.3.1
+	 *  @param string $message Raw message value.
+	 *  @return string         Sanitized HTML with line breaks preserved.
+	 */
+	public static function format_message_for_html( $message ) {
+		return wp_kses_post( nl2br( (string) $message ) );
 	}
 
 
@@ -637,11 +659,12 @@ class Wbte_Gc_Gift_Card_Free_Common {
 	 *  @since 1.0.0
 	 *  @param     float  $credit_value       Credit amount
 	 *  @param     string $description        Description for coupon
+	 *  @param     bool   $apply_code_format  Apply configured prefix/suffix/length (purchased gift card only).
 	 *  @return    array        Created coupon data array
 	 */
-	public function create_gift_card_coupon( $credit_value, $description = '' ) {
+	public function create_gift_card_coupon( $credit_value, $description = '', $apply_code_format = false ) {
 		/* generate random coupon code */
-		$coupon_code = self::generate_random_coupon_code();
+		$coupon_code = self::generate_random_coupon_code( $apply_code_format );
 
 		/* create a coupon */
 		$coupon_args = array(
@@ -992,18 +1015,44 @@ class Wbte_Gc_Gift_Card_Free_Common {
 
 	/**
 	 *  Generate unique random coupon code
-	 *  Format: XXXX-XXXX-XXXX-XXXX
+	 *  Default format: XXXX-XXXX-XXXX-XXXX
+	 *
+	 *  When $apply_format is true, the code uses the configured prefix/suffix/length (purchased gift cards only).
 	 *
 	 *  @since 1.0.0
+	 *  @param bool $apply_format Whether to apply the configured prefix/suffix/length.
 	 *  @return string Coupon code
 	 */
-	private static function generate_random_coupon_code() {
-		global $wpdb;
+	private static function generate_random_coupon_code( $apply_format = false ) {
+		$charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+		$count   = strlen( $charset );
+
+		if ( $apply_format ) {
+			$module_id = self::$module_id_static;
+			$prefix    = (string) Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( 'coupon_code_prefix', $module_id );
+			$suffix    = (string) Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( 'coupon_code_suffix', $module_id );
+			$length    = (int) Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( 'coupon_code_length', $module_id );
+			$length    = min( 16, max( 6, ( 0 < $length ? $length : 12 ) ) );
+
+			$random_coupon = '';
+			for ( $i = 0; $i < $length; $i++ ) {
+				if ( $i > 0 && 0 === ( $i % 4 ) ) {
+					$random_coupon .= '-';
+				}
+				$random_coupon .= $charset[ wp_rand( 0, $count - 1 ) ];
+			}
+
+			$coupon_code = wc_sanitize_coupon_code( $prefix . $random_coupon . $suffix );
+
+			while ( wc_get_coupon_id_by_code( $coupon_code ) ) {
+				return self::generate_random_coupon_code( true );
+			}
+
+			return $coupon_code;
+		}
 
 		$random_coupon = '';
 		$length        = 16;
-		$charset       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-		$count         = strlen( $charset );
 
 		while ( $length-- ) {
 			$random_coupon .= $charset[ wp_rand( 0, $count - 1 ) ];
@@ -1300,6 +1349,32 @@ class Wbte_Gc_Gift_Card_Free_Common {
     }
 
 
+	/**
+	 * Default additional text shown in the gift card email and PDF.
+	 *
+	 * @since  1.3.1
+	 * @return string
+	 */
+	public static function get_default_additional_email_text() {
+		return __( 'To redeem this gift card, you can enter the gift card code in the dedicated field during checkout.', 'wt-gift-cards-woocommerce' );
+	}
+
+
+	/**
+	 * Get the admin-configured additional text shown in the gift card email and PDF.
+	 *
+	 * The default text is applied only through the option default (fresh installs).
+	 * A value the admin has deliberately cleared is honoured as empty, so no text
+	 * is rendered in the email or PDF.
+	 *
+	 * @since  1.3.1
+	 * @return string
+	 */
+	public static function get_additional_email_text() {
+		return (string) Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( 'gift_card_additional_email_text', self::$module_id_static );
+	}
+
+
     /**
      *  Generate and attach `PDF gift card` to gift card email
      * 
@@ -1349,7 +1424,7 @@ class Wbte_Gc_Gift_Card_Free_Common {
                     $html = apply_filters('wt_gc_alter_giftcard_pdf_html', $html, $coupon_obj, $args);
 
                     $class_name = $mpdf_info['class'];
-                    $pdf_name = $temp_dir.'/'.$coupon_code.'.pdf'; //prepare PDF name based on coupon code
+					$pdf_name   = $temp_dir . '/' . sanitize_file_name( $coupon_code ) . '.pdf'; // Prepare PDF name based on coupon code (sanitized to keep it a safe filename).
                     $mdf = new $class_name();
 
                     if($mdf->generate_pdf(array('html'=>$html, 'file_path' => $pdf_name, 'action' => 'save'))) /* PDF was successfully generated */

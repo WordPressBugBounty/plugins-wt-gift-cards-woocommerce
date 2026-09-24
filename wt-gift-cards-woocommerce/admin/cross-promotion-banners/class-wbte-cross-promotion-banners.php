@@ -46,14 +46,6 @@ if ( version_compare( WBTE_GC_FREE_CROSS_PROMO_BANNER_VERSION, get_option( 'wbft
 			if ( ! get_option( 'wt_hide_product_ie_cta_banner' ) ) {
 				require_once plugin_dir_path( __FILE__ ) . 'class-wt-p-iew-cta-banner.php';
 			}
-
-			/**
-			 * Class includes helper functions for accessibility cta banner
-			 */
-			if ( ! get_option( 'cya11y_hide_accessyes_cta_banner' ) && ! defined( 'CYA11Y_ACCESSYES_BANNER_DISPLAYED' ) ) {
-				define( 'CYA11Y_ACCESSYES_BANNER_DISPLAYED', true ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedConstantFound -- Shared cross-promotion banner constant used across WebToffee plugins to prevent duplicate display.
-				require_once plugin_dir_path( __FILE__ ) . 'class-wbte-accessibility-banner.php';
-			}
 		}
 
 		/**

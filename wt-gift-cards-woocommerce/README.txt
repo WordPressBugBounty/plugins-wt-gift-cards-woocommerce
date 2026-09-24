@@ -1,30 +1,30 @@
 === WebToffee Gift Cards for WooCommerce ===
 Contributors: WebToffee
-Version: 1.3.0
+Version: 1.3.1
 Donate link:https://www.webtoffee.com/product/woocommerce-gift-cards/
 Tags: gift cards, woocommerce gift cards,  gift certificates, gift voucher, advanced gift cards
-Requires at least: 3.5
-Tested up to: 7.0
-Requires PHP: 5.6
-Stable tag: 1.3.0
+Requires at least: 6.0
+Tested up to: 7.1
+Requires PHP: 7.0
+Stable tag: 1.3.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Sell WooCommerce gift cards in your store. Let customers buy, personalize, and send digital gift vouchers via email with ease.
+Create and sell WooCommerce gift cards in your store. Let customers buy, customize, and send digital gift vouchers via email, then redeem them at checkout.
  
 == Description ==
  
-**The easiest way to sell WooCommerce gift cards.** The WebToffee Gift Cards for WooCommerce plugin lets you create digital gift card products, send them to recipients via email, and let customers redeem them at checkout.
+This Gift Cards for WooCommerce plugin lets you create digital gift card products, send them to recipients via email, and let customers buy, redeem, and share gift vouchers.
  
-Whether you want to run a holiday gifting campaign, reward loyal customers, or offer store credit, this free WooCommerce gift card plugin has you covered. It works like an Amazon-style gift card experience. Customers pick a value, enter the recipient's details, add a personal message, and you handle the rest automatically.
+Whether you want to run a holiday gifting campaign, reward loyal customers, or offer store credit, this free WooCommerce gift card plugin has you covered. It works like an Amazon-style gift card experience. Customers pick a value, enter the recipient's details, add a personal message, and the plugin generates and delivers the gift card automatically.
  
-Looking for advanced features like expiry dates, 20+ templates, physical gift cards, or store credit refunds? The [premium version](https://www.webtoffee.com/product/woocommerce-gift-cards/?utm_source=free_plugin_readme&utm_medium=gift_cards&utm_campaign=WooCommerce_Gift_Cards) unlocks the full gift card toolkit.
+Looking for advanced gift cards with expiry dates, 20+ templates, physical gift cards, or store credit refunds? The [premium version](https://www.webtoffee.com/product/woocommerce-gift-cards/?utm_source=free_plugin_readme&utm_medium=gift_cards&utm_campaign=WooCommerce_Gift_Cards) unlocks the ultimate WooCommerce gift card toolkit.
  
 [youtube https://www.youtube.com/watch?v=bKmGBG9U1uY&ab_channel=WebToffee]
 
 == Why Store Owners Choose This WooCommerce Gift Cards Plugin ==
  
-Gift cards are one of the highest-margin products you can sell. Recipients almost always spend more than the card's value, and every gift card introduces your store to a brand-new customer. This plugin makes it straightforward to tap into that opportunity.
+Gift cards are one of the highest-margin products you can sell. Recipients almost always spend more than the card's value, and every gift card introduces your store to a brand-new customer. This plugin makes it straightforward to tap into that opportunity, without touching a line of code.
 
 == WooCommerce Gift Cards Free Version Features ==
  
@@ -35,15 +35,21 @@ Gift cards are one of the highest-margin products you can sell. Recipients almos
 &#128312; Display gift card products anywhere on your site using shortcodes
 &#128312; Auto-generate and send gift cards on order Processing or Completed status
  
-= Gift Card Design =
+= Customized Gift Cards and Templates =
 &#128312; Four free gift card templates covering a range of occasions and styles
+&#128312; Let customers add a custom personal message to create a personalized gift card
 &#128312; Attach gift cards as PDF files to the recipient's email
+&#128312; Set custom prefix and suffix for Gift Card codes
  
-= Gift Card Delivery and Personalization =
+= Gift Card Delivery =
 &#128312; Send gift cards to recipients directly via email from the backend
 &#128312; Add multiple recipients to a single gift card email
-&#128312; Let customers add a custom personal message with their gift card
 &#128312; Allow senders to remain anonymous when sending gift cards
+ 
+= Redeemable Gift Cards at Checkout =
+&#128312; Customers redeem gift cards by entering the code at checkout
+&#128312; Partial redemption supported; unused balance stays on the gift card
+&#128312; Refunds for gift card purchases are credited back to the same gift card
  
 = Gift Card Email =
 &#128312; Fully editable gift card email content and messaging
@@ -56,7 +62,7 @@ Gift cards are one of the highest-margin products you can sell. Recipients almos
 
 == WooCommerce Gift Cards Plugin Premium Version Features ==
  
-Upgrade to [WooCommerce Gift Cards Pro](https://www.webtoffee.com/product/woocommerce-gift-cards/?utm_source=free_plugin_readme&utm_medium=gift_cards&utm_campaign=WooCommerce_Gift_Cards) for the full feature set:
+Upgrade to [WooCommerce Gift Cards Pro](https://www.webtoffee.com/product/woocommerce-gift-cards/?utm_source=free_plugin_readme&utm_medium=gift_cards&utm_campaign=WooCommerce_Gift_Cards) for the ultimate gift card feature set:
  
 &#9989; Create unlimited gift card products
 &#9989; 20+ professionally designed gift card templates
@@ -64,12 +70,12 @@ Upgrade to [WooCommerce Gift Cards Pro](https://www.webtoffee.com/product/woocom
 &#9989; Create and sell physical gift cards
 &#9989; Set expiry dates for gift cards
 &#9989; Allow customers to schedule gift card delivery for a future date
-&#9989; Let customers upload custom images for the gift card
+&#9989; Let customers upload custom images for fully customized gift cards
 &#9989; Create fully custom gift card templates
 &#9989; Send product recommendations inside gift card emails
 &#9989; Issue free gift cards to specific users with usage restrictions
 &#9989; Manage user gift card and credit balances from the backend
-&#9989; Provide instant refunds as store credits
+&#9989; Provide refunds to WooCommerce store credit balance
 &#9989; Apply store credits toward shipping, tax, and other charges
 &#9989; Allow customers to print gift vouchers
  
@@ -80,22 +86,22 @@ Upgrade to [WooCommerce Gift Cards Pro](https://www.webtoffee.com/product/woocom
 1. Customer visits the gift card product page and selects a predefined amount.
 2. They enter the recipient's name, email address, and an optional personal message.
 3. They complete checkout like any normal product.
-4. The gift card is automatically emailed to the recipient (with a PDF attachment) once the order reaches the configured status.
+4. The plugin generates the gift card and emails it to the recipient (with a PDF attachment) once the order reaches the configured status.
  
 = For recipients redeeming a gift card: =
 1. Recipient receives the gift card email with their unique code.
 2. They visit your store, add products to the cart, and enter the gift card code at checkout.
 3. The gift card balance is applied to their order. If the balance does not cover the full amount, they pay the difference with another payment method.
-4. Any unused balance remains on the gift card for future purchases.
+4. Any unused balance remains on the redeemable gift card for future purchases.
  
 = For store owners managing gift cards: =
 1. View all issued gift cards and their balances from the WooCommerce backend.
-2. Send free gift cards to customers directly from the admin panel.
+2. Generate and send free gift cards to customers directly from the admin panel.
 3. Edit the gift card email content to match your brand tone and messaging.
 
-== Store Credit Coupons for WooCommerce ==
+== WooCommerce Store Credits ==
  
-Beyond standard gift cards, this plugin lets you create store credit coupons — a flexible alternative to cash refunds and a powerful loyalty tool. Store credits work exactly like gift cards but are typically issued by the store rather than purchased by customers.
+Beyond standard gift cards, this plugin lets you create store credit coupons: a flexible alternative to cash refunds and a powerful loyalty tool. Store credits work exactly like gift cards but are typically issued by the store rather than purchased by customers.
  
 Use cases for store credits:
 1. Offer store credit instead of cash refunds to retain revenue.
@@ -109,7 +115,7 @@ Pair this with [Smart Coupons for WooCommerce](https://wordpress.org/plugins/wt-
  
 == Extend Your Gift Card Strategy with Smart Coupons ==
  
-The WebToffee Gift Cards plugin works seamlessly alongside **Smart Coupons for WooCommerce** — a dedicated WooCommerce coupon plugin that handles advanced discounting, store credits, and coupon automation.
+The WebToffee Gift Cards plugin works seamlessly alongside **Smart Coupons for WooCommerce**, a dedicated WooCommerce coupon plugin that handles advanced discounting, store credits, and coupon automation.
  
 Together, they cover the full spectrum of gifting and discounting:
  
@@ -213,13 +219,23 @@ The gift card code will be sent along with the gift card email. Customers can fi
 
 == Changelog ==
 
-= 1.3.0 2026-05-19 =
-*[Compatibility] - Tested OK with Wordpress 7.0
+= 1.3.1 2026-09-24 =
+*[Add] - Settings option to customize the gift card additional text.
+*[Add] - Configurable prefix and suffix for generated gift card codes.
+*[Fix] - Gift card message now preserves line breaks in emails, PDFs and previews.
+*[Fix] - Vulnerability reported by Berke Bodur.
+*[Compatibility] - Tested OK with Wordpress 7.1.
+*[Compatibility] - Tested OK with WooCommerce 11.1.
 
 [See changelog for all versions](https://plugins.svn.wordpress.org/wt-gift-cards-woocommerce/trunk/changelog.txt)
 
 
 == Upgrade Notice ==
 
-= 1.3.0 2026-05-19 =
-*[Compatibility] - Tested OK with Wordpress 7.0
+= 1.3.1 2026-09-24 =
+*[Add] - Settings option to customize the gift card additional text.
+*[Add] - Configurable prefix and suffix for generated gift card codes.
+*[Fix] - Gift card message now preserves line breaks in emails, PDFs and previews.
+*[Fix] - Vulnerability reported by Berke Bodur.
+*[Compatibility] - Tested OK with Wordpress 7.1.
+*[Compatibility] - Tested OK with WooCommerce 11.1.

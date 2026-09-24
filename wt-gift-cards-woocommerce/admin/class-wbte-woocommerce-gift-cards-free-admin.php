@@ -87,6 +87,96 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 	}
 
 	/**
+	 *  Remove other plugins' admin notices on this plugin's pages (this plugin, WooCommerce and core are kept).
+	 *
+	 *  @since 1.3.1
+	 */
+	public function suppress_third_party_admin_notices() {
+		// phpcs:disable WordPress.Security.NonceVerification.Recommended -- Read-only page checks, no state change.
+		$is_plugin_page = ( isset( $_GET['page'] ) && WBTE_GC_FREE_PLUGIN_NAME === sanitize_text_field( wp_unslash( $_GET['page'] ) ) );
+
+		// Gift card product edit screen, loaded in an iframe on the plugin's product tab.
+		$is_gc_product_edit_page = isset( $_GET['wt_gc_product_edit'] ) ? ( intval( wp_unslash( $_GET['wt_gc_product_edit'] ) ) > 0 ) : false;
+		// phpcs:enable WordPress.Security.NonceVerification.Recommended
+
+		if ( ! $is_plugin_page && ! $is_gc_product_edit_page ) {
+			return;
+		}
+
+		global $wp_filter;
+
+		// Notices defined under these paths are allowed; other plugins' notices are removed.
+		$allowed_paths = array(
+			wp_normalize_path( WBTE_GC_FREE_MAIN_PATH ), // This plugin.
+			wp_normalize_path( ABSPATH . 'wp-admin/' ),  // WordPress core (admin).
+			wp_normalize_path( ABSPATH . WPINC . '/' ),  // WordPress core (includes).
+		);
+		if ( defined( 'WC_ABSPATH' ) ) {
+			$allowed_paths[] = wp_normalize_path( WC_ABSPATH ); // WooCommerce.
+		}
+
+		$hooks = array( 'admin_notices', 'all_admin_notices', 'user_admin_notices', 'network_admin_notices' );
+
+		foreach ( $hooks as $hook ) {
+			if ( empty( $wp_filter[ $hook ] ) || empty( $wp_filter[ $hook ]->callbacks ) ) {
+				continue;
+			}
+
+			foreach ( $wp_filter[ $hook ]->callbacks as $priority => $callbacks ) {
+				foreach ( $callbacks as $handle => $callback ) {
+					$file = self::get_hook_callback_file( $callback['function'] );
+
+					// Leave notices alone when the source can't be resolved.
+					if ( '' === $file ) {
+						continue;
+					}
+
+					$file    = wp_normalize_path( $file );
+					$allowed = false;
+					foreach ( $allowed_paths as $allowed_path ) {
+						if ( 0 === strpos( $file, $allowed_path ) ) {
+							$allowed = true;
+							break;
+						}
+					}
+
+					if ( ! $allowed ) {
+						unset( $wp_filter[ $hook ]->callbacks[ $priority ][ $handle ] );
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 *  Resolve the file that defines a hook callback.
+	 *
+	 *  @since 1.3.1
+	 *  @param callable $callback Hook callback.
+	 *  @return string  Absolute file path, or empty string when it cannot be resolved.
+	 */
+	private static function get_hook_callback_file( $callback ) {
+		try {
+			if ( $callback instanceof Closure ) {
+				$ref = new ReflectionFunction( $callback );
+			} elseif ( is_array( $callback ) && isset( $callback[0], $callback[1] ) ) {
+				$ref = new ReflectionMethod( is_object( $callback[0] ) ? get_class( $callback[0] ) : $callback[0], $callback[1] );
+			} elseif ( is_string( $callback ) && false !== strpos( $callback, '::' ) ) {
+				list( $class, $method ) = explode( '::', $callback, 2 );
+				$ref                    = new ReflectionMethod( $class, $method );
+			} elseif ( is_string( $callback ) && function_exists( $callback ) ) {
+				$ref = new ReflectionFunction( $callback );
+			} else {
+				return '';
+			}
+
+			return (string) $ref->getFileName();
+		} catch ( ReflectionException $e ) {
+			return '';
+		}
+	}
+
+	/**
 	 *  Registers modules
 	 *
 	 *  @since 1.0.0
@@ -580,6 +670,187 @@ class Wbte_Woocommerce_Gift_Cards_Free_Admin {
 			$restrictions = $coupon_obj->get_email_restrictions();
 			echo esc_html( is_array( $restrictions ) ? implode( ', ', $restrictions ) : '' );
 		}
+	}
+
+	/**
+	 *  Add the `Used in orders` header to the coupon list (after `expiry_date`, else appended).
+	 *
+	 *  @since  1.3.1
+	 *  @param  array $columns    Coupon list columns.
+	 *  @return array    Columns with the new column inserted.
+	 */
+	public function add_coupon_used_in_orders_column( $columns ) {
+		$out              = array();
+		$new_column_title = __( 'Store credits used in order', 'wt-gift-cards-woocommerce' );
+		$new_column_key   = 'wt_gc_coupon_used_in_orders';
+
+		foreach ( $columns as $column_key => $column_title ) {
+			$out[ $column_key ] = $column_title;
+
+			if ( 'expiry_date' === $column_key ) {
+				$out[ $new_column_key ] = $new_column_title;
+			}
+		}
+
+		if ( ! isset( $out[ $new_column_key ] ) ) {
+			$out[ $new_column_key ] = $new_column_title;
+		}
+
+		return $out;
+	}
+
+	/**
+	 *  Render the `Used in orders` cell — an icon linking to orders that used this coupon.
+	 *
+	 *  Only for gift-card coupons; the link (`coupon:CODE` search) targets the active HPOS or legacy orders screen.
+	 *
+	 *  @since  1.3.1
+	 *  @param  string $column_name    Current column being rendered.
+	 *  @param  int    $post_ID        Coupon post ID.
+	 */
+	public function add_coupon_used_in_orders_column_content( $column_name, $post_ID ) {
+		if ( 'wt_gc_coupon_used_in_orders' !== $column_name ) {
+			return;
+		}
+
+		$coupon = new WC_Coupon( $post_ID );
+
+		if ( ! Wbte_Woocommerce_Gift_Cards_Free_Common::is_store_credit_coupon( $coupon ) ) {
+			return;
+		}
+
+		$coupon_code = wc_sanitize_coupon_code( $coupon->get_code() );
+
+		if ( ! $coupon_code ) {
+			return;
+		}
+
+		$search_term = 'coupon:' . $coupon_code;
+
+		if ( Wbte_Woocommerce_Gift_Cards_Free_Common::is_wc_hpos_enabled() ) {
+			$orders_url = add_query_arg(
+				array(
+					'page'        => 'wc-orders',
+					's'           => $search_term,
+					'post_status' => 'all',
+					'paged'       => 1,
+				),
+				admin_url( 'admin.php' )
+			);
+		} else {
+			$orders_url = add_query_arg(
+				array(
+					's'           => $search_term,
+					'post_status' => 'all',
+					'post_type'   => 'shop_order',
+					'action'      => '-1',
+					'paged'       => 1,
+					'action2'     => '-1',
+				),
+				admin_url( 'edit.php' )
+			);
+		}
+
+		printf(
+			'<a href="%1$s" title="%2$s" aria-label="%2$s" target="_blank" rel="noopener noreferrer"><span class="dashicons dashicons-external"></span></a>',
+			esc_url( $orders_url ),
+			esc_attr__( 'Show orders that used this gift card', 'wt-gift-cards-woocommerce' )
+		);
+	}
+
+	/**
+	 *  Get IDs of orders that used a coupon code (used by both order-search handlers).
+	 *
+	 *  @since  1.3.1
+	 *  @param  string $coupon_code    Coupon code to match against coupon line items.
+	 *  @return array    Matching order IDs, or empty array.
+	 */
+	private function get_order_ids_by_coupon_code( $coupon_code ) {
+		global $wpdb;
+
+		// Direct query on the WooCommerce order-items table; no WP/WC API exposes a coupon-code → order-ID lookup. Not cached as the table has no dedicated cache group and this runs only on an admin search.
+		$order_ids = $wpdb->get_col( // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+			$wpdb->prepare(
+				"SELECT order_id FROM {$wpdb->prefix}woocommerce_order_items
+				WHERE order_item_name = %s AND order_item_type = %s",
+				wc_clean( $coupon_code ),
+				'coupon'
+			)
+		);
+
+		return array_map( 'absint', (array) $order_ids );
+	}
+
+	/**
+	 *  Resolve a `coupon:CODE` search into a `post__in` order filter (legacy/CPT storage).
+	 *
+	 *  Runs on `parse_query` at priority 9 — before WooCommerce's `search_custom_fields` (10) — and clears `s` so WC skips its dead literal search.
+	 *
+	 *  @since  1.3.1
+	 *  @param  WP_Query $query    Query object from the `parse_query` action.
+	 */
+	public function search_order_using_coupon( $query ) {
+		global $pagenow;
+
+		if ( 'edit.php' !== $pagenow
+			|| ! isset( $query->query_vars['post_type'] )
+			|| 'shop_order' !== $query->query_vars['post_type']
+			|| empty( $query->query_vars['s'] ) ) {
+			return;
+		}
+
+		$search = trim( $query->query_vars['s'] );
+
+		if ( 'coupon:' !== strtolower( substr( $search, 0, 7 ) ) ) {
+			return;
+		}
+
+		$coupon_code = wc_sanitize_coupon_code( substr( $search, 7 ) );
+
+		if ( ! $coupon_code ) {
+			return;
+		}
+
+		$order_ids = $this->get_order_ids_by_coupon_code( $coupon_code );
+
+		// Clear the term so WooCommerce's own search_custom_fields (parse_query @10) does not override.
+		unset( $query->query_vars['s'], $_REQUEST['s'] );
+
+		$query->query_vars['shop_order_search'] = true;
+		$query->query_vars['post__in']          = ! empty( $order_ids ) ? array_merge( $order_ids, array( 0 ) ) : array( 0 );
+	}
+
+	/**
+	 *  Resolve a `coupon:CODE` search into a `post__in` order filter (HPOS storage).
+	 *
+	 *  @since  1.3.1
+	 *  @param  array $query_args    Args passed to wc_get_orders() by the HPOS list table.
+	 *  @return array    Query args, filtered to the matching orders.
+	 */
+	public function search_order_using_coupon_hpos( $query_args ) {
+		if ( empty( $query_args['s'] ) ) {
+			return $query_args;
+		}
+
+		$search = trim( $query_args['s'] );
+
+		if ( 'coupon:' !== strtolower( substr( $search, 0, 7 ) ) ) {
+			return $query_args;
+		}
+
+		$coupon_code = wc_sanitize_coupon_code( substr( $search, 7 ) );
+
+		if ( ! $coupon_code ) {
+			return $query_args;
+		}
+
+		$order_ids = $this->get_order_ids_by_coupon_code( $coupon_code );
+
+		unset( $query_args['s'] );
+
+		$query_args['post__in'] = ! empty( $order_ids ) ? $order_ids : array( 0 );
+
+		return $query_args;
 	}
 
 	 /**

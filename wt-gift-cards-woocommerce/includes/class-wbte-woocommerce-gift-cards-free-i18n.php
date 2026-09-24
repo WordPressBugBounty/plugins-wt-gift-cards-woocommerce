@@ -36,10 +36,14 @@ class Wbte_Woocommerce_Gift_Cards_Free_I18n {
 	 */
 	public function load_plugin_textdomain() {
 
-		load_plugin_textdomain(
-			'wt-gift-cards-woocommerce',
-			false,
-			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
-		);
+		$domain = 'wt-gift-cards-woocommerce';
+		$locale = determine_locale();
+		$mofile = $domain . '-' . $locale . '.mo';
+
+		// Language pack downloaded from translate.wordpress.org.
+		load_textdomain( $domain, WP_LANG_DIR . '/plugins/' . $mofile, $locale );
+
+		// Translations bundled with the plugin.
+		load_textdomain( $domain, WBTE_GC_FREE_MAIN_PATH . 'languages/' . $mofile, $locale );
 	}
 }

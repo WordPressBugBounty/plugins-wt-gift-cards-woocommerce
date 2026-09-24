@@ -6,7 +6,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *  @since 1.0.0
  */
 ?>
-<table class="wt-gc-form-table">
+<table class="wt-gc-form-table wt-gc-product-page-tab-form-table">
 
 	<?php
 	// phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hook for extenders.

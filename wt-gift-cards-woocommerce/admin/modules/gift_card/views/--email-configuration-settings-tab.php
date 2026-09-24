@@ -37,6 +37,16 @@ if ( current_user_can( 'install_plugins' ) && current_user_can( 'update_plugins'
 
 $wbte_attr = ( ! $is_mpdf_active || ! $is_required_mpdf_version_installed ? 'disabled = "disabled"' : '' );
 
+/*
+ * A legacy filter overrides this setting. Show a notice so the value here is not seen as ignored.
+ *
+ * @since 1.3.1
+ */
+// phpcs:disable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- Legacy hooks for extenders.
+$wbte_addition_text_filtered = ( has_filter( 'wt_gc_alter_gift_card_email_custom_addition_content' ) || has_filter( 'wt_gc_alter_gift_card_pdf_custom_addition_content' ) );
+// phpcs:enable WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
+$wbte_addition_text_notice = ( $wbte_addition_text_filtered ? '<div class="wt_gc_msgs wt_gc_msg_wrn"><span class="wt_gc_msg_wrn_icon" aria-hidden="true"></span><span class="wt_gc_msg_wrn_text">' . esc_html__( 'A code snippet is overriding this text. Remove it to edit here.', 'wt-gift-cards-woocommerce' ) . '</span></div>' : '' );
+
 ?>
 <table class="wt-gc-form-table wt-gc-product-page-tab-form-table">
 	<?php
@@ -56,6 +66,15 @@ $wbte_attr = ( ! $is_mpdf_active || ! $is_required_mpdf_version_installed ? 'dis
 					'text'        => '<a href="' . esc_url( admin_url( 'admin.php?page=wc-settings&tab=email&section=wbte_woocommerce_gift_cards_free_email' ) ) . '" class="button button-secondary" target="_blank">' . __( 'Configure email', 'wt-gift-cards-woocommerce' ) . '</a>',
 					'help_text' => __( 'Redirects to WooCommerce > Settings > Emails. Can configure the gift cards related email from there', 'wt-gift-cards-woocommerce' ),
 
+				),
+				array(
+					'label'            => __( 'Additional text in email', 'wt-gift-cards-woocommerce' ),
+					'option_name'      => 'gift_card_additional_email_text',
+					'type'             => 'textarea',
+					'css_class'        => 'wt-gc-additional-email-text',
+					'attr'             => ( $wbte_addition_text_filtered ? 'disabled="disabled"' : '' ),
+					'help_text'        => __( 'Any changes made here will be reflected in the email and the PDF.', 'wt-gift-cards-woocommerce' ),
+					'after_form_field' => $wbte_addition_text_notice,
 				),
 				array(
 					'label'         => __( 'Attach Gift Card as PDF', 'wt-gift-cards-woocommerce' ),

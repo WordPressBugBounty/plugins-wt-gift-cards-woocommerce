@@ -78,7 +78,7 @@ class Wbte_Woocommerce_Gift_Cards_Free {
 		if ( defined( 'WBTE_GC_FREE_VERSION' ) ) {
 			$this->version = WBTE_GC_FREE_VERSION;
 		} else {
-			$this->version = '1.3.0';
+			$this->version = '1.3.1';
 		}
 		$this->plugin_name = WBTE_GC_FREE_PLUGIN_NAME;
 
@@ -278,6 +278,9 @@ class Wbte_Woocommerce_Gift_Cards_Free {
 		$this->loader->add_action( 'admin_enqueue_scripts', $this->plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'init', $this->plugin_admin, 'register_tooltips', 11 );
 
+		/* Keep the plugin's own admin pages free of third-party admin notices. */
+		$this->loader->add_action( 'in_admin_header', $this->plugin_admin, 'suppress_third_party_admin_notices', 1 );
+
 		/**
 		*   Ajax hook for saving settings, Includes plugin main settings and settings from module
 		 *
@@ -308,6 +311,16 @@ class Wbte_Woocommerce_Gift_Cards_Free {
 			 */
 			$this->loader->add_filter( 'manage_edit-shop_coupon_columns', $this->plugin_admin, 'add_coupon_allowed_email_column', 10, 1 );
 			$this->loader->add_action( 'manage_shop_coupon_posts_custom_column', $this->plugin_admin, 'add_coupon_allowed_email_column_content', 10, 2 );
+
+			/**
+			 *  `Used in orders` coupon column + `coupon:CODE` order search (legacy + HPOS).
+			 *
+			 *  @since 1.3.1
+			 */
+			$this->loader->add_filter( 'manage_edit-shop_coupon_columns', $this->plugin_admin, 'add_coupon_used_in_orders_column', 20, 1 );
+			$this->loader->add_action( 'manage_shop_coupon_posts_custom_column', $this->plugin_admin, 'add_coupon_used_in_orders_column_content', 20, 2 );
+			$this->loader->add_action( 'parse_query', $this->plugin_admin, 'search_order_using_coupon', 9 );
+			$this->loader->add_filter( 'woocommerce_shop_order_list_table_prepare_items_query_args', $this->plugin_admin, 'search_order_using_coupon_hpos' );
 
 		}
 

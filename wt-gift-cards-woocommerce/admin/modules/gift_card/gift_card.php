@@ -178,9 +178,20 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 				return;
 			}
 
+			// Read the setting before the new values are written.
+			$was_enabled = self::is_gift_card_products_enabled();
+
 			Wbte_Woocommerce_Gift_Cards_Free::get_instance()->plugin_admin->save_settings_inner( $this->module_id );
+
+			// Always store a valid coupon code length; default to 12 when left empty/invalid.
+			$coupon_code_length = (int) Wbte_Woocommerce_Gift_Cards_Free_Common::get_option( 'coupon_code_length', $this->module_id );
+			$normalized_length  = ( $coupon_code_length < 6 ? 12 : ( $coupon_code_length > 16 ? 16 : $coupon_code_length ) );
+			if ( $coupon_code_length !== $normalized_length ) {
+				Wbte_Woocommerce_Gift_Cards_Free_Common::update_option( 'coupon_code_length', $normalized_length, $this->module_id );
+			}
+
 			$this->hide_giftcard_templates();
-			$this->toggle_gift_product_visibility();
+			$this->toggle_gift_product_visibility( $was_enabled );
 
 			// Update values in product meta too
 			$gift_card_products = self::get_gift_card_products();
@@ -214,42 +225,70 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 	 *  Update the gift card product visibility based on settings
 	 *
 	 *  @since 1.0.0
+	 *  @since 1.3.1 Recover products left hidden when no stored state exists.
+	 *  @param  bool|null $was_enabled  Setting value before this save.
 	 */
-	private function toggle_gift_product_visibility() {
+	private function toggle_gift_product_visibility( $was_enabled = null ) {
+		$option_name = 'wt_gc_products_old_visibility_state';
+
 		if ( self::is_gift_card_products_enabled() ) {
-			$old_states = (array) get_option( 'wt_gc_products_old_visibility_state' );
+			$old_states   = (array) get_option( $option_name );
+			$just_enabled = ( false === $was_enabled );
 
-			if ( ! empty( $old_states ) ) {
-				foreach ( $old_states as $product_id => $state ) {
-					$product = wc_get_product( $product_id );
+			// Nothing to restore and no transition.
+			if ( empty( $old_states ) && ! $just_enabled ) {
+				return;
+			}
 
-					if ( $product ) {
-						$product->set_catalog_visibility( $state );
-						$product->save();
-					}
+			// Cover stored and currently tracked products.
+			$product_ids = array_unique( array_merge( array_keys( $old_states ), self::get_gift_card_products() ) );
+
+			foreach ( $product_ids as $product_id ) {
+				$product = wc_get_product( $product_id );
+
+				if ( ! $product ) {
+					continue;
 				}
 
-				delete_option( 'wt_gc_products_old_visibility_state' ); // remove it, otherwise the above code will run in every setting saving action
+				if ( isset( $old_states[ $product_id ] ) ) {
+					$product->set_catalog_visibility( $old_states[ $product_id ] );
+					$product->save();
+					continue;
+				}
+
+				// Recover only on the transition back to enabled.
+				if ( $just_enabled && 'hidden' === $product->get_catalog_visibility() ) {
+					$product->set_catalog_visibility( 'visible' );
+					$product->save();
+				}
 			}
-		} else // hide the products and store their existing visibility state for future use
-		{
-			$existing_states    = array();
+			delete_option( $option_name ); // Remove it, otherwise the above code will run in every setting saving action.
+		} else { 
+			$existing_states    = (array) get_option( $option_name );
 			$gift_card_products = self::get_gift_card_products();
 
 			foreach ( $gift_card_products as $product_id ) {
 				$product = wc_get_product( $product_id );
+
 				if ( ! $product ) {
-					continue; }
+					continue;
+				}
 
-				/* store the existing state */
-				$existing_states[ $product_id ] = $product->get_catalog_visibility();
+				$current_visibility = $product->get_catalog_visibility();
 
-				/* update the new state to hidden */
-				$product->set_catalog_visibility( 'hidden' );
-				$product->save();
+				// Store the existing state only the first time.
+				if ( ! isset( $existing_states[ $product_id ] ) ) {
+					$existing_states[ $product_id ] = $current_visibility;
+				}
+
+				// Update the new state to hidden.
+				if ( 'hidden' !== $current_visibility ) {
+					$product->set_catalog_visibility( 'hidden' );
+					$product->save();
+				}
 			}
 
-			update_option( 'wt_gc_products_old_visibility_state', $existing_states ); // save it for future use
+			update_option( $option_name, $existing_states ); // Save it for future use.
 		}
 	}
 
@@ -372,6 +411,24 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 					'type'          =>  "checkbox",
 					'checkbox_label' =>  __("Allow gift cards to be redeemed regardless of the buyer’s email address.", 'wt-gift-cards-woocommerce'),
 					'field_vl'      =>  'yes',
+				),
+				array(
+					'label'              => __( 'Coupon format', 'wt-gift-cards-woocommerce' ),
+					'type'               => 'coupon_format',
+					'option_name'        => 'coupon_code_prefix',
+					'suffix_option'      => 'coupon_code_suffix',
+					'code_label'         => 'coupon_code',
+					'prefix_placeholder' => __( 'Prefix', 'wt-gift-cards-woocommerce' ),
+					'suffix_placeholder' => __( 'Suffix', 'wt-gift-cards-woocommerce' ),
+					'help_text'          => __( 'Type in prefix/ suffix if required', 'wt-gift-cards-woocommerce' ),
+				),
+				array(
+					'label'       => __( 'Length of the coupon code', 'wt-gift-cards-woocommerce' ),
+					'option_name' => 'coupon_code_length',
+					'type'        => 'number',
+					'css_class'   => 'wt_gc_number_field',
+					'attr'        => 'min="6" max="16" step="1"',
+					'help_text'   => __( 'Enter a length between 6 & 16 characters. This excludes any prefix or suffix. Defaults to 12 if left empty.', 'wt-gift-cards-woocommerce' ),
 				),
 			),
 			$this->module_id
@@ -890,7 +947,18 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 			$coupons_created = 0;
 
 			foreach ( $email as $email_id ) {
-				$coupon_data = $this->create_gift_card_coupon( $credit_amount, $message );
+				/**
+				 *  Filter whether the configured coupon prefix/suffix/length is applied
+				 *  to gift cards created via the admin "Send gift card" option.
+				 *
+				 *  @since 1.3.1
+				 *  @param bool   $apply_code_format  Whether to apply the configured format. Default true.
+				 *  @param string $email_id           Recipient email address.
+				 *  @param float  $credit_amount      Gift card credit amount.
+				 */
+				$apply_code_format = apply_filters( 'wbte_gc_free_apply_coupon_format_on_admin_send', true, $email_id, $credit_amount );
+
+				$coupon_data = $this->create_gift_card_coupon( $credit_amount, $message, $apply_code_format );
 
 				if ( ! empty( $coupon_data ) ) {
 					$coupon_id  = $coupon_data['coupon_id'];
@@ -1295,7 +1363,7 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 
 		$file_array = array( 'name' => $file_name );
 
-		$temp_file_name = wp_tempnam( wp_basename( $file_path ) );
+		$temp_file_name = wp_tempnam( $file_name );
 
 		if ( $temp_file_name && copy( $file_path, $temp_file_name ) ) {
 			$file_array['tmp_name'] = $temp_file_name;

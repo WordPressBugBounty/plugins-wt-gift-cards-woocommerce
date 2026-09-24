@@ -64,13 +64,27 @@ class Wbte_Gc_Gift_Card_Free_Purchase_Setup_Product extends Wbte_Gc_Gift_Card_Fr
 			return;
 		}
 
+		$invalid_item_keys = array();
+
 		foreach ( $cart_obj->get_cart() as $key => $item ) {
 			if ( ! isset( $item['wt_credit_amount'] ) ) {
 				continue;
 			}
 
-			$product_price = (float) $item['wt_credit_amount'];
+			/* Re-check on every recalculation, whatever route added the item. */
+			$product_id    = ( isset( $item['product_id'] ) ? absint( $item['product_id'] ) : 0 );
+			$product_price = $this->get_validated_credit_amount( $product_id, $item['wt_credit_amount'] );
+
+			if ( false === $product_price ) {
+				$invalid_item_keys[] = $key;
+				continue;
+			}
+
 			$item['data']->set_price( $product_price );
+		}
+
+		foreach ( $invalid_item_keys as $key ) {
+			$cart_obj->remove_cart_item( $key );
 		}
 	}
 

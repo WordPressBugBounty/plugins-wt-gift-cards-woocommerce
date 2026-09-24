@@ -41,7 +41,7 @@ if ( ! class_exists( 'Wbte_Ema_Banner' ) ) {
             // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound -- WordPress core filter.
             if ( ! in_array( 'decorator-woocommerce-email-customizer/decorator.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
                 add_action('admin_enqueue_scripts', array($this, 'enqueue_styles'));
-                add_action('admin_footer', array($this, 'ema_inject_analytics_script'));
+                add_action('admin_footer', array($this, 'ema_inject_analytics_script'), 20);
                 add_action('wp_ajax_wt_gc_dismiss_ema_banner', array($this, 'wt_gc_dismiss_ema_banner'));
             }
         }
@@ -99,6 +99,11 @@ if ( ! class_exists( 'Wbte_Ema_Banner' ) ) {
 				return false;
 			}
              
+			/* Smart Coupons injects the same banner here; show only one. */
+			if ( defined( 'WBTE_SC_ANALYTICS_BANNER' ) ) {
+				return false;
+			}
+
             return ! get_option( $this->dismiss_option ) && ! defined( 'WBTE_EMA_ANALYTICS_BANNER' );
         }
 
@@ -120,13 +125,13 @@ if ( ! class_exists( 'Wbte_Ema_Banner' ) ) {
          */
         public function ema_inject_analytics_script() {
             
-            ob_start();
-
             if ( !$this->ema_should_display_banner() ) {
                 return;
             }
+
+            ob_start();
             
-            $sale_link = 'https://www.webtoffee.com/product/ecommerce-marketing-automation/?utm_source=free_plugin_analytics_overview_tab&utm_medium=gift_cards_free&utm_campaign=EMA' ;
+            $sale_link = 'https://www.webtoffee.com/product/smart-coupons-for-woocommerce/?utm_source=free_plugin_analytics_revenue_tab&utm_medium=smart_coupons_free&utm_campaign=smart_coupons' ;
 
             ?>
             
@@ -135,10 +140,10 @@ if ( ! class_exists( 'Wbte_Ema_Banner' ) ) {
                         <div class="wt_gc_gift_card_ema_text">
                             <img src="<?php echo esc_url( WBTE_GC_FREE_URL . 'admin/modules/gc_pro_banner/assets/images/bulb.svg' ); ?>" style="">
                             <span class="wt_gc_gift_card_ema_title"><?php esc_html_e( 'Did you know?', 'wt-gift-cards-woocommerce' ); ?></span>
-                            <?php esc_html_e('You can boost your store revenue and recover lost sales with automated email campaigns, cart recovery, and upsell popups using the WebToffee Marketing Automation App.','wt-gift-cards-woocommerce'); ?>
+                            <?php esc_html_e('WebToffee Smart Coupons lets you create BOGO offers, giveaways, and store credits to help grow your store\'s revenue.','wt-gift-cards-woocommerce'); ?>
                         </div>
                         <div class="wt_gc_gift_card_ema_actions">
-                            <a href="<?php echo esc_url( $sale_link); ?>" class="btn-primary" target="_blank"><?php esc_html_e('Sign Up for Free', 'wt-gift-cards-woocommerce'); ?></a>
+                            <a href="<?php echo esc_url( $sale_link); ?>" class="btn-primary" target="_blank"><?php esc_html_e('Get Plugin Now', 'wt-gift-cards-woocommerce'); ?></a>
                             <button type="button" class="notice-dismiss wt_gc_ema_dismiss">
                                 <span class="screen-reader-text"><?php esc_html_e('Dismiss this notice.', 'wt-gift-cards-woocommerce'); ?></span>
                             </button>
