@@ -78,7 +78,7 @@ class Wbte_Woocommerce_Gift_Cards_Free {
 		if ( defined( 'WBTE_GC_FREE_VERSION' ) ) {
 			$this->version = WBTE_GC_FREE_VERSION;
 		} else {
-			$this->version = '1.3.1';
+			$this->version = '1.3.2';
 		}
 		$this->plugin_name = WBTE_GC_FREE_PLUGIN_NAME;
 
@@ -168,7 +168,7 @@ class Wbte_Woocommerce_Gift_Cards_Free {
 		 * 
 		 * @since 1.2.7
 		 */
-		require_once plugin_dir_path( __DIR__ ) . 'admin/modules/gc_pro_banner/class-wt-bfcm-twenty-twenty-five.php';
+		require_once plugin_dir_path( __DIR__ ) . 'admin/modules/gc_pro_banner/class-wt-bfcm-twenty-twenty-six.php';
 
 		/**
 		 * Includes cross promotion banner main class file.
@@ -330,13 +330,6 @@ class Wbte_Woocommerce_Gift_Cards_Free {
 		 *  @since 1.2.6
 		 */
 		$this->loader->add_action( 'wp_ajax_wbte_gc_hide_promotion_banner', $this->plugin_admin, 'hide_promotion_banner' );
-
-		/**
-		 *  Set screens to show promotional banner
-		 *
-		 *  @since 1.2.7
-		 */
-		$this->loader->add_filter( 'wt_bfcm_banner_screens', $this->plugin_admin, 'wt_bfcm_banner_screens' );
 
 		/**
 		 *  Hide newsletter

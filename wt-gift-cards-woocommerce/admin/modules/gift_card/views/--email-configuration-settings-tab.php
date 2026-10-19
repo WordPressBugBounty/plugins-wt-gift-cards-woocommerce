@@ -12,18 +12,18 @@ if ( current_user_can( 'install_plugins' ) && current_user_can( 'update_plugins'
 
 	if ( ! $is_mpdf_active && ! $is_mpdf_exists ) {
 		/* translators: 1: Opening link tag, 2: Closing link tag, 3: Opening link tag, 4: Closing link tag */
-		$wbte_enable_mpdf_msg = __( 'Requires mPDF library to add PDF support. %1$s Click here %2$s to install the %3$s mPDF add-on by WebToffee %4$s (free).', 'wt-gift-cards-woocommerce' );
+		$wbte_enable_mpdf_msg = __( 'Requires mPDF library to add PDF support.<br>%1$s Click here %2$s to install the %3$s mPDF add-on by WebToffee %4$s (free).', 'wt-gift-cards-woocommerce' );
 		$wbte_placeholder_arr[0] = '<a href="' . esc_url( wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=' . $mpdf_slug ), 'install-plugin_' . $mpdf_slug ) ) . '">';
 
 	} elseif ( $is_mpdf_active && ! $is_required_mpdf_version_installed ) {
 		/* translators: 1: mPDF version, 2: Opening link tag, 3: Closing link tag, 4: Opening link tag, 5: Closing link tag */
-		$wbte_enable_mpdf_msg = __( 'Requires mPDF version %1$s or greater to add PDF support. %2$s Click here %3$s to update the %4$s mPDF add-on by WebToffee %5$s (free).', 'wt-gift-cards-woocommerce' );
+		$wbte_enable_mpdf_msg = __( 'Requires mPDF version %1$s or greater to add PDF support.<br>%2$s Click here %3$s to update the %4$s mPDF add-on by WebToffee %5$s (free).', 'wt-gift-cards-woocommerce' );
 		$wbte_placeholder_arr[0] = '<a href="' . esc_url( wp_nonce_url( self_admin_url( 'update.php?action=upgrade-plugin&plugin=' . $mpdf_slug ), 'upgrade-plugin_' . $mpdf_slug ) ) . '">';
 		array_unshift( $wbte_placeholder_arr, $mpdf_required_version );
 
 	} elseif ( ! $is_mpdf_active && $is_mpdf_exists ) {
 		/* translators: 1: Opening link tag, 2: Closing link tag, 3: Opening link tag, 4: Closing link tag */
-		$wbte_enable_mpdf_msg = __( 'Requires mPDF library to add PDF support. %1$s Click here %2$s to activate the %3$s mPDF add-on by WebToffee %4$s(free).', 'wt-gift-cards-woocommerce' );
+		$wbte_enable_mpdf_msg = __( 'Requires mPDF library to add PDF support.<br>%1$s Click here %2$s to activate the %3$s mPDF add-on by WebToffee %4$s(free).', 'wt-gift-cards-woocommerce' );
 		$wbte_placeholder_arr[0] = '<a href="' . esc_url( wp_nonce_url( self_admin_url( 'plugins.php?action=activate&plugin=' . urlencode( $mpdf_path ) . '&plugin_status=all&paged=1&s' ), 'activate-plugin_' . $mpdf_path ) ) . '">';
 	} else {
 		$wbte_enable_mpdf_msg = '';
@@ -31,7 +31,7 @@ if ( current_user_can( 'install_plugins' ) && current_user_can( 'update_plugins'
 	}
 } else {
 	/* translators: 1: Opening link tag, 2: Closing link tag */
-	$wbte_enable_mpdf_msg = __( 'Requires mPDF library to add PDF support. Please install the %1$s mPDF add-on by WebToffee %2$s(free).', 'wt-gift-cards-woocommerce' );
+	$wbte_enable_mpdf_msg = __( 'Requires mPDF library to add PDF support.<br>Please install the %1$s mPDF add-on by WebToffee %2$s(free).', 'wt-gift-cards-woocommerce' );
 	$wbte_placeholder_arr = array( '<a href="' . esc_url( $mpdf_wp_url ) . '" target="_blank">', '</a>' );
 }
 
@@ -83,7 +83,7 @@ $wbte_addition_text_notice = ( $wbte_addition_text_filtered ? '<div class="wt_gc
 					'checkbox_label'  => __( 'Enable', 'wt-gift-cards-woocommerce' ),
 					'field_vl'      => 'yes',
 					'attr'          => $wbte_attr,
-					'after_form_field' => ( $wbte_enable_mpdf_msg ? '<div class="wt_gc_msgs wt_gc_msg_wrn" style="margin-top:5px;">' . vsprintf( $wbte_enable_mpdf_msg, $wbte_placeholder_arr ) . '</div>' : '' ),
+					'after_form_field' => ( $wbte_enable_mpdf_msg ? '<div class="wt_gc_msgs wt_gc_msg_wrn wt_gc_msg_wrn_mpdf"><span class="wt_gc_msg_wrn_icon" aria-hidden="true"></span><span class="wt_gc_msg_wrn_text">' . vsprintf( $wbte_enable_mpdf_msg, $wbte_placeholder_arr ) . '</span></div>' : '' ),
 				),
 			)
 		, $this->module_id );

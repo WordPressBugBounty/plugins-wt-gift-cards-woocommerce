@@ -86,32 +86,50 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 	<div class="wt-gc-tab-right-container">
 		<div class="wt_gc_upgrade_pro">
-			<?php 
-			if(  method_exists( 'Wbte_Woocommerce_Gift_Cards_Free_Admin', 'is_bfcm_season' ) && Wbte_Woocommerce_Gift_Cards_Free_Admin::is_bfcm_season() ) {
-			?>
+			<?php
+			$wbte_is_bfcm_season = method_exists( 'Wbte_Woocommerce_Gift_Cards_Free_Admin', 'is_bfcm_season' ) && Wbte_Woocommerce_Gift_Cards_Free_Admin::is_bfcm_season();
+			if ( $wbte_is_bfcm_season ) {
+				?>
 				<div class="wt_gc_bfcm_offer">
 					<span style="margin: 0px 13px;"><img src="<?php echo esc_url( WBTE_GC_FREE_URL . 'admin/images/bfcm-doc-settings-coupon.svg' ); ?>" style="width: 280px;"></span>
 				</div>
-			<?php
+				<?php
 			}
 			?>
 			<div class="wt_gc_upgrade_pro_main">
 				<!-- <span style="font-size:41px; padding-top:20px;">🎉</span> -->
 				<span style="font-size:41px; padding-top:20px;"><img src="<?php echo esc_url( WBTE_GC_FREE_URL . 'admin/images/coupon-image.svg' ); ?>" style="width: 46px;"></span>
-				<div class="wt_gc_upgrade_pro_main_hd"><?php esc_html_e( 'Boost Your Sales and Customer Loyalty With Premium Gift Card Features!', 'wt-gift-cards-woocommerce' ); ?></div>
+				<div class="wt_gc_upgrade_pro_main_hd">
+					<?php
+					if ( $wbte_is_bfcm_season ) {
+						esc_html_e( 'Get Ready for BFCM and Holiday Gifting Season With Premium Gift Card Features', 'wt-gift-cards-woocommerce' );
+					} else {
+						esc_html_e( 'Boost Your Sales and Customer Loyalty With Premium Gift Card Features!', 'wt-gift-cards-woocommerce' );
+					}
+					?>
+				</div>
 			</div>
 			<div class="wt_gc_upgrade_pro_content">
 				<ul class="pro_feature_list">
-					<li><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Create an unlimited number of gift cards', 'wt-gift-cards-woocommerce' ); ?></li>
-					<li><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Create physical gift cards', 'wt-gift-cards-woocommerce' ); ?></li>
-					<li><span class="dashicons dashicons-yes"></span><?php esc_html_e( "'Gift this product' option", 'wt-gift-cards-woocommerce' ); ?></li>
-					<li><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Let users schedule gift card delivery', 'wt-gift-cards-woocommerce' ); ?></li>
-					<li><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Print gift cards', 'wt-gift-cards-woocommerce' ); ?></li>
-					<li><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Allow users to upload custom images for gift cards', 'wt-gift-cards-woocommerce' ); ?></li>
-					<li><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Recommend products on gift certificates', 'wt-gift-cards-woocommerce' ); ?></li>
-					<li><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Accept gift cards as payment method', 'wt-gift-cards-woocommerce' ); ?></li>
-					<li><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Apply store credit on shipping, tax, and other fees', 'wt-gift-cards-woocommerce' ); ?></li>
+					<li><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Create unlimited gift card products', 'wt-gift-cards-woocommerce' ); ?></li>
+					<li><span class="dashicons dashicons-yes"></span><?php esc_html_e( '20+ templates, including Christmas and New Year', 'wt-gift-cards-woocommerce' ); ?></li>
+					<li><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Create physical and printable gift cards', 'wt-gift-cards-woocommerce' ); ?></li>
+					<li><span class="dashicons dashicons-yes"></span><?php esc_html_e( "Add 'Gift this product' button to product pages", 'wt-gift-cards-woocommerce' ); ?></li>
+					<li><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Schedule gift card email delivery', 'wt-gift-cards-woocommerce' ); ?></li>
+					<li><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Add custom images and personal messages', 'wt-gift-cards-woocommerce' ); ?></li>
+					<li class="wt_gc_pro_feature_more"><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Offer fixed or custom gift card amounts', 'wt-gift-cards-woocommerce' ); ?></li>
+					<li class="wt_gc_pro_feature_more"><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Pause gift card usage on sale days like Black Friday', 'wt-gift-cards-woocommerce' ); ?></li>
+					<li class="wt_gc_pro_feature_more"><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Issue refunds as store credit', 'wt-gift-cards-woocommerce' ); ?></li>
+					<li class="wt_gc_pro_feature_more"><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Send free gift cards to customers in bulk', 'wt-gift-cards-woocommerce' ); ?></li>
+					<li class="wt_gc_pro_feature_more"><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Set gift card usage restrictions and expiry dates', 'wt-gift-cards-woocommerce' ); ?></li>
+					<li class="wt_gc_pro_feature_more"><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Manage customer store credits from one dashboard', 'wt-gift-cards-woocommerce' ); ?></li>
+					<li class="wt_gc_pro_feature_more"><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Accept gift cards as a payment method', 'wt-gift-cards-woocommerce' ); ?></li>
+					<li class="wt_gc_pro_feature_more"><span class="dashicons dashicons-yes"></span><?php esc_html_e( 'Apply store credit on shipping, tax, and other fees', 'wt-gift-cards-woocommerce' ); ?></li>
 				</ul>
+				<div class="wt_gc_pro_feature_toggle">
+					<a href="#" class="wt_gc_pro_feature_view_more"><?php esc_html_e( 'View more...', 'wt-gift-cards-woocommerce' ); ?></a>
+					<a href="#" class="wt_gc_pro_feature_view_less"><?php esc_html_e( 'View less', 'wt-gift-cards-woocommerce' ); ?></a>
+				</div>
 			</div> 
 			<div class="wt_gc_upgrade_pro_lower_green">
 				<div class="wt_gc_extras">

@@ -45,7 +45,7 @@ class Wbte_Gc_Upsell_Banner {
 	 * Enqueue required scripts and styles.
 	 */
 	public function enqueue_scripts($hook) { 
-		if ( $this->is_banner_dismissed() ) {
+		if ( $this->is_banner_dismissed() || ! $this->is_banner_page( $hook ) ) {
 			return;
 		}
 
@@ -59,6 +59,23 @@ class Wbte_Gc_Upsell_Banner {
 			'nonce' => wp_create_nonce('wt_gc_dismiss_upsell_banner'),
 			'action' => 'wt_gc_dismiss_upsell_banner'
 		));
+	}
+
+	/**
+	 * Check if the current admin page shows the upsell banner: the gift cards settings page or a gift card product edit page.
+	 *
+	 * @since 1.3.2
+	 *
+	 * @param string $hook Current admin page hook.
+	 * @return bool
+	 */
+	private function is_banner_page( $hook ) {
+		$gc_page = isset( $_GET['page'] ) ? sanitize_text_field( wp_unslash( $_GET['page'] ) ) : ''; // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( WBTE_GC_FREE_PLUGIN_NAME === $gc_page ) {
+			return true;
+		}
+
+		return 'post.php' === $hook && 'product' === get_post_type() && class_exists( 'Wbte_Gc_Gift_Card_Free_Common' ) && Wbte_Gc_Gift_Card_Free_Common::is_gift_card_product( get_the_ID() );
 	}
 
 	/**

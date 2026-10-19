@@ -244,16 +244,4 @@ table.wp-list-table span.wc-image::before {
 			?>
 		</tbody>
 	</table>
-
-	<div class="wt_gc_upsell_banner_product_table">
-	<?php 
-		/**
-		 * @var mixed
-		 * 
-		 * Display upsell banner
-		 */
-		$wbte_gc_pro_banner = Wbte_Gc_Upsell_Banner::get_instance();
-		$wbte_gc_pro_banner->pro_banner_content();
-	?>
-	</div>
 </div>

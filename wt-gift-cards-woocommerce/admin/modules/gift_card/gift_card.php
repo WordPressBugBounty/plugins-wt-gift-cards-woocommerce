@@ -361,9 +361,9 @@ class Wbte_Gc_Gift_Card_Free_Admin extends Wbte_Gc_Gift_Card_Free_Common {
 			}
 
 			if ( 0 === $shown_templates ) {
-				echo wp_kses_post( '<div><div class="wt_gc_msgs wt_gc_msg_wrn">' ); // need an extra wrapping div to avoid flex related height issue  // phpcs:ignore
+				echo wp_kses_post( '<div><div class="wt_gc_msgs wt_gc_msg_wrn"><span class="wt_gc_msg_wrn_icon" aria-hidden="true"></span><span class="wt_gc_msg_wrn_text">' ); // need an extra wrapping div to avoid flex related height issue  // phpcs:ignore
 				echo wp_kses_post( sprintf(__("No templates have been chosen. Navigate to %s General Settings > Template Settings %s and select the desired templates.", 'wt-gift-cards-woocommerce'), '<b>', '</b>') ); // phpcs:ignore
-				echo wp_kses_post( '</div></div>' ); // phpcs:ignore
+				echo wp_kses_post( '</span></div></div>' ); // phpcs:ignore
 			}
 			?>
 		</div>

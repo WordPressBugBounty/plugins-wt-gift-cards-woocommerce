@@ -17,6 +17,19 @@
 	);
 
 	/**
+	 * @since 1.3.2 View more / View less toggle for the pro features list in the settings sidebar
+	 */
+	$( document ).on( 'click', '.wt_gc_pro_feature_view_more, .wt_gc_pro_feature_view_less', function ( e ) {
+		e.preventDefault();
+		const container = $( this ).closest( '.wt_gc_upgrade_pro_content' );
+		const expand    = $( this ).hasClass( 'wt_gc_pro_feature_view_more' );
+
+		container.find( '.pro_feature_list' ).toggleClass( 'wt_gc_pro_feature_list_expanded', expand );
+		container.find( '.wt_gc_pro_feature_view_more' ).toggle( ! expand );
+		container.find( '.wt_gc_pro_feature_view_less' ).toggle( expand );
+	} );
+
+	/**
 	 * @since 1.2.6 To hide BFCM banner in coupon page
 	 */
 	$( document ).ready(function(){
